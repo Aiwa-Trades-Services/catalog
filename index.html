@@ -28,8 +28,15 @@
         .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 15px; }
         @media (min-width: 768px) { .grid { grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 20px; } }
 
-        .card { background: var(--card-bg); border-radius: 12px; overflow: hidden; display: flex; flex-direction: column; box-shadow: 0 2px 8px rgba(0,0,0,0.05); }
-        .card img { width: 100%; aspect-ratio: 1/1; object-fit: cover; background: #eee; }
+        .card { background: var(--card-bg); border-radius: 12px; overflow: hidden; display: flex; flex-direction: column; box-shadow: 0 2px 8px rgba(0,0,0,0.05); position: relative; }
+        
+        /* Gallery Styles */
+        .image-container { width: 100%; aspect-ratio: 1/1; overflow-x: auto; display: flex; scroll-snap-type: x mandatory; background: #eee; scrollbar-width: none; }
+        .image-container::-webkit-scrollbar { display: none; }
+        .image-container img { min-width: 100%; object-fit: cover; scroll-snap-align: start; }
+        
+        .photo-count { position: absolute; top: 10px; right: 10px; background: rgba(0,0,0,0.6); color: white; padding: 2px 8px; border-radius: 10px; font-size: 10px; z-index: 5; }
+
         .info { padding: 12px; flex-grow: 1; }
         .item-name { font-size: 14px; font-weight: 600; margin: 4px 0; height: 38px; overflow: hidden; }
         .price { font-size: 1.1rem; font-weight: 800; margin-bottom: 12px; }
@@ -83,19 +90,28 @@ let currentCategory = 'All';
 
 const products = [
     // --- ELECTRONICS ---
-    { name: "Intel Core i7-13700K", cat: "Electronics", sub: "Chips", price: "Enquire", img: "https://via.placeholder.com/400?text=CPU+Chip" },
-    { name: "Automatic SMT Pick & Place", cat: "Electronics", sub: "Machineries", price: "Enquire", img: "https://via.placeholder.com/400?text=Machinery" },
-    { name: "Countertop Cooler SC21B", cat: "Electronics", sub: "Refrigeration", price: "Enquire", img: "https://via.placeholder.com/400?text=Fridge" },
-    
-    // --- TOYS ---
-    { name: "RC Distortion Car", cat: "Toys", sub: "Remote Control", price: "¥41.80", img: "https://via.placeholder.com/400?text=RC+Car" },
-    { name: "Electric Bubble Machine", cat: "Toys", sub: "Outdoor", price: "¥7.50", img: "https://via.placeholder.com/400?text=Bubbles" },
-    
-    // --- HOUSEHOLD ---
-    { name: "Dressing Table 8060", cat: "Household", sub: "Furniture", price: "¥8.80", img: "https://via.placeholder.com/400?text=Table" },
-    
+    { name: "Display Fridge", cat: "Electronics", sub: "Fridges", price: "Enquire", img: "https://via.placeholder.com/400x400?text=Fridge+Photo" },
+    { name: "Countertop Cooler SC21B", cat: "Electronics", sub: "Fridges", price: "Enquire", img: "https://via.placeholder.com/400x400?text=Cooler+Photo" },
+    { name: "Upright Cooler SC80BG", cat: "Electronics", sub: "Fridges", price: "Enquire", img: "https://via.placeholder.com/400x400?text=Upright+Cooler" },
+    { name: "STM32 Microchip", cat: "Electronics", sub: "Chips", price: "Enquire", img: "https://via.placeholder.com/400x400?text=Chip+Photo" },
+    { name: "SMT Labeling Machine", cat: "Electronics", sub: "Machineries", price: "Enquire", img: "https://via.placeholder.com/400x400?text=Machine+Photo" },
+
     // --- CLOTHING ---
-    { name: "Cotton Men's T-Shirt", cat: "Clothing", sub: "Men", price: "¥25.00", img: "https://via.placeholder.com/400?text=Shirt" }
+    { name: "Winter Hoodie", cat: "Clothing", sub: "Winter Wear", price: "Enquire", img: "https://via.placeholder.com/400x400?text=Hoodie+Photo" },
+    { name: "Winter Jacket", cat: "Clothing", sub: "Winter Wear", price: "Enquire", img: "https://via.placeholder.com/400x400?text=Jacket+Photo" },
+    { name: "Wool Sweater", cat: "Clothing", sub: "Winter Wear", price: "Enquire", img: "https://via.placeholder.com/400x400?text=Sweater+Photo" },
+    { name: "Sports Tracksuit", cat: "Clothing", sub: "Sports", price: "Enquire", img: "https://via.placeholder.com/400x400?text=Tracksuit+Photo" },
+
+    // --- TOYS ---
+    { name: "Flying Car", cat: "Toys", sub: "Remote Control", price: "¥41.80", img: "FC1.jpg" },
+    { name: "Nerf Gun", cat: "Toys", sub: "Outdoor", price: "¥41.80", img: ["NG1.jpg", "NG2.jpg"] }, // Fixed: Added brackets []
+    { name: "Electric Bubble Machine", cat: "Toys", sub: "Outdoor", price: "¥7.50", img: "Bub.jpg" },
+    { name: "Barbie Doll Set (3033)", cat: "Toys", sub: "Dolls", price: "¥3.40", img: ["Barbe1.jpg", "Barbe2.jpg"] }, // Fixed: Added brackets and comma
+    { name: "Kids Learning Chart", cat: "Toys", sub: "Educational", price: "Enquire", img: "LC.jpg" },
+
+    // --- HOUSEHOLD ---
+    { name: "Dressing Table (8060)", cat: "Household", sub: "Furniture", price: "¥8.80", img: "https://via.placeholder.com/400x400?text=Dressing+Table" },
+    { name: "Winter Blanket", cat: "Household", sub: "Bedding", price: "Enquire", img: "https://via.placeholder.com/400x400?text=Blanket+Photo" }
 ];
 
 function setCategory(cat, btn) {
@@ -126,16 +142,24 @@ function runFilters() {
         grid.innerHTML += `<div class="sub-cat-header">${subHeader}</div>`;
         groups[subHeader].forEach(p => {
             const waLink = `https://wa.me/${BUSINESS_PHONE}?text=Inquiry: ${p.name}`;
-            const mailLink = `mailto:${BUSINESS_EMAIL}?subject=Inquiry: ${p.name}`;
+            
+            // Logic to handle single or multiple images
+            let imgHTML = '';
+            if(Array.isArray(p.img)) {
+                imgHTML = `<div class="photo-count">${p.img.length} Photos</div>
+                           <div class="image-container">${p.img.map(src => `<img src="${src}">`).join('')}</div>`;
+            } else {
+                imgHTML = `<div class="image-container"><img src="${p.img}"></div>`;
+            }
+
             grid.innerHTML += `
                 <div class="card">
-                    <img src="${p.img}">
+                    ${imgHTML}
                     <div class="info">
                         <div class="item-name">${p.name}</div>
                         <div class="price">${p.price}</div>
                         <div class="contact-options">
                             <a href="${waLink}" class="btn btn-wa">WhatsApp</a>
-                            <a href="${mailLink}" class="btn btn-mail">Email</a>
                         </div>
                     </div>
                 </div>`;
