@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aiwa Trade Services | Catalog</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: -apple-system, system-ui, sans-serif; }
+        body { background: #f2f2f7; color: #1c1c1e; }
+        header { background: #000; color: #fff; padding: 30px; text-align: center; position: sticky; top: 0; z-index: 1000; }
+        .nav { background: #fff; padding: 10px; display: flex; justify-content: center; gap: 10px; border-bottom: 1px solid #d1d1d6; overflow-x: auto; position: sticky; top: 85px; z-index: 999; }
+        button { padding: 8px 18px; border: 1px solid #000; background: #fff; border-radius: 20px; cursor: pointer; font-size: 14px; white-space: nowrap; }
+        button.active { background: #000; color: #fff; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 20px; padding: 20px; max-width: 1200px; margin: 0 auto; }
+        .card { background: #fff; border-radius: 15px; overflow: hidden; box-shadow: 0 4px 10px rgba(0,0,0,0.05); display: flex; flex-direction: column; }
+        .card img { width: 100%; height: 380px; object-fit: cover; background: #eee; }
+        .info { padding: 15px; }
+        .price { font-size: 1.2rem; font-weight: bold; color: #d4af37; margin-bottom: 10px; }
+        .wa-btn { display: block; background: #25D366; color: #fff; text-align: center; padding: 12px; text-decoration: none; border-radius: 10px; font-weight: bold; }
+        .coming-soon { grid-column: 1 / -1; text-align: center; padding: 100px 20px; background: #fff; border-radius: 15px; margin-top: 20px; }
+    </style>
+</head>
+<body>
+
+<header><h1>AIWA TRADE SERVICES</h1></header>
+
+<div class="nav">
+    <button class="active" onclick="filter('all')">All</button>
+    <button onclick="filter('men')">Men</button>
+    <button onclick="filter('women')">Women</button>
+    <button onclick="filter('summer')">Summer</button>
+    <button onclick="filter('winter')">Winter</button>
+</div>
+
+<div class="grid" id="catalog"></div>
+
+<script>
+const items = [
+    { name: "Sample Item", price: "$000 HKD", cat: "men summer", img: "https://via.placeholder.com/400x500" }
+    // You will manually add your SZWEGO items here
+];
+
+function filter(tag) {
+    const grid = document.getElementById('catalog');
+    grid.innerHTML = "";
+    document.querySelectorAll('button').forEach(b => b.classList.remove('active'));
+    event.target.classList.add('active');
+
+    const filtered = items.filter(i => tag === 'all' || i.cat.includes(tag));
+
+    if (filtered.length === 0) {
+        grid.innerHTML = `<div class="coming-soon"><h2>Coming Soon</h2><p>Contact us for custom sourcing in this category.</p><br><a href="https://wa.me/YOUR_NUMBER" class="wa-btn" style="display:inline-block; width: 200px;">WhatsApp Us</a></div>`;
+        return;
+    }
+
+    filtered.forEach(i => {
+        grid.innerHTML += `<div class="card"><img src="${i.img}"><div class="info"><h3>${i.name}</h3><p class="price">${i.price}</p><a href="https://wa.me/YOUR_NUMBER" class="wa-btn">Order Now</a></div></div>`;
+    });
+}
+filter('all');
+</script>
+</body>
+</html>
