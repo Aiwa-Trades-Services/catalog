@@ -5,113 +5,237 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Aiwa Trade Services | Global Catalog</title>
     <style>
-        :root { --primary: #001f5b; --gold: #b59410; --bg: #ffffff; --card-bg: #f9f9fb; }
-        body { font-family: -apple-system, system-ui, sans-serif; margin: 0; background: var(--bg); color: #1d1d1f; padding-bottom: 100px; }
+        :root { 
+            --primary: #001f5b; 
+            --gold: #b59410; 
+            --bg: #fdfdfd; 
+            --logo-bg: #fff;
+        }
         
-        header { background: white; padding: 20px; border-bottom: 1px solid #eaeaea; position: sticky; top: 0; z-index: 1000; display: flex; flex-direction: column; align-items: center; }
-        .logo-container { display: flex; align-items: center; gap: 15px; margin-bottom: 15px; }
-        .logo-icon { width: 45px; height: 45px; background: linear-gradient(135deg, var(--primary) 0%, #003a7a 100%); border-radius: 10px; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 10px rgba(0,31,91,0.2); }
-        .brand-name { font-size: 20px; font-weight: 800; color: var(--primary); margin: 0; }
-        .brand-subtext { font-size: 10px; font-weight: 600; text-transform: uppercase; color: #86868b; margin: 0; }
-
-        .search-box { width: 100%; max-width: 500px; position: relative; }
-        #searchInput { width: 100%; padding: 12px 20px 12px 45px; border-radius: 20px; border: 1px solid #e5e5e5; background: #f5f5f7; font-size: 16px; outline: none; box-sizing: border-box; }
-        .search-box::before { content: '🔍'; position: absolute; left: 15px; top: 50%; transform: translateY(-50%); opacity: 0.4; }
-
-        .filter-container { display: flex; justify-content: center; gap: 8px; padding: 15px; overflow-x: auto; background: white; border-bottom: 1px solid #eee; }
-        .filter-btn { padding: 10px 20px; border: none; background: #f2f2f7; border-radius: 20px; cursor: pointer; font-size: 13px; font-weight: 700; white-space: nowrap; }
-        .filter-btn.active { background: var(--primary); color: white; }
-
-        .container { max-width: 1200px; margin: 20px auto; padding: 0 15px; }
-        .sub-cat-header { width: 100%; grid-column: 1 / -1; margin: 30px 0 15px 0; font-size: 18px; font-weight: 700; color: var(--primary); border-left: 4px solid var(--gold); padding-left: 10px; text-transform: uppercase; }
-
-        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 15px; }
-        @media (min-width: 768px) { .grid { grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 20px; } }
-
-        .card { background: var(--card-bg); border-radius: 12px; overflow: hidden; display: flex; flex-direction: column; box-shadow: 0 2px 8px rgba(0,0,0,0.05); position: relative; }
+        body { 
+            font-family: -apple-system, sans-serif; 
+            margin: 0; 
+            background-color: #f8f9fa;
+            /* Subtler pattern so it doesn't distract from the logo */
+            background-image: radial-gradient(#e1e1e1 0.3px, transparent 0.3px);
+            background-size: 15px 15px;
+            color: #1d1d1f; 
+            padding-bottom: 120px; 
+        }
         
-        /* Gallery Styles */
-        .image-container { width: 100%; aspect-ratio: 1/1; overflow-x: auto; display: flex; scroll-snap-type: x mandatory; background: #eee; scrollbar-width: none; }
-        .image-container::-webkit-scrollbar { display: none; }
-        .image-container img { min-width: 100%; object-fit: cover; scroll-snap-align: start; }
-        
-        .photo-count { position: absolute; top: 10px; right: 10px; background: rgba(0,0,0,0.6); color: white; padding: 2px 8px; border-radius: 10px; font-size: 10px; z-index: 5; }
+        /* Modern Header with Logo integration */
+        header { 
+            background: var(--primary); 
+            padding: 50px 20px; 
+            text-align: center;
+            border-bottom: 5px solid var(--gold);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
 
-        .info { padding: 12px; flex-grow: 1; }
-        .item-name { font-size: 14px; font-weight: 600; margin: 4px 0; height: 38px; overflow: hidden; }
-        .price { font-size: 1.1rem; font-weight: 800; margin-bottom: 12px; }
-        
-        .btn { display: block; padding: 8px; border-radius: 6px; text-decoration: none; font-size: 12px; font-weight: 700; text-align: center; margin-bottom: 5px; }
-        .btn-wa { background: #25D366; color: white; }
-        .btn-mail { background: var(--primary); color: white; }
+        .header-content {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            margin-bottom: 25px;
+        }
 
-        .bottom-bar { position: fixed; bottom: 0; width: 100%; background: white; border-top: 1px solid #eee; display: flex; padding: 12px 0; z-index: 1001; }
-        .bar-link { text-decoration: none; color: #000; font-size: 12px; text-align: center; font-weight: 700; flex: 1; }
+        /* --- THE CSS LOGO DESIGN --- */
+        .ats-logo {
+            width: 70px;
+            height: 70px;
+            background: var(--logo-bg);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 900;
+            font-size: 24px;
+            color: var(--primary);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            position: relative;
+            border: 3px solid #fff;
+        }
+        /* The gold dot in the logo */
+        .ats-logo::after {
+            content: "";
+            width: 10px;
+            height: 10px;
+            background: var(--gold);
+            border-radius: 50%;
+            position: absolute;
+            bottom: 8px;
+            right: 8px;
+            border: 2px solid #fff;
+        }
+        
+        /* If you use a real image file, this hides the CSS logo */
+        .ats-logo img {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+            display: block; /* Change to block when image exists */
+        }
+        
+        /* Hide CSS text if image logo exists */
+        .ats-logo-text { display: block; } 
+        /* --- END LOGO DESIGN --- */
+
+        .brand-name { 
+            font-size: 34px; 
+            font-weight: 900; 
+            color: white; 
+            margin: 0; 
+            letter-spacing: 5px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+
+        #searchInput { 
+            width: 85%; 
+            max-width: 500px; 
+            padding: 15px 25px; 
+            border-radius: 8px; 
+            border: none; 
+            font-size: 16px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+            transition: 0.3s;
+        }
+        #searchInput:focus { transform: scale(1.02); }
+
+        .filter-container { 
+            display: flex; justify-content: center; gap: 10px; padding: 15px; 
+            background: rgba(255,255,255,0.9); border-bottom: 1px solid #eee; overflow-x: auto; 
+            position: sticky; top: 0; z-index: 1000; 
+            backdrop-filter: blur(5px);
+        }
+        
+        .filter-btn { 
+            padding: 8px 20px; border: 1px solid #ddd; background: white; 
+            border-radius: 20px; cursor: pointer; font-size: 13px; font-weight: 700; 
+            white-space: nowrap; transition: 0.3s;
+        }
+        .filter-btn.active { background: var(--primary); color: white; border-color: var(--primary); }
+
+        .container { max-width: 1400px; margin: 0 auto; padding: 10px; }
+
+        .sub-section { 
+            margin: 40px auto; 
+            background: white;
+            border-radius: 15px;
+            padding: 25px 0;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        }
+
+        .sub-cat-header { 
+            font-size: 22px; 
+            font-weight: 800; 
+            color: var(--primary); 
+            margin-left: 30px;
+            text-transform: uppercase;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .sub-cat-header::after {
+            content: "";
+            height: 3px;
+            background: var(--gold);
+            flex-grow: 1;
+            margin-right: 30px;
+            opacity: 0.5;
+        }
+
+        .horizontal-scroll { 
+            display: flex; 
+            overflow-x: auto; 
+            gap: 30px; 
+            padding: 20px 30px; 
+        }
+
+        .card { 
+            min-width: 260px; 
+            background: white; 
+            border-radius: 16px; 
+            box-shadow: 0 8px 20px rgba(0,0,0,0.06); 
+            transition: transform 0.3s, border 0.3s;
+            border: 1px solid #f0f0f0;
+            flex-shrink: 0;
+        }
+
+        .card:hover { transform: translateY(-10px); border-color: var(--gold); }
+        
+        .image-container { width: 100%; aspect-ratio: 1/1; background: #fafafa; display: flex; align-items: center; justify-content: center; }
+        .image-container img { width: 100%; height: 100%; object-fit: cover; }
+
+        .info { padding: 25px; text-align: center; }
+        .item-name { font-size: 16px; font-weight: 700; color: #222; height: 40px; overflow: hidden; margin-bottom: 8px; }
+        .price { font-size: 18px; font-weight: 800; color: var(--gold); margin-bottom: 15px; }
+
+        .btn-wa { 
+            display: block; background: var(--primary); color: white; 
+            text-align: center; padding: 12px; text-decoration: none; 
+            border-radius: 8px; font-weight: 700; font-size: 13px; 
+            transition: 0.3s;
+        }
+        .btn-wa:hover { background: var(--gold); }
+
+        .bottom-nav { 
+            position: fixed; bottom: 25px; left: 50%; transform: translateX(-50%); 
+            width: 80%; max-width: 450px; background: rgba(0, 31, 91, 0.9); 
+            padding: 18px; border-radius: 50px; display: flex; 
+            justify-content: space-around; box-shadow: 0 10px 40px rgba(0,0,0,0.3); 
+            z-index: 2000; backdrop-filter: blur(10px);
+        }
+        
+        .nav-item { color: white; text-decoration: none; font-weight: 700; font-size: 14px; letter-spacing: 1px; }
     </style>
 </head>
 <body>
 
 <header>
-    <div class="logo-container">
-        <div class="logo-icon">
-            <svg viewBox="0 0 100 100" style="width:100%; height:100%; padding:8px;"><path d="M50 10 L90 90 L10 90 Z" fill="none" stroke="white" stroke-width="8"/><path d="M50 35 L75 90 L25 90 Z" fill="var(--gold)"/></svg>
+    <div class="header-content">
+        <div class="ats-logo">
+            <img src="" style="display:none;"> <div class="ats-logo-text">ATS</div> 
         </div>
-        <div class="logo-text">
-            <h1 class="brand-name">AIWA TRADE SERVICES</h1>
-            <p class="brand-subtext">GLOBAL SOURCING & LOGISTICS</p>
-        </div>
+        <div class="brand-name">AIWA TRADE SERVICES</div>
     </div>
-    <div class="search-box">
-        <input type="text" id="searchInput" onkeyup="runFilters()" placeholder="Search items...">
-    </div>
+    <input type="text" id="searchInput" onkeyup="runFilters()" placeholder="Explore our premium catalog...">
 </header>
 
 <div class="filter-container">
-    <button class="filter-btn active" onclick="setCategory('All', this)">All</button>
-    <button class="filter-btn" onclick="setCategory('Electronics', this)">Electronics</button>
-    <button class="filter-btn" onclick="setCategory('Household', this)">Household</button>
-    <button class="filter-btn" onclick="setCategory('Clothing', this)">Clothing</button>
-    <button class="filter-btn" onclick="setCategory('Toys', this)">Toys</button>
+    <button class="filter-btn active" onclick="setCategory('All', this)">ALL</button>
+    <button class="filter-btn" onclick="setCategory('Clothing', this)">CLOTHING</button>
+    <button class="filter-btn" onclick="setCategory('Electronics', this)">ELECTRONICS</button>
+    <button class="filter-btn" onclick="setCategory('Household', this)">HOUSEHOLD</button>
+    <button class="filter-btn" onclick="setCategory('Toys', this)">TOYS</button>
 </div>
 
-<div class="container">
-    <div id="productGrid" class="grid"></div>
-</div>
+<div class="container" id="productGrid"></div>
 
-<div class="bottom-bar">
-    <a href="mailto:mantillaservices@gmail.com" class="bar-link">✉️ Email Us</a>
-    <a href="https://wa.me/85259813744" class="bar-link" style="color:#25D366; border-left: 1px solid #eee;">💬 WhatsApp</a>
+<div class="bottom-nav">
+    <a href="https://wa.me/85259813744" class="nav-item">💬 WHATSAPP</a>
+    <a href="mailto:info@aiwatrade.com" class="nav-item">✉️ EMAIL</a>
 </div>
 
 <script>
-const BUSINESS_EMAIL = "mantillaservices@gmail.com";
-const BUSINESS_PHONE = "85259813744"; 
 let currentCategory = 'All';
 
+// Keeping your requested order (Clothing -> Electronics -> Household -> Toys)
 const products = [
-    // --- ELECTRONICS ---
-    { name: "Display Fridge", cat: "Electronics", sub: "Fridges", price: "Enquire", img: "https://via.placeholder.com/400x400?text=Fridge+Photo" },
-    { name: "Countertop Cooler SC21B", cat: "Electronics", sub: "Fridges", price: "Enquire", img: "https://via.placeholder.com/400x400?text=Cooler+Photo" },
-    { name: "Upright Cooler SC80BG", cat: "Electronics", sub: "Fridges", price: "Enquire", img: "https://via.placeholder.com/400x400?text=Upright+Cooler" },
-    { name: "STM32 Microchip", cat: "Electronics", sub: "Chips", price: "Enquire", img: "https://via.placeholder.com/400x400?text=Chip+Photo" },
-    { name: "SMT Labeling Machine", cat: "Electronics", sub: "Machineries", price: "Enquire", img: "https://via.placeholder.com/400x400?text=Machine+Photo" },
-
-    // --- CLOTHING ---
-    { name: "Winter Hoodie", cat: "Clothing", sub: "Winter Wear", price: "Enquire", img: "https://via.placeholder.com/400x400?text=Hoodie+Photo" },
-    { name: "Winter Jacket", cat: "Clothing", sub: "Winter Wear", price: "Enquire", img: "https://via.placeholder.com/400x400?text=Jacket+Photo" },
-    { name: "Wool Sweater", cat: "Clothing", sub: "Winter Wear", price: "Enquire", img: "https://via.placeholder.com/400x400?text=Sweater+Photo" },
-    { name: "Sports Tracksuit", cat: "Clothing", sub: "Sports", price: "Enquire", img: "https://via.placeholder.com/400x400?text=Tracksuit+Photo" },
-
-    // --- TOYS ---
-    { name: "Flying Car", cat: "Toys", sub: "Remote Control", price: "¥41.80", img: "FC1.jpg" },
-    { name: "Nerf Gun", cat: "Toys", sub: "Outdoor", price: "¥41.80", img: ["NG1.jpg", "NG2.jpg"] }, // Fixed: Added brackets []
+    { name: "Winter Hoodie", cat: "Clothing", sub: "Winter Wear", price: "Enquire", img: "Hood1.jpg" },
+    { name: "Sports Tracksuit", cat: "Clothing", sub: "Sports", price: "Enquire", img: "STS1.jpg" },
+    { name: "Display Fridge", cat: "Electronics", sub: "Fridges", price: "Enquire", img: "Dp1.jpg" },
+    { name: "STM32 Microchip", cat: "Electronics", sub: "Chips", price: "Enquire", img: "Chip1.jpg" },
+    { name: "Dressing Table", cat: "Household", sub: "Furniture", price: "¥8.80", img: "CS.jpg" },
+    { name: "Winter Blanket", cat: "Household", sub: "Bedding", price: "Enquire", img: "CS.jpg" },
+    { name: "Flying Car", cat: "Toys", sub: "Cars", price: "¥41.80", img: "FC1.jpg" },
+    { name: "Nerf Gun", cat: "Toys", sub: "Guns", price: "¥41.80", img: "NG1.jpg" }, 
     { name: "Electric Bubble Machine", cat: "Toys", sub: "Outdoor", price: "¥7.50", img: "Bub.jpg" },
-    { name: "Barbie Doll Set (3033)", cat: "Toys", sub: "Dolls", price: "¥3.40", img: ["Barbe1.jpg", "Barbe2.jpg"] }, // Fixed: Added brackets and comma
-    { name: "Kids Learning Chart", cat: "Toys", sub: "Educational", price: "Enquire", img: "LC.jpg" },
-
-    // --- HOUSEHOLD ---
-    { name: "Dressing Table (8060)", cat: "Household", sub: "Furniture", price: "¥8.80", img: "https://via.placeholder.com/400x400?text=Dressing+Table" },
-    { name: "Winter Blanket", cat: "Household", sub: "Bedding", price: "Enquire", img: "https://via.placeholder.com/400x400?text=Blanket+Photo" }
+    { name: "Barbie Doll Set", cat: "Toys", sub: "Dolls", price: "¥4.40", img: "Barbe1.jpg" }, 
+    { name: "Kids Learning Chart", cat: "Toys", sub: "Education", price: "Enquire", img: "LC.jpg" }
 ];
 
 function setCategory(cat, btn) {
@@ -123,8 +247,8 @@ function setCategory(cat, btn) {
 
 function runFilters() {
     const searchVal = document.getElementById('searchInput').value.toLowerCase();
-    const grid = document.getElementById('productGrid');
-    grid.innerHTML = "";
+    const mainContainer = document.getElementById('productGrid');
+    mainContainer.innerHTML = "";
     
     let filtered = products.filter(p => {
         const matchesSearch = p.name.toLowerCase().includes(searchVal) || p.sub.toLowerCase().includes(searchVal);
@@ -132,41 +256,43 @@ function runFilters() {
         return matchesSearch && matchesCat;
     });
 
+    const subGroupsOrder = [];
     const groups = filtered.reduce((acc, p) => {
-        if (!acc[p.sub]) acc[p.sub] = [];
+        if (!acc[p.sub]) {
+            acc[p.sub] = [];
+            subGroupsOrder.push(p.sub);
+        }
         acc[p.sub].push(p);
         return acc;
     }, {});
 
-    for (const subHeader in groups) {
-        grid.innerHTML += `<div class="sub-cat-header">${subHeader}</div>`;
+    subGroupsOrder.forEach(subHeader => {
+        let section = document.createElement('div');
+        section.className = 'sub-section';
+        
+        let headerHtml = `<div class="sub-cat-header">${subHeader}</div>`;
+        let scrollWrapper = `<div class="horizontal-scroll">`;
+        
         groups[subHeader].forEach(p => {
-            const waLink = `https://wa.me/${BUSINESS_PHONE}?text=Inquiry: ${p.name}`;
-            
-            // Logic to handle single or multiple images
-            let imgHTML = '';
-            if(Array.isArray(p.img)) {
-                imgHTML = `<div class="photo-count">${p.img.length} Photos</div>
-                           <div class="image-container">${p.img.map(src => `<img src="${src}">`).join('')}</div>`;
-            } else {
-                imgHTML = `<div class="image-container"><img src="${p.img}"></div>`;
-            }
-
-            grid.innerHTML += `
+            const waLink = `https://wa.me/85259813744?text=Inquiry: ${p.name}`;
+            scrollWrapper += `
                 <div class="card">
-                    ${imgHTML}
+                    <div class="image-container"><img src="${p.img}" onerror="this.src='https://via.placeholder.com/260?text=Aiwa+Trade'"></div>
                     <div class="info">
                         <div class="item-name">${p.name}</div>
                         <div class="price">${p.price}</div>
-                        <div class="contact-options">
-                            <a href="${waLink}" class="btn btn-wa">WhatsApp</a>
-                        </div>
+                        <a href="${waLink}" class="btn-wa">WhatsApp Inquire</a>
                     </div>
                 </div>`;
         });
-    }
+
+        scrollWrapper += `</div>`;
+        section.innerHTML = headerHtml + scrollWrapper;
+        mainContainer.appendChild(section);
+    });
 }
-runFilters();
+
+window.onload = runFilters;
 </script>
 </body>
 </html>
