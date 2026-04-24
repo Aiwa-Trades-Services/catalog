@@ -48,73 +48,78 @@
         }
         #searchInput:focus { transform: scale(1.02); outline: 3px solid var(--gold-solid); }
 
-        /* --- THE ANIMATED HUB --- */
-        .hub-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 30px;
-            padding: 60px 30px;
-            max-width: 1300px;
-            margin: 0 auto;
-        }
+       /* --- THE INTERACTIVE HUB --- */
+    .hub-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 25px;
+        padding: 40px 20px;
+        max-width: 1200px;
+        margin: 0 auto;
+    }
 
-        .hub-tile {
-            position: relative;
-            height: 280px; 
-            border-radius: 30px;
-            overflow: hidden;
-            cursor: pointer;
-            background: var(--white);
-            border: 1px solid rgba(0,0,0,0.05);
-            box-shadow: 0 15px 35px rgba(0,0,0,0.05);
-            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        }
+    .hub-tile {
+        position: relative;
+        height: 280px; 
+        border-radius: 30px;
+        overflow: hidden;
+        cursor: pointer;
+        background: #ffffff;
+        border: 1px solid rgba(0,0,0,0.05);
+        box-shadow: 0 15px 35px rgba(0,0,0,0.05);
+        transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
 
-        .hub-bg {
-            position: absolute; inset: 0;
-            background-size: cover; background-position: center;
-            transition: 0.8s; z-index: 1;
-        }
+    .hub-content {
+        position: relative;
+        z-index: 2;
+        text-align: center;
+        width: 100%;
+        padding: 20px;
+        transition: 0.4s ease-in-out;
+    }
 
-        .hub-content {
-            position: absolute; inset: 0; z-index: 2;
-            display: flex; flex-direction: column; align-items: center; justify-content: center;
-            background: rgba(255, 255, 255, 0.85);
-            backdrop-filter: blur(5px);
-            transition: 0.4s; padding: 20px;
-        }
+    .hub-icon { font-size: 50px; margin-bottom: 10px; transition: 0.4s; }
+    
+    .hub-title { 
+        font-size: 22px; 
+        font-weight: 800; 
+        color: #001f5b; /* Aiwa Navy */
+        text-transform: uppercase; 
+        letter-spacing: 2px;
+        margin: 0;
+    }
 
-        /* Hover States */
-        .hub-tile:hover {
-            transform: translateY(-15px);
-            box-shadow: 0 25px 50px rgba(0,31,91,0.2);
-            border-color: var(--gold-solid);
-        }
+    /* THE SUBTEXT: Starts invisible and slightly lower */
+    .hub-subtext {
+        font-size: 14px;
+        color: #666;
+        margin-top: 15px;
+        opacity: 0;
+        max-height: 0;
+        transition: all 0.4s ease;
+        transform: translateY(10px);
+    }
 
-        .hub-tile:hover .hub-bg { transform: scale(1.2); }
-        
-        .hub-tile:hover .hub-content {
-            background: rgba(0, 31, 91, 0.9);
-            backdrop-filter: blur(2px);
-        }
+    /* HOVER TRIGGERS */
+    .hub-tile:hover {
+        transform: translateY(-10px);
+        border-color: #b59410; /* Aiwa Gold */
+        box-shadow: 0 20px 40px rgba(0,31,91,0.1);
+    }
 
-        /* Icon & Text Animations */
-        .hub-icon { font-size: 55px; transition: 0.4s; margin-bottom: 10px; }
-        .hub-title { 
-            font-size: 24px; font-weight: 800; color: var(--primary); 
-            text-transform: uppercase; letter-spacing: 2px; transition: 0.4s;
-        }
-        
-        /* The Subtext (Hidden by default) */
-        .hub-subtext {
-            color: white; font-size: 14px; margin-top: 15px;
-            opacity: 0; transform: translateY(20px); transition: 0.4s;
-            text-align: center; line-height: 1.4;
-        }
+    .hub-tile:hover .hub-title { color: #b59410; }
+    
+    .hub-tile:hover .hub-subtext {
+        opacity: 1;
+        max-height: 80px;
+        transform: translateY(0);
+    }
 
-        .hub-tile:hover .hub-icon { transform: scale(0.8) translateY(-10px); }
-        .hub-tile:hover .hub-title { color: var(--gold-solid); transform: translateY(-5px); }
-        .hub-tile:hover .hub-subtext { opacity: 1; transform: translateY(0); }
+    .hub-tile:hover .hub-icon { transform: scale(1.1); }
 
         /* --- PRODUCT GRID STYLES --- */
         .container { max-width: 1400px; margin: 0 auto; padding: 40px; }
@@ -161,39 +166,36 @@
 <div id="categoryHub" class="hub-container">
     
     <div class="hub-tile" onclick="setCategory('Clothing')">
-        <div class="hub-bg" style="background-image: url('clothing_bg.jpg');"></div>
         <div class="hub-content">
             <div class="hub-icon">👕</div>
             <div class="hub-title">Clothing</div>
-            <div class="hub-subtext">Premium textiles, fashion, and custom manufacturing.</div>
+            <div class="hub-subtext">Premium textiles and fashion manufacturing.</div>
         </div>
     </div>
 
     <div class="hub-tile" onclick="setCategory('Electronics')">
-        <div class="hub-bg" style="background-image: url('electronics_bg.jpg');"></div>
         <div class="hub-content">
             <div class="hub-icon">🔌</div>
             <div class="hub-title">Electronics</div>
-            <div class="hub-subtext">Consumer tech, industrial chips, and smart gadgets.</div>
+            <div class="hub-subtext">Consumer tech, chips, and smart gadgets.</div>
         </div>
     </div>
 
     <div class="hub-tile" onclick="setCategory('Household')">
-        <div class="hub-bg" style="background-image: url('household_bg.jpg');"></div>
         <div class="hub-content">
             <div class="hub-icon">🏠</div>
             <div class="hub-title">Household</div>
-            <div class="hub-subtext">Luxury furniture, home decor, and essential appliances.</div>
+            <div class="hub-subtext">Luxury furniture and essential appliances.</div>
         </div>
     </div>
 
     <div class="hub-tile" onclick="setCategory('Others')">
-        <div class="hub-bg" style="background-image: url('others_bg.jpg');"></div>
         <div class="hub-content">
             <div class="hub-icon">📦</div>
             <div class="hub-title">Others</div>
-            <div class="hub-subtext">Global sourcing for any niche product you require.</div>
+            <div class="hub-subtext">Custom sourcing for any niche product you need.</div>
         </div>
+    </div>
     </div>
 
 </div>
