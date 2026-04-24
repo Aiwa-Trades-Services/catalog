@@ -3,151 +3,145 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aiwa Trade Services | Advanced Sourcing</title>
+    <title>Aiwa Trade Services | Advanced Catalog</title>
     <style>
         :root { 
-    --navy: #000814; 
-    --gold: #ffc300;
-    --glass: rgba(255, 255, 255, 0.03);
-}
+            --navy-dark: #000814; 
+            --gold: #ffc300;
+            --glass: rgba(255, 255, 255, 0.05);
+        }
 
-body { 
-    font-family: 'Inter', sans-serif; 
-    margin: 0; background: var(--navy); color: #fff; 
-}
+        body { 
+            font-family: 'Inter', sans-serif; 
+            margin: 0; background: var(--navy-dark); color: #fff; 
+            display: flex; flex-direction: column; align-items: center;
+        }
 
-/* --- LOGO FIX: Pushes text away from the E --- */
-header { 
-    padding: 80px 20px; text-align: center;
-    background: radial-gradient(circle at top, #001d3d 0%, var(--navy) 100%);
-}
+        /* --- CENTERED HEADER BLOCK --- */
+        header { 
+            width: 100%; padding: 60px 20px; text-align: center;
+            background: radial-gradient(circle at top, #001d3d 0%, var(--navy-dark) 100%);
+            border-bottom: 1px solid rgba(255, 195, 0, 0.2);
+            display: flex; flex-direction: column; align-items: center;
+        }
 
-.logo-container {
-    display: inline-block;
-    margin-bottom: 50px; /* This is the "breathing room" fix */
-}
+        .logo-box {
+            width: 80px; height: 80px; border: 2px solid var(--gold);
+            transform: rotate(45deg); display: flex; align-items: center;
+            justify-content: center; margin-bottom: 40px; /* Space between logo and name */
+            box-shadow: 0 0 20px rgba(255, 195, 0, 0.2);
+        }
 
-.diamond-logo {
-    width: 90px; height: 90px; border: 2px solid var(--gold);
-    transform: rotate(45deg); display: flex; align-items: center; justify-content: center;
-    box-shadow: 0 0 20px rgba(255, 195, 0, 0.2);
-}
+        .logo-box span { 
+            transform: rotate(-45deg); font-weight: 900; 
+            color: var(--gold); font-size: 20px; 
+        }
 
-.diamond-logo span { transform: rotate(-45deg); font-weight: 900; color: var(--gold); }
+        h1 { 
+            font-size: 36px; letter-spacing: 8px; text-transform: uppercase; 
+            margin: 10px 0 30px 0; font-weight: 800;
+        }
 
-/* --- CATEGORY GRID FIX: Symmetric & Advanced --- */
-.category-grid {
-    display: grid;
-    grid-template-columns: repeat(5, 1fr); /* 5 columns in one row */
-    gap: 15px; padding: 40px; max-width: 1300px; margin: 0 auto;
-}
+        #searchInput { 
+            width: 90%; max-width: 500px; padding: 15px 25px; border-radius: 30px; 
+            border: 1px solid rgba(255, 255, 255, 0.2); background: var(--glass);
+            color: white; outline: none; font-size: 16px;
+        }
 
-.cat-card {
-    aspect-ratio: 1 / 1; /* Makes them perfect squares */
-    background: var(--glass);
-    border: 1px solid rgba(255, 255, 255, 0.1); /* The border you asked for */
-    border-radius: 20px;
-    display: flex; flex-direction: column; align-items: center; justify-content: center;
-    cursor: pointer; transition: 0.4s;
-}
+        /* --- SYMMETRIC CATEGORY GRID --- */
+        .category-container {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr); /* Force 5 columns */
+            gap: 20px; padding: 50px 20px; width: 90%; max-width: 1200px;
+        }
 
-.cat-card:hover {
-    border-color: var(--gold);
-    background: rgba(255, 195, 0, 0.05);
-    transform: translateY(-10px);
-}
+        .cat-item {
+            aspect-ratio: 1 / 1.1; /* Slightly taller than wide */
+            background: var(--glass);
+            border: 1px solid rgba(255, 255, 255, 0.1); /* Clear borders you requested */
+            border-radius: 20px; display: flex; flex-direction: column;
+            align-items: center; justify-content: center; text-align: center;
+            cursor: pointer; transition: 0.3s ease; padding: 15px;
+        }
 
-.cat-icon { font-size: 50px; margin-bottom: 10px; }
-.cat-name { font-weight: 700; font-size: 14px; letter-spacing: 1px; text-transform: uppercase; }
+        .cat-item:hover {
+            border-color: var(--gold);
+            background: rgba(255, 195, 0, 0.05);
+            transform: translateY(-10px);
+        }
 
-.hidden { display: none; }
+        .cat-icon { font-size: 45px; margin-bottom: 15px; }
+        .cat-title { font-weight: 700; font-size: 14px; letter-spacing: 1px; text-transform: uppercase; }
         
+        .cat-desc { 
+            font-size: 11px; color: #aaa; margin-top: 10px; 
+            opacity: 0; transition: 0.3s; line-height: 1.2;
+        }
+
+        .cat-item:hover .cat-desc { opacity: 1; }
+
+        /* Mobile Fix: Stack categories if screen is small */
+        @media (max-width: 900px) {
+            .category-container { grid-template-columns: repeat(3, 1fr); }
+        }
+        @media (max-width: 600px) {
+            .category-container { grid-template-columns: repeat(2, 1fr); }
+        }
+
+        .hidden { display: none; }
     </style>
 </head>
 <body>
 
 <header>
-    <div class="logo-wrapper">
-        <div class="diamond-logo"><span>ATS</span></div>
-    </div>
-    <h1 class="brand-title">Aiwa Trade Services</h1>
-    <div class="search-container">
-        <input type="text" id="searchInput" placeholder="Search global inventory...">
-    </div>
+    <div class="logo-box"><span>ATS</span></div>
+    <h1>Aiwa Trade Services</h1>
+    <input type="text" id="searchInput" placeholder="Search global inventory...">
 </header>
 
-<div id="hub" class="category-grid">
-    <div class="cat-card" onclick="openCat('Electronics')">
+<div id="hub" class="category-container">
+    <div class="cat-item" onclick="openCat('Electronics')">
         <span class="cat-icon">🔌</span>
-        <span class="cat-name">Electronics</span>
-        <div class="cat-info">Semiconductors, smart tech, and industrial components.</div>
+        <span class="cat-title">Electronics</span>
+        <div class="cat-desc">Industrial chips & smart tech</div>
     </div>
 
-    <div class="cat-card" onclick="openCat('Household')">
+    <div class="cat-item" onclick="openCat('Household')">
         <span class="cat-icon">🏠</span>
-        <span class="cat-name">Household</span>
-        <div class="cat-info">Designer furniture, home decor, and essential appliances.</div>
+        <span class="cat-title">Household</span>
+        <div class="cat-desc">Furniture & luxury appliances</div>
     </div>
 
-    <div class="cat-card" onclick="openCat('Clothing')">
+    <div class="cat-item" onclick="openCat('Clothing')">
         <span class="cat-icon">👕</span>
-        <span class="cat-name">Clothing</span>
-        <div class="cat-info">Premium textiles and custom apparel manufacturing.</div>
+        <span class="cat-title">Clothing</span>
+        <div class="cat-desc">Premium textiles & apparel</div>
     </div>
 
-    <div class="cat-card" onclick="openCat('Toys')">
+    <div class="cat-item" onclick="openCat('Toys')">
         <span class="cat-icon">🧸</span>
-        <span class="cat-name">Toys</span>
-        <div class="cat-info">Wholesale educational toys and RC hobby equipment.</div>
+        <span class="cat-title">Toys</span>
+        <div class="cat-desc">Wholesale educational sets</div>
     </div>
 
-    <div class="cat-card" onclick="openCat('Others')">
+    <div class="cat-item" onclick="openCat('Others')">
         <span class="cat-icon">📦</span>
-        <span class="cat-name">Others</span>
-        <div class="cat-info">Custom procurement for specialized industrial needs.</div>
+        <span class="cat-title">Others</span>
+        <div class="cat-desc">Custom global sourcing</div>
     </div>
 </div>
 
-<div id="productView" class="hidden">
-    <div class="back-nav">
-        <button class="btn-back" onclick="closeCat()">← Back to Categories</button>
-    </div>
-    <div id="displayArea" class="product-list"></div>
+<div id="productView" class="hidden" style="width:100%; padding: 40px;">
+    <button onclick="closeCat()" style="background:none; color:var(--gold); border:1px solid var(--gold); padding:10px 20px; cursor:pointer; border-radius:5px;">← Back</button>
+    <div id="displayArea" style="display:grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap:20px; margin-top:30px;"></div>
 </div>
 
 <script>
-    const inventory = [
-        { name: "STM32 Microchip", category: "Electronics", price: "Enquire for MOQ", img: "https://placehold.co/200?text=Chip" },
-        { name: "Luxury Bedding Set", category: "Household", price: "¥450.00", img: "https://placehold.co/200?text=Bed" },
-        { name: "Cotton Hoodie", category: "Clothing", price: "Enquire", img: "https://placehold.co/200?text=Hoodie" }
-        // Add more items here
-    ];
-
+    // Essential logic to handle the categories
     function openCat(cat) {
         document.getElementById('hub').classList.add('hidden');
         document.getElementById('productView').classList.remove('hidden');
-        
-        const area = document.getElementById('displayArea');
-        area.innerHTML = "";
-        
-        const filtered = inventory.filter(p => p.category === cat);
-        
-        if(filtered.length === 0) {
-            area.innerHTML = "<p style='grid-column: 1/-1; text-align:center;'>No products currently listed for this category. Contact us for sourcing.</p>";
-        }
-
-        filtered.forEach(p => {
-            area.innerHTML += `
-                <div class="product-item">
-                    <div class="p-img"><img src="${p.img}"></div>
-                    <div class="p-details">
-                        <h3>${p.name}</h3>
-                        <div class="p-price">${p.price}</div>
-                        <a href="https://wa.me/85259813744" class="btn-wa">ENQUIRE NOW</a>
-                    </div>
-                </div>
-            `;
-        });
+        document.getElementById('displayArea').innerHTML = `<h2 style='grid-column:1/-1; text-align:center;'>Viewing ${cat}...</h2>`;
     }
 
     function closeCat() {
