@@ -7,107 +7,137 @@
     <style>
     :root { 
         --primary: #001f5b; 
-        --gold: #b59410; 
-        --bg: #fdfdfd; 
-        --logo-bg: #fff;
+        --gold: linear-gradient(135deg, #b59410 0%, #ffecb3 50%, #b59410 100%); 
+        --gold-solid: #b59410;
+        --bg: #f8f9fa; 
     }
-    
+
+    /* Entry Animation */
+    @keyframes fadeInUp {
+        from { opacity: 0; transform: translateY(30px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes logoPulse {
+        0% { box-shadow: 0 0 0 0 rgba(181, 148, 16, 0.4); }
+        70% { box-shadow: 0 0 0 15px rgba(181, 148, 16, 0); }
+        100% { box-shadow: 0 0 0 0 rgba(181, 148, 16, 0); }
+    }
+
     body { 
-        font-family: -apple-system, sans-serif; 
-        margin: 0; 
-        background-color: #f8f9fa;
-        background-image: radial-gradient(#e1e1e1 0.3px, transparent 0.3px);
-        background-size: 15px 15px;
-        color: #1d1d1f; 
-        padding-bottom: 120px; 
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; 
+        margin: 0; background: var(--bg); color: #1d1d1f; padding-bottom: 120px;
+        overflow-x: hidden;
     }
-    
+
     header { 
-        background: var(--primary); 
-        padding: 50px 20px; 
-        text-align: center;
-        border-bottom: 5px solid var(--gold);
-        display: flex;
-        flex-direction: column;
-        align-items: center;
+        background: var(--primary); padding: 60px 20px; text-align: center;
+        border-bottom: 5px solid var(--gold-solid);
+        animation: fadeInUp 0.8s ease-out;
     }
 
-    .header-content { display: flex; align-items: center; gap: 20px; margin-bottom: 25px; }
-
+    /* --- ENHANCED LOGO --- */
     .ats-logo {
-        width: 70px; height: 70px; background: var(--logo-bg); border-radius: 50%;
+        width: 80px; height: 80px; background: white; border-radius: 50%;
         display: flex; align-items: center; justify-content: center;
-        font-weight: 900; font-size: 24px; color: var(--primary);
-        box-shadow: 0 4px 15px rgba(0,0,0,0.2); position: relative; border: 3px solid #fff;
+        font-weight: 900; font-size: 26px; color: var(--primary);
+        position: relative; border: 4px solid var(--gold-solid);
+        background: white;
+        box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+        animation: logoPulse 2s infinite;
+        margin-bottom: 15px;
     }
 
-    .brand-name { font-size: 34px; font-weight: 900; color: white; margin: 0; letter-spacing: 5px; }
+    /* Gold Inner Ring */
+    .ats-logo::before {
+        content: ""; position: absolute; top: 2px; left: 2px; right: 2px; bottom: 2px;
+        border: 2px solid #ffecb3; border-radius: 50%;
+    }
 
+    .brand-name { 
+        font-size: 36px; font-weight: 900; color: white; letter-spacing: 6px;
+        text-transform: uppercase; margin: 10px 0 25px 0;
+    }
+
+    /* --- ANIMATED SEARCH --- */
     #searchInput { 
-        width: 85%; max-width: 500px; padding: 15px 25px; border-radius: 8px; 
-        border: none; font-size: 16px; box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+        width: 85%; max-width: 500px; padding: 18px 30px; border-radius: 50px; 
+        border: none; font-size: 16px; box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+    #searchInput:focus { width: 95%; transform: scale(1.05); outline: none; }
+
+    /* --- FADE-IN SECTIONS --- */
+    .sub-section { 
+        margin: 40px auto; max-width: 1400px; background: white;
+        border-radius: 20px; padding: 30px 0;
+        box-shadow: 0 5px 20px rgba(0,0,0,0.03);
+        animation: fadeInUp 1s ease-out backwards;
     }
 
-    .filter-container { 
-        display: flex; justify-content: center; gap: 10px; padding: 15px; 
-        background: rgba(255,255,255,0.9); border-bottom: 1px solid #eee; 
-        position: sticky; top: 0; z-index: 1000; backdrop-filter: blur(5px);
+    .sub-cat-header { 
+        font-size: 24px; font-weight: 900; color: var(--primary); 
+        margin-left: 30px; letter-spacing: 1px; display: flex; align-items: center; gap: 20px;
     }
-    
-    .filter-btn { 
-        padding: 8px 20px; border: 1px solid #ddd; background: white; 
-        border-radius: 20px; cursor: pointer; font-size: 13px; font-weight: 700; 
+    .sub-cat-header::after { 
+        content: ""; height: 4px; background: var(--gold); flex-grow: 1; 
+        margin-right: 30px; border-radius: 10px;
     }
-    .filter-btn.active { background: var(--primary); color: white; border-color: var(--primary); }
 
-    .sub-section { margin: 40px auto; max-width: 1400px; background: white; border-radius: 15px; padding: 25px 0; }
+    .horizontal-scroll { display: flex; overflow-x: auto; gap: 30px; padding: 20px 30px; scroll-behavior: smooth; }
 
-    .sub-cat-header { font-size: 22px; font-weight: 800; color: var(--primary); margin-left: 30px; display: flex; align-items: center; gap: 15px; }
-    .sub-cat-header::after { content: ""; height: 3px; background: var(--gold); flex-grow: 1; margin-right: 30px; opacity: 0.5; }
-
-    .horizontal-scroll { display: flex; overflow-x: auto; gap: 30px; padding: 20px 30px; }
-
-    
+    /* --- PREMIUM CARD HOVER --- */
     .card { 
-        min-width: 260px; 
-        max-width: 260px; 
-        background: white; 
-        border-radius: 16px; 
-        box-shadow: 0 8px 20px rgba(0,0,0,0.06); 
-        transition: 0.3s;
-        border: 1px solid #f0f0f0;
-        flex-shrink: 0;
-        display: flex;
-        flex-direction: column;
+        min-width: 280px; max-width: 280px; background: white; border-radius: 20px; 
+        border: 1px solid #eee; flex-shrink: 0; overflow: hidden;
+        transition: all 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
+        position: relative;
     }
+
+    .card:hover { 
+        transform: translateY(-15px) scale(1.02); 
+        box-shadow: 0 20px 40px rgba(0,31,91,0.15);
+        border-color: var(--gold-solid);
+    }
+
+    /* Glossy overlay on hover */
+    .card::before {
+        content: ""; position: absolute; top: 0; left: -100%; width: 50%; height: 100%;
+        background: linear-gradient(to right, transparent, rgba(255,255,255,0.3), transparent);
+        transform: skewX(-25deg); transition: 0.7s; z-index: 2;
+    }
+    .card:hover::before { left: 150%; }
 
     .image-container { 
-        width: 100%; 
-        height: 250px; 
-        background: #fff; 
-        display: flex; 
-        align-items: center; 
-        justify-content: center; 
-        overflow: hidden; 
-        border-radius: 16px 16px 0 0;
+        width: 100%; height: 260px; background: #fff; display: flex; 
+        align-items: center; justify-content: center; overflow: hidden;
     }
 
     .image-container img { 
-        max-width: 100%; 
-        max-height: 100%; 
-        object-fit: contain; 
-        padding: 15px; 
+        max-width: 90%; max-height: 90%; object-fit: contain; 
+        transition: transform 0.6s ease;
     }
-    
+    .card:hover img { transform: scale(1.1); }
 
-    .info { padding: 25px; text-align: center; }
-    .item-name { font-size: 16px; font-weight: 700; color: #222; height: 40px; overflow: hidden; margin-bottom: 8px; }
-    .price { font-size: 18px; font-weight: 800; color: var(--gold); margin-bottom: 15px; }
-
-    .btn-wa { display: block; background: var(--primary); color: white; padding: 12px; text-decoration: none; border-radius: 8px; font-weight: 700; }
+    .info { padding: 25px; text-align: center; background: linear-gradient(to bottom, #fff, #f9f9f9); }
     
-    .bottom-nav { position: fixed; bottom: 25px; left: 50%; transform: translateX(-50%); width: 80%; max-width: 450px; background: rgba(0, 31, 91, 0.9); padding: 18px; border-radius: 50px; display: flex; justify-content: space-around; z-index: 2000; backdrop-filter: blur(10px); }
-    .nav-item { color: white; text-decoration: none; font-weight: 700; }
+    .price { font-size: 20px; font-weight: 900; color: var(--gold-solid); margin: 10px 0 20px 0; }
+
+    .btn-wa { 
+        display: block; background: var(--primary); color: white; padding: 14px; 
+        text-decoration: none; border-radius: 12px; font-weight: 800; font-size: 14px;
+        transition: 0.3s;
+    }
+    .btn-wa:hover { background: var(--gold-solid); transform: translateY(-2px); }
+
+    .bottom-nav { 
+        position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%); 
+        width: 85%; max-width: 400px; background: rgba(0, 31, 91, 0.95); 
+        padding: 20px; border-radius: 100px; display: flex; justify-content: space-around; 
+        box-shadow: 0 15px 35px rgba(0,0,0,0.4); z-index: 2000; backdrop-filter: blur(15px);
+        border: 1px solid rgba(255,255,255,0.1);
+    }
+    .nav-item { color: white; text-decoration: none; font-weight: 800; letter-spacing: 1px; }
 </style>
 </head>
 <body>
