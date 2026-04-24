@@ -13,7 +13,6 @@
             --glass: rgba(255, 255, 255, 0.85);
         }
 
-        /* 1. BACKGROUND PICTURE & ANIMATION */
         body {
             font-family: 'Inter', -apple-system, sans-serif;
             margin: 0;
@@ -23,7 +22,6 @@
             overflow-x: hidden;
         }
 
-        /* Fade-in animation for the whole page */
         @keyframes fadeInPage {
             from { opacity: 0; transform: translateY(20px); }
             to { opacity: 1; transform: translateY(0); }
@@ -32,11 +30,11 @@
         .main-wrapper {
             animation: fadeInPage 1s ease-out;
             min-height: 100vh;
-            background: rgba(248, 249, 250, 0.8); /* Light overlay to make text readable */
-            backdrop-filter: blur(8px);
+            background: rgba(248, 249, 250, 0.85);
+            backdrop-filter: blur(10px);
+            padding-bottom: 100px;
         }
 
-        /* 2. CENTERED LOGO & HEADER (FIXED SPACING) */
         header {
             padding: 80px 20px 40px;
             text-align: center;
@@ -51,126 +49,159 @@
             background: var(--white);
             transform: rotate(45deg);
             display: flex; align-items: center; justify-content: center;
-            margin-bottom: 60px; /* FIXED: Pushes text away from logo */
+            margin-bottom: 60px; /* Space fix for logo vs text */
             box-shadow: 0 10px 25px rgba(0,0,0,0.1);
             transition: 0.5s ease;
         }
         .logo-box:hover { transform: rotate(225deg); border-color: var(--primary); }
-
-        .logo-box span { 
-            transform: rotate(-45deg); 
-            font-weight: 900; color: var(--primary); font-size: 22px; 
-        }
+        .logo-box span { transform: rotate(-45deg); font-weight: 900; color: var(--primary); font-size: 22px; }
 
         h1 {
             font-size: clamp(24px, 6vw, 42px);
             letter-spacing: 12px;
             text-transform: uppercase;
             margin: 0 0 30px 0;
-            color: var(--primary);
             font-weight: 900;
         }
 
-        #searchInput {
-            width: 90%; max-width: 550px; padding: 20px 30px;
-            border-radius: 40px; border: 1px solid rgba(0,0,0,0.1);
-            background: var(--white); font-size: 16px;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.05);
-            outline: none; transition: 0.3s;
-        }
-        #searchInput:focus { transform: scale(1.02); box-shadow: 0 15px 35px rgba(181, 148, 16, 0.2); }
-
-        /* 3. SYMMETRIC GRID WITH BORDERS */
+        /* --- GRID & CARDS --- */
         .category-grid {
             display: grid;
             grid-template-columns: repeat(5, 1fr);
-            gap: 25px; padding: 40px;
+            gap: 20px; padding: 40px;
             max-width: 1300px; margin: 0 auto;
         }
 
         .cat-card {
             background: var(--glass);
-            border: 1px solid rgba(0,0,0,0.05); /* Professional Borders */
-            border-radius: 30px;
-            aspect-ratio: 1 / 1.1;
-            display: flex; flex-direction: column;
-            align-items: center; justify-content: center;
-            cursor: pointer; transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border: 1px solid rgba(0,0,0,0.08); /* Defined borders */
+            border-radius: 30px; aspect-ratio: 1 / 1.1;
+            display: flex; flex-direction: column; align-items: center; justify-content: center;
+            cursor: pointer; transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             box-shadow: 0 10px 20px rgba(0,0,0,0.03);
-            position: relative; overflow: hidden;
         }
 
-        .cat-card:hover {
-            transform: translateY(-15px);
-            background: var(--white);
-            border-color: var(--gold);
-            box-shadow: 0 25px 50px rgba(0,31,91,0.1);
+        .cat-card:hover { transform: translateY(-12px); border-color: var(--gold); background: var(--white); }
+
+        .cat-icon { font-size: 50px; margin-bottom: 10px; }
+        .cat-title { font-weight: 800; font-size: 14px; letter-spacing: 1px; text-transform: uppercase; }
+
+        /* --- PRODUCT VIEW --- */
+        .product-container { max-width: 1200px; margin: 0 auto; padding: 40px; }
+        .back-btn { 
+            background: var(--white); color: var(--primary); border: 2px solid var(--primary);
+            padding: 12px 25px; border-radius: 30px; cursor: pointer; font-weight: 700;
+            margin-bottom: 40px; transition: 0.3s;
+        }
+        .back-btn:hover { background: var(--primary); color: white; }
+
+        .product-grid { 
+            display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); 
+            gap: 30px; 
         }
 
-        .cat-icon { font-size: 55px; margin-bottom: 15px; transition: 0.3s; }
-        .cat-title { font-weight: 800; font-size: 15px; letter-spacing: 1.5px; text-transform: uppercase; }
-
-        /* Interactive Subtext Animation */
-        .cat-subtext {
-            font-size: 12px; color: #666; padding: 0 15px;
-            margin-top: 10px; text-align: center;
-            opacity: 0; transform: translateY(10px); transition: 0.3s;
+        .p-card { 
+            background: var(--white); border-radius: 20px; overflow: hidden; 
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05); border: 1px solid #eee;
         }
-        .cat-card:hover .cat-subtext { opacity: 1; transform: translateY(0); }
+        .p-img { height: 220px; background: #fff; display: flex; align-items: center; justify-content: center; padding: 20px; }
+        .p-img img { max-width: 100%; max-height: 100%; object-fit: contain; }
+        .p-info { padding: 20px; text-align: center; }
+        .p-price { color: var(--gold); font-weight: 800; font-size: 18px; margin: 10px 0; }
+        
+        .wa-link { 
+            display: block; background: var(--primary); color: white; padding: 12px; 
+            border-radius: 12px; text-decoration: none; font-weight: 700; font-size: 14px;
+        }
 
-        /* RESPONSIVE FIXES */
-        @media (max-width: 1024px) { .category-grid { grid-template-columns: repeat(3, 1fr); } }
-        @media (max-width: 650px) { .category-grid { grid-template-columns: repeat(2, 1fr); } }
+        .hidden { display: none !important; }
 
-        .hidden { display: none; }
+        @media (max-width: 1000px) { .category-grid { grid-template-columns: repeat(3, 1fr); } }
+        @media (max-width: 600px) { .category-grid { grid-template-columns: repeat(2, 1fr); } }
     </style>
 </head>
 <body>
 
 <div class="main-wrapper">
-    <header>
+    <header id="mainHeader">
         <div class="logo-box"><span>ATS</span></div>
         <h1>Aiwa Trade Services</h1>
-        <input type="text" id="searchInput" placeholder="Search our global inventory...">
     </header>
 
     <div id="hub" class="category-grid">
-        <div class="cat-card" onclick="openCat('Electronics')">
+        <div class="cat-card" onclick="openCatalog('Electronics')">
             <span class="cat-icon">🔌</span>
             <span class="cat-title">Electronics</span>
-            <span class="cat-subtext">Industrial components & smart tech sourcing.</span>
         </div>
-
-        <div class="cat-card" onclick="openCat('Household')">
+        <div class="cat-card" onclick="openCatalog('Household')">
             <span class="cat-icon">🏠</span>
             <span class="cat-title">Household</span>
-            <span class="cat-subtext">Luxury furniture & premium appliances.</span>
         </div>
-
-        <div class="cat-card" onclick="openCat('Clothing')">
+        <div class="cat-card" onclick="openCatalog('Clothing')">
             <span class="cat-icon">👕</span>
             <span class="cat-title">Clothing</span>
-            <span class="cat-subtext">Global textile & custom apparel manufacturing.</span>
         </div>
-
-        <div class="cat-card" onclick="openCat('Toys')">
+        <div class="cat-card" onclick="openCatalog('Toys')">
             <span class="cat-icon">🧸</span>
             <span class="cat-title">Toys</span>
-            <span class="cat-subtext">Wholesale educational sets & RC gadgets.</span>
         </div>
-
-        <div class="cat-card" onclick="openCat('Others')">
+        <div class="cat-card" onclick="openCatalog('Others')">
             <span class="cat-icon">📦</span>
             <span class="cat-title">Others</span>
-            <span class="cat-subtext">Bespoke procurement for niche industrial needs.</span>
         </div>
+    </div>
+
+    <div id="productView" class="product-container hidden">
+        <button class="back-btn" onclick="closeCatalog()">← BACK TO CATEGORIES</button>
+        <h2 id="viewTitle" style="text-align:center; margin-bottom:40px; letter-spacing:4px; text-transform:uppercase;"></h2>
+        <div id="productGrid" class="product-grid"></div>
     </div>
 </div>
 
 <script>
-    function openCat(cat) {
-        alert("Entering " + cat + " catalog...");
-        // You can add your existing product rendering logic here!
+    const inventory = [
+        { name: "STM32 Microchip", cat: "Electronics", price: "Enquire MOQ", img: "https://placehold.co/300?text=Electronics" },
+        { name: "Luxury Sofa Set", cat: "Household", price: "¥2400.00", img: "https://placehold.co/300?text=Household" },
+        { name: "Premium Cotton Hoodie", cat: "Clothing", price: "Enquire", img: "https://placehold.co/300?text=Clothing" },
+        { name: "RC Drone Pro", cat: "Toys", price: "¥120.00", img: "https://placehold.co/300?text=Toys" },
+        { name: "Industrial Pump", cat: "Others", price: "Request Quote", img: "https://placehold.co/300?text=Others" }
+    ];
+
+    function openCatalog(category) {
+        // Hide Hub, Show Products
+        document.getElementById('hub').classList.add('hidden');
+        document.getElementById('productView').classList.remove('hidden');
+        document.getElementById('viewTitle').innerText = category;
+        
+        const grid = document.getElementById('productGrid');
+        grid.innerHTML = ""; // Clear old stuff
+
+        // Filter items
+        const filtered = inventory.filter(p => p.cat === category);
+
+        if(filtered.length === 0) {
+            grid.innerHTML = "<p style='grid-column:1/-1; text-align:center;'>More products coming soon. Please contact us for custom sourcing.</p>";
+        } else {
+            filtered.forEach(p => {
+                grid.innerHTML += `
+                    <div class="p-card">
+                        <div class="p-img"><img src="${p.img}"></div>
+                        <div class="p-info">
+                            <h3>${p.name}</h3>
+                            <div class="p-price">${p.price}</div>
+                            <a href="https://wa.me/85259813744?text=Interested in ${p.name}" class="wa-link">CONTACT AGENT</a>
+                        </div>
+                    </div>
+                `;
+            });
+        }
+        window.scrollTo(0,0);
+    }
+
+    function closeCatalog() {
+        document.getElementById('hub').classList.remove('hidden');
+        document.getElementById('productView').classList.add('hidden');
+        window.scrollTo(0,0);
     }
 </script>
 
