@@ -65,61 +65,86 @@
         #searchInput:focus { max-width: 650px; box-shadow: 0 0 0 5px rgba(181, 148, 16, 0.3); }
 
         /* --- VISUAL SHOWROOM TILES --- */
-        .hub-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 35px;
-            padding: 60px 40px;
-            max-width: 1400px;
-            margin: 0 auto;
-        }
+        /* --- IMPROVED VISUAL HUB --- */
+    .hub-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 25px;
+        padding: 40px 20px;
+        max-width: 1200px;
+        margin: 0 auto;
+    }
 
-        .hub-tile {
-            position: relative;
-            height: 350px;
-            border-radius: 30px;
-            overflow: hidden;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
-            cursor: pointer;
-            transition: 0.6s cubic-bezier(0.19, 1, 0.22, 1);
-            animation: reveal 0.8s ease-out backwards;
-            border: 1px solid rgba(255,255,255,0.2);
-        }
+    .hub-tile {
+        position: relative;
+        height: 220px; 
+        border-radius: 24px;
+        overflow: hidden;
+        cursor: pointer;
+        transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        background: #ffffff; 
+        border: 1px solid #e0e0e0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+    }
 
-        /* Staggered animation delay for cards */
-        .hub-tile:nth-child(1) { animation-delay: 0.1s; }
-        .hub-tile:nth-child(2) { animation-delay: 0.2s; }
-        .hub-tile:nth-child(3) { animation-delay: 0.3s; }
-        .hub-tile:nth-child(4) { animation-delay: 0.4s; }
-        .hub-tile:nth-child(5) { animation-delay: 0.5s; }
-        .hub-tile:nth-child(6) { animation-delay: 0.6s; }
+    .hub-tile:hover {
+        transform: translateY(-10px);
+        border-color: #b59410; /* Aiwa Gold */
+        box-shadow: 0 15px 35px rgba(0,31,91,0.15);
+    }
 
-        .hub-tile:hover {
-            transform: translateY(-20px) scale(1.02);
-            box-shadow: 0 30px 60px rgba(0,31,91,0.25);
-        }
+    .hub-bg {
+        position: absolute;
+        top: 0; left: 0; width: 100%; height: 100%;
+        background-size: cover;
+        background-position: center;
+        z-index: 1;
+        opacity: 0.9;
+    }
 
-        .hub-bg {
-            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            background-size: cover; background-position: center;
-            transition: 1.2s cubic-bezier(0.19, 1, 0.22, 1);
-        }
-        .hub-tile:hover .hub-bg { transform: scale(1.15); }
+    /* Content overlay - Forces text and icon to the middle */
+    .hub-content {
+        position: relative;
+        z-index: 2;
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        height: 100%;
+        background: rgba(255, 255, 255, 0.7); /* Whitish overlay for readability */
+        transition: 0.3s;
+    }
 
-        .hub-overlay {
-            position: absolute; inset: 0;
-            background: linear-gradient(to top, rgba(0,31,91,0.95) 10%, rgba(0,0,0,0.3) 50%, transparent 100%);
-            display: flex; flex-direction: column; justify-content: flex-end;
-            padding: 40px; transition: 0.5s;
-        }
+    .hub-tile:hover .hub-content {
+        background: rgba(0, 31, 91, 0.85); /* Turns Navy on hover */
+    }
 
-        .hub-title {
-            font-size: 28px; font-weight: 900; color: white;
-            text-transform: uppercase; letter-spacing: 3px; margin: 0;
-            transition: 0.5s;
-        }
-        .hub-subtitle { color: rgba(255,255,255,0.7); font-size: 14px; margin-top: 10px; opacity: 0; transition: 0.5s; }
-        .hub-tile:hover .hub-subtitle { opacity: 1; }
+    .hub-icon {
+        font-size: 45px;
+        margin-bottom: 12px;
+        transition: 0.3s;
+    }
+
+    .hub-title {
+        font-size: 22px;
+        font-weight: 800;
+        color: #001f5b;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        margin: 0;
+        transition: 0.3s;
+    }
+
+    .hub-tile:hover .hub-title, 
+    .hub-tile:hover .hub-icon { 
+        color: white; 
+        transform: scale(1.1);
+    }
 
         /* --- PRODUCT GRID --- */
         .container { max-width: 1400px; margin: 0 auto; padding: 20px; animation: slideIn 0.5s ease-out; }
