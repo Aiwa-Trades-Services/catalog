@@ -3,243 +3,230 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aiwa Trade Services | Premium Global Sourcing</title>
+    <title>Aiwa Trade Services | Advanced Sourcing</title>
     <style>
         :root { 
-            --primary: #000c24; 
-            --accent: #b59410; 
-            --gold-gradient: linear-gradient(135deg, #b59410 0%, #ffecb3 50%, #b59410 100%);
-            --glass: rgba(255, 255, 255, 0.05);
-            --text-main: #ffffff;
+            --navy-deep: #000814; 
+            --navy-mid: #001d3d;
+            --accent-gold: #ffc300;
+            --glass-border: rgba(255, 195, 0, 0.3);
+            --text-silver: #e0e0e0;
         }
 
         body { 
-            font-family: 'Inter', -apple-system, sans-serif; 
-            margin: 0; background: var(--primary); color: var(--text-main); 
-            padding-bottom: 120px; overflow-x: hidden;
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            margin: 0; background: var(--navy-deep); color: var(--text-silver);
+            line-height: 1.6;
         }
 
-        /* --- LUXURY LOGO & HEADER --- */
+        /* --- ADVANCED HEADER & FIXED LOGO --- */
         header { 
-            background: radial-gradient(circle at top, #001f5b 0%, #000c24 100%);
-            padding: 80px 20px; text-align: center;
-            border-bottom: 2px solid var(--accent);
-            box-shadow: 0 10px 50px rgba(0,0,0,0.5);
+            background: linear-gradient(to bottom, #001d3d, var(--navy-deep));
+            padding: 60px 20px; text-align: center;
+            border-bottom: 1px solid var(--glass-border);
+            /* This ensures space between header and content */
+            margin-bottom: 20px; 
         }
 
-        .ats-logo-container {
-            position: relative; width: 120px; height: 120px; margin: 0 auto 20px;
+        .logo-wrapper {
+            display: inline-block;
+            margin-bottom: 40px; /* Increased margin to stop it touching the text below */
         }
 
-        /* Modern Hexagon/Diamond Logo Shape */
-        .ats-logo-shape {
-            width: 100%; height: 100%; background: var(--primary);
-            border: 3px solid var(--accent); transform: rotate(45deg);
+        .diamond-logo {
+            width: 100px; height: 100px;
+            background: var(--navy-deep);
+            border: 2px solid var(--accent-gold);
+            transform: rotate(45deg);
             display: flex; align-items: center; justify-content: center;
-            box-shadow: 0 0 20px rgba(181, 148, 16, 0.4);
-            transition: 0.5s ease;
+            box-shadow: 0 0 25px rgba(255, 195, 0, 0.2);
+            transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
-        .ats-logo-text {
-            transform: rotate(-45deg); font-weight: 900; font-size: 28px;
-            letter-spacing: 2px; background: var(--gold-gradient);
-            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+        .diamond-logo span {
+            transform: rotate(-45deg);
+            font-weight: 900; font-size: 24px;
+            color: var(--accent-gold);
+            letter-spacing: 1px;
         }
 
-        .ats-logo-container:hover .ats-logo-shape { transform: rotate(135deg); border-color: #fff; }
-
-        .brand-name { 
-            font-size: 42px; font-weight: 900; letter-spacing: 12px; 
-            text-transform: uppercase; margin: 20px 0;
+        .diamond-logo:hover {
+            box-shadow: 0 0 40px rgba(255, 195, 0, 0.5);
+            transform: rotate(45deg) scale(1.05);
         }
 
+        .brand-title {
+            font-size: clamp(28px, 5vw, 48px); /* Responsive sizing */
+            font-weight: 800; letter-spacing: 8px;
+            text-transform: uppercase; margin-top: 0; /* Removed top margin since wrapper handles it */
+            color: #fff;
+        }
+
+        .search-container { margin-top: 30px; }
         #searchInput { 
-            width: 90%; max-width: 600px; padding: 22px 35px; border-radius: 12px; 
-            border: 1px solid rgba(255,255,255,0.2); background: rgba(255,255,255,0.1);
-            color: white; font-size: 16px; backdrop-filter: blur(10px);
-            transition: 0.3s;
+            width: 85%; max-width: 550px; padding: 18px 25px; 
+            border-radius: 30px; border: 1px solid var(--glass-border);
+            background: rgba(255,255,255,0.05); color: white;
+            backdrop-filter: blur(5px); outline: none; transition: 0.3s;
         }
-        #searchInput:focus { outline: none; border-color: var(--accent); background: rgba(255,255,255,0.15); }
+        #searchInput:focus { border-color: var(--accent-gold); background: rgba(255,255,255,0.1); }
 
-        /* --- THE 5-CATEGORY GRID --- */
-        .hub-container {
+        /* --- THE ADVANCED GRID (WITH BORDERS) --- */
+        .category-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-            gap: 25px; padding: 60px 20px; max-width: 1400px; margin: 0 auto;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px; padding: 40px; max-width: 1400px; margin: 0 auto;
         }
 
-        .hub-tile {
-            position: relative; height: 320px; border-radius: 20px; 
-            overflow: hidden; cursor: pointer; transition: 0.5s cubic-bezier(0.2, 1, 0.3, 1);
-            background: #0a1128; border: 1px solid rgba(181, 148, 16, 0.1);
+        .cat-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.1); /* Subtle default border */
+            border-radius: 16px; padding: 40px 20px;
+            text-align: center; cursor: pointer;
+            transition: all 0.4s ease;
+            position: relative; overflow: hidden;
         }
 
-        .hub-tile:hover { transform: translateY(-15px) scale(1.02); border-color: var(--accent); }
-
-        .hub-content {
-            position: absolute; inset: 0; display: flex; flex-direction: column;
-            align-items: center; justify-content: center; padding: 30px; text-align: center;
-            background: linear-gradient(to bottom, transparent 0%, rgba(0,0,0,0.8) 100%);
+        /* The Gold Border reveal on hover */
+        .cat-card:hover {
+            background: rgba(255, 195, 0, 0.05);
+            border-color: var(--accent-gold);
+            transform: translateY(-8px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
         }
 
-        .hub-icon { font-size: 55px; margin-bottom: 15px; filter: drop-shadow(0 0 10px rgba(181, 148, 16, 0.3)); }
-        .hub-title { font-size: 22px; font-weight: 800; letter-spacing: 2px; color: #fff; margin: 0; }
+        .cat-icon { font-size: 50px; margin-bottom: 20px; display: block; }
+        .cat-name { font-weight: 700; font-size: 20px; letter-spacing: 2px; color: #fff; }
         
-        .hub-subtext {
-            font-size: 14px; color: #ccc; margin-top: 15px;
-            opacity: 0; transform: translateY(20px); transition: 0.4s;
+        .cat-info {
+            font-size: 13px; color: #aaa; margin-top: 15px;
+            opacity: 0; transition: 0.3s;
+        }
+        .cat-card:hover .cat-info { opacity: 1; }
+
+        /* --- PRODUCT SHOWCASE --- */
+        #productView { padding: 40px; }
+        .back-nav { margin-bottom: 30px; }
+        .btn-back { 
+            background: transparent; color: var(--accent-gold); 
+            border: 1px solid var(--accent-gold); padding: 10px 20px; 
+            border-radius: 8px; cursor: pointer; 
         }
 
-        .hub-tile:hover .hub-subtext { opacity: 1; transform: translateY(0); }
-
-        /* --- PRODUCT VIEW STYLES --- */
-        .container { max-width: 1400px; margin: 0 auto; padding: 40px 20px; }
-        .back-btn { 
-            background: transparent; color: var(--accent); border: 1px solid var(--accent);
-            padding: 12px 25px; border-radius: 5px; cursor: pointer; font-weight: 700;
-            margin-bottom: 30px; transition: 0.3s;
-        }
-        .back-btn:hover { background: var(--accent); color: #000; }
-
-        .sub-section { margin-bottom: 60px; }
-        .sub-cat-header { font-size: 24px; font-weight: 800; border-left: 4px solid var(--accent); padding-left: 15px; margin-bottom: 25px; }
-
-        .horizontal-scroll { display: flex; overflow-x: auto; gap: 30px; padding-bottom: 20px; scrollbar-width: thin; }
-        .card { 
-            min-width: 280px; background: rgba(255,255,255,0.03); border-radius: 15px;
-            border: 1px solid rgba(255,255,255,0.05); transition: 0.3s; overflow: hidden;
-        }
-        .card:hover { background: rgba(255,255,255,0.07); border-color: var(--accent); }
-
-        .image-container { height: 250px; background: #fff; display: flex; align-items: center; justify-content: center; }
-        .image-container img { max-width: 80%; max-height: 80%; object-fit: contain; }
-
-        .info { padding: 20px; text-align: center; }
-        .price { color: var(--accent); font-size: 18px; font-weight: 800; margin: 10px 0; }
-        .btn-enquire { 
-            display: block; background: var(--gold-gradient); color: #000; padding: 12px; 
-            border-radius: 8px; text-decoration: none; font-weight: 800; font-size: 14px;
+        .product-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 25px;
         }
 
-        .hidden { display: none !important; }
+        .product-item {
+            background: #001d3d; border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 12px; overflow: hidden;
+        }
+        .p-img { height: 200px; background: #fff; display: flex; align-items: center; justify-content: center; }
+        .p-img img { max-width: 80%; max-height: 80%; }
+        .p-details { padding: 20px; text-align: center; }
+        .p-price { color: var(--accent-gold); font-weight: 800; margin: 10px 0; }
+        .btn-wa { 
+            display: inline-block; width: 100%; background: var(--accent-gold); 
+            color: #000; padding: 12px; border-radius: 6px; 
+            text-decoration: none; font-weight: 800; 
+        }
+
+        .hidden { display: none; }
     </style>
 </head>
 <body>
 
 <header>
-    <div class="ats-logo-container">
-        <div class="ats-logo-shape"><div class="ats-logo-text">ATS</div></div>
+    <div class="logo-wrapper">
+        <div class="diamond-logo"><span>ATS</span></div>
     </div>
-    <div class="brand-name">Aiwa Trade Services</div>
-    <input type="text" id="searchInput" onkeyup="searchTrigger()" placeholder="Search our global network...">
+    <h1 class="brand-title">Aiwa Trade Services</h1>
+    <div class="search-container">
+        <input type="text" id="searchInput" placeholder="Search global inventory...">
+    </div>
 </header>
 
-<div id="categoryHub" class="hub-container">
-    
-    <div class="hub-tile" onclick="setCategory('Electronics')">
-        <div class="hub-content">
-            <div class="hub-icon">🔌</div>
-            <div class="hub-title">Electronics</div>
-            <div class="hub-subtext">Industrial components, semiconductors, and consumer tech.</div>
-        </div>
+<div id="hub" class="category-grid">
+    <div class="cat-card" onclick="openCat('Electronics')">
+        <span class="cat-icon">🔌</span>
+        <span class="cat-name">Electronics</span>
+        <div class="cat-info">Semiconductors, smart tech, and industrial components.</div>
     </div>
 
-    <div class="hub-tile" onclick="setCategory('Household')">
-        <div class="hub-content">
-            <div class="hub-icon">🏠</div>
-            <div class="hub-title">Household</div>
-            <div class="hub-subtext">Smart home appliances and luxury interior solutions.</div>
-        </div>
+    <div class="cat-card" onclick="openCat('Household')">
+        <span class="cat-icon">🏠</span>
+        <span class="cat-name">Household</span>
+        <div class="cat-info">Designer furniture, home decor, and essential appliances.</div>
     </div>
 
-    <div class="hub-tile" onclick="setCategory('Clothing')">
-        <div class="hub-content">
-            <div class="hub-icon">👕</div>
-            <div class="hub-title">Clothing</div>
-            <div class="hub-subtext">Global textile sourcing and custom apparel manufacturing.</div>
-        </div>
+    <div class="cat-card" onclick="openCat('Clothing')">
+        <span class="cat-icon">👕</span>
+        <span class="cat-name">Clothing</span>
+        <div class="cat-info">Premium textiles and custom apparel manufacturing.</div>
     </div>
 
-    <div class="hub-tile" onclick="setCategory('Toys')">
-        <div class="hub-content">
-            <div class="hub-icon">🧸</div>
-            <div class="hub-title">Toys</div>
-            <div class="hub-subtext">Educational sets, RC vehicles, and wholesale distributions.</div>
-        </div>
+    <div class="cat-card" onclick="openCat('Toys')">
+        <span class="cat-icon">🧸</span>
+        <span class="cat-name">Toys</span>
+        <div class="cat-info">Wholesale educational toys and RC hobby equipment.</div>
     </div>
 
-    <div class="hub-tile" onclick="setCategory('Others')">
-        <div class="hub-content">
-            <div class="hub-icon">📦</div>
-            <div class="hub-title">Others</div>
-            <div class="hub-subtext">Specialized procurement for unique business requirements.</div>
-        </div>
+    <div class="cat-card" onclick="openCat('Others')">
+        <span class="cat-icon">📦</span>
+        <span class="cat-name">Others</span>
+        <div class="cat-info">Custom procurement for specialized industrial needs.</div>
     </div>
-
 </div>
 
-<div id="productView" class="container hidden">
-    <button class="back-btn" onclick="showHub()">← Back to Categories</button>
-    <div id="productGrid"></div>
+<div id="productView" class="hidden">
+    <div class="back-nav">
+        <button class="btn-back" onclick="closeCat()">← Back to Categories</button>
+    </div>
+    <div id="displayArea" class="product-list"></div>
 </div>
 
 <script>
-const products = [
-    { name: "STM32 Microchip", cat: "Electronics", sub: "Chips", price: "Enquire for MOQ", img: "Chip1.jpg" },
-    { name: "Display Fridge", cat: "Electronics", sub: "Equipment", price: "Enquire", img: "Dp1.jpg" },
-    { name: "Luxury Dressing Table", cat: "Household", sub: "Furniture", price: "¥880.00", img: "CS.jpg" },
-    { name: "Winter Hoodie", cat: "Clothing", sub: "Apparel", price: "Enquire", img: "Hood1.jpg" },
-    { name: "RC Flying Car", cat: "Toys", sub: "Gadgets", price: "¥41.80", img: "FC1.jpg" },
-    { name: "Industrial Sorter", cat: "Others", sub: "Machinery", price: "Quote on Request", img: "https://placehold.co/400?text=Sourcing" }
-];
+    const inventory = [
+        { name: "STM32 Microchip", category: "Electronics", price: "Enquire for MOQ", img: "https://placehold.co/200?text=Chip" },
+        { name: "Luxury Bedding Set", category: "Household", price: "¥450.00", img: "https://placehold.co/200?text=Bed" },
+        { name: "Cotton Hoodie", category: "Clothing", price: "Enquire", img: "https://placehold.co/200?text=Hoodie" }
+        // Add more items here
+    ];
 
-function showHub() {
-    window.scrollTo({top: 0, behavior: 'smooth'});
-    document.getElementById('categoryHub').classList.remove('hidden');
-    document.getElementById('productView').classList.add('hidden');
-}
+    function openCat(cat) {
+        document.getElementById('hub').classList.add('hidden');
+        document.getElementById('productView').classList.remove('hidden');
+        
+        const area = document.getElementById('displayArea');
+        area.innerHTML = "";
+        
+        const filtered = inventory.filter(p => p.category === cat);
+        
+        if(filtered.length === 0) {
+            area.innerHTML = "<p style='grid-column: 1/-1; text-align:center;'>No products currently listed for this category. Contact us for sourcing.</p>";
+        }
 
-function setCategory(cat) {
-    window.scrollTo({top: 0, behavior: 'smooth'});
-    document.getElementById('categoryHub').classList.add('hidden');
-    document.getElementById('productView').classList.remove('hidden');
-    renderProducts(cat);
-}
-
-function renderProducts(filterCat) {
-    const grid = document.getElementById('productGrid');
-    grid.innerHTML = "";
-
-    let filtered = products.filter(p => p.cat === filterCat);
-
-    const groups = filtered.reduce((acc, p) => {
-        if (!acc[p.sub]) acc[p.sub] = [];
-        acc[p.sub].push(p);
-        return acc;
-    }, {});
-
-    for (const sub in groups) {
-        let section = document.createElement('div');
-        section.className = 'sub-section';
-        let html = `<div class="sub-cat-header">${sub}</div><div class="horizontal-scroll">`;
-        groups[sub].forEach(p => {
-            html += `
-                <div class="card">
-                    <div class="image-container">
-                        <img src="${p.img}" onerror="this.src='https://placehold.co/400x400/000c24/b59410?text=Aiwa+Trade'">
+        filtered.forEach(p => {
+            area.innerHTML += `
+                <div class="product-item">
+                    <div class="p-img"><img src="${p.img}"></div>
+                    <div class="p-details">
+                        <h3>${p.name}</h3>
+                        <div class="p-price">${p.price}</div>
+                        <a href="https://wa.me/85259813744" class="btn-wa">ENQUIRE NOW</a>
                     </div>
-                    <div class="info">
-                        <div style="font-weight:700; font-size:18px;">${p.name}</div>
-                        <div class="price">${p.price}</div>
-                        <a href="https://wa.me/85259813744?text=Interested in ${p.name}" class="btn-enquire">REQUEST QUOTE</a>
-                    </div>
-                </div>`;
+                </div>
+            `;
         });
-        html += `</div>`;
-        section.innerHTML = html;
-        grid.appendChild(section);
     }
-}
+
+    function closeCat() {
+        document.getElementById('hub').classList.remove('hidden');
+        document.getElementById('productView').classList.add('hidden');
+    }
 </script>
+
 </body>
 </html>
