@@ -3,132 +3,144 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aiwa Trade Services | Premium Sourcing</title>
+    <title>Aiwa Trade Services | Premium Global Sourcing</title>
     <style>
-    :root { 
-        --primary: #001f5b; 
-        --gold: linear-gradient(135deg, #b59410 0%, #ffecb3 50%, #b59410 100%); 
-        --gold-solid: #b59410;
-        --bg: #f4f7fa; 
-    }
+        :root { 
+            --primary: #000c24; 
+            --accent: #b59410; 
+            --gold-gradient: linear-gradient(135deg, #b59410 0%, #ffecb3 50%, #b59410 100%);
+            --glass: rgba(255, 255, 255, 0.05);
+            --text-main: #ffffff;
+        }
 
-    body { 
-        font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; 
-        margin: 0; background: var(--bg); color: #1d1d1f; padding-bottom: 120px;
-    }
+        body { 
+            font-family: 'Inter', -apple-system, sans-serif; 
+            margin: 0; background: var(--primary); color: var(--text-main); 
+            padding-bottom: 120px; overflow-x: hidden;
+        }
 
-    /* --- LUXURY GLASS HEADER --- */
-    header { 
-        background: linear-gradient(rgba(0,31,91,0.95), rgba(0,20,60,0.98));
-        padding: 100px 20px; text-align: center;
-        border-bottom: 5px solid var(--gold-solid);
-        backdrop-filter: blur(10px);
-        box-shadow: 0 10px 40px rgba(0,0,0,0.2);
-    }
+        /* --- LUXURY LOGO & HEADER --- */
+        header { 
+            background: radial-gradient(circle at top, #001f5b 0%, #000c24 100%);
+            padding: 80px 20px; text-align: center;
+            border-bottom: 2px solid var(--accent);
+            box-shadow: 0 10px 50px rgba(0,0,0,0.5);
+        }
 
-    .ats-logo {
-        width: 100px; height: 100px; background: white; border-radius: 24px;
-        display: flex; align-items: center; justify-content: center;
-        font-weight: 900; font-size: 28px; color: var(--primary);
-        border: 4px solid var(--gold-solid); margin: 0 auto 25px;
-        box-shadow: 0 12px 25px rgba(0,0,0,0.3);
-        transform: rotate(-3deg); transition: 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    }
-    .ats-logo:hover { transform: rotate(0deg) scale(1.1); }
+        .ats-logo-container {
+            position: relative; width: 120px; height: 120px; margin: 0 auto 20px;
+        }
 
-    .brand-name { 
-        font-size: 46px; font-weight: 900; color: white; letter-spacing: 10px; 
-        text-transform: uppercase; margin-bottom: 35px;
-        text-shadow: 0 4px 15px rgba(0,0,0,0.5);
-    }
+        /* Modern Hexagon/Diamond Logo Shape */
+        .ats-logo-shape {
+            width: 100%; height: 100%; background: var(--primary);
+            border: 3px solid var(--accent); transform: rotate(45deg);
+            display: flex; align-items: center; justify-content: center;
+            box-shadow: 0 0 20px rgba(181, 148, 16, 0.4);
+            transition: 0.5s ease;
+        }
 
-    #searchInput { 
-        width: 90%; max-width: 600px; padding: 22px 40px; border-radius: 18px; 
-        border: none; font-size: 17px; background: #ffffff;
-        box-shadow: 0 25px 50px rgba(0,0,0,0.25);
-        transition: 0.3s ease;
-    }
-    #searchInput:focus { transform: scale(1.03); outline: 3px solid var(--gold-solid); }
+        .ats-logo-text {
+            transform: rotate(-45deg); font-weight: 900; font-size: 28px;
+            letter-spacing: 2px; background: var(--gold-gradient);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+        }
 
-    /* --- THE INTERACTIVE HUB --- */
-    .hub-container {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-        gap: 30px; padding: 60px 30px; max-width: 1300px; margin: 0 auto;
-    }
+        .ats-logo-container:hover .ats-logo-shape { transform: rotate(135deg); border-color: #fff; }
 
-    .hub-tile {
-        position: relative; height: 300px; border-radius: 35px; overflow: hidden;
-        cursor: pointer; background: #ffffff; border: 1px solid rgba(0,0,0,0.05);
-        box-shadow: 0 20px 40px rgba(0,0,0,0.06);
-        transition: all 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
-        display: flex; align-items: center; justify-content: center;
-    }
+        .brand-name { 
+            font-size: 42px; font-weight: 900; letter-spacing: 12px; 
+            text-transform: uppercase; margin: 20px 0;
+        }
 
-    .hub-content {
-        position: relative; z-index: 2; text-align: center; width: 100%; padding: 30px;
-        transition: 0.5s ease;
-    }
+        #searchInput { 
+            width: 90%; max-width: 600px; padding: 22px 35px; border-radius: 12px; 
+            border: 1px solid rgba(255,255,255,0.2); background: rgba(255,255,255,0.1);
+            color: white; font-size: 16px; backdrop-filter: blur(10px);
+            transition: 0.3s;
+        }
+        #searchInput:focus { outline: none; border-color: var(--accent); background: rgba(255,255,255,0.15); }
 
-    .hub-icon { font-size: 60px; margin-bottom: 15px; transition: 0.4s; }
-    .hub-title { font-size: 26px; font-weight: 900; color: var(--primary); text-transform: uppercase; letter-spacing: 3px; }
+        /* --- THE 5-CATEGORY GRID --- */
+        .hub-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 25px; padding: 60px 20px; max-width: 1400px; margin: 0 auto;
+        }
 
-    /* --- HIDDEN SUBTEXT --- */
-    .hub-subtext {
-        font-size: 15px; color: #555; margin-top: 18px;
-        opacity: 0; max-height: 0; transform: translateY(20px);
-        transition: all 0.5s ease;
-    }
+        .hub-tile {
+            position: relative; height: 320px; border-radius: 20px; 
+            overflow: hidden; cursor: pointer; transition: 0.5s cubic-bezier(0.2, 1, 0.3, 1);
+            background: #0a1128; border: 1px solid rgba(181, 148, 16, 0.1);
+        }
 
-    .hub-tile:hover {
-        transform: translateY(-20px);
-        border-color: var(--gold-solid);
-        box-shadow: 0 30px 60px rgba(0,31,91,0.15);
-    }
+        .hub-tile:hover { transform: translateY(-15px) scale(1.02); border-color: var(--accent); }
 
-    .hub-tile:hover .hub-title { color: var(--gold-solid); }
-    .hub-tile:hover .hub-subtext { opacity: 1; max-height: 80px; transform: translateY(0); }
-    .hub-tile:hover .hub-icon { transform: scale(1.1) translateY(-5px); }
+        .hub-content {
+            position: absolute; inset: 0; display: flex; flex-direction: column;
+            align-items: center; justify-content: center; padding: 30px; text-align: center;
+            background: linear-gradient(to bottom, transparent 0%, rgba(0,0,0,0.8) 100%);
+        }
 
-    /* --- PRODUCT CARDS --- */
-    .card { 
-        min-width: 300px; background: white; border-radius: 30px; 
-        border: 1px solid #eee; overflow: hidden; transition: 0.4s; 
-    }
-    .card:hover { border-color: var(--gold-solid); transform: translateY(-10px); }
+        .hub-icon { font-size: 55px; margin-bottom: 15px; filter: drop-shadow(0 0 10px rgba(181, 148, 16, 0.3)); }
+        .hub-title { font-size: 22px; font-weight: 800; letter-spacing: 2px; color: #fff; margin: 0; }
+        
+        .hub-subtext {
+            font-size: 14px; color: #ccc; margin-top: 15px;
+            opacity: 0; transform: translateY(20px); transition: 0.4s;
+        }
 
-    .btn-wa { 
-        display: block; background: var(--primary); color: white; 
-        padding: 16px; border-radius: 14px; text-decoration: none; 
-        font-weight: 800; text-transform: uppercase; letter-spacing: 1px;
-    }
-</style>
+        .hub-tile:hover .hub-subtext { opacity: 1; transform: translateY(0); }
+
+        /* --- PRODUCT VIEW STYLES --- */
+        .container { max-width: 1400px; margin: 0 auto; padding: 40px 20px; }
+        .back-btn { 
+            background: transparent; color: var(--accent); border: 1px solid var(--accent);
+            padding: 12px 25px; border-radius: 5px; cursor: pointer; font-weight: 700;
+            margin-bottom: 30px; transition: 0.3s;
+        }
+        .back-btn:hover { background: var(--accent); color: #000; }
+
+        .sub-section { margin-bottom: 60px; }
+        .sub-cat-header { font-size: 24px; font-weight: 800; border-left: 4px solid var(--accent); padding-left: 15px; margin-bottom: 25px; }
+
+        .horizontal-scroll { display: flex; overflow-x: auto; gap: 30px; padding-bottom: 20px; scrollbar-width: thin; }
+        .card { 
+            min-width: 280px; background: rgba(255,255,255,0.03); border-radius: 15px;
+            border: 1px solid rgba(255,255,255,0.05); transition: 0.3s; overflow: hidden;
+        }
+        .card:hover { background: rgba(255,255,255,0.07); border-color: var(--accent); }
+
+        .image-container { height: 250px; background: #fff; display: flex; align-items: center; justify-content: center; }
+        .image-container img { max-width: 80%; max-height: 80%; object-fit: contain; }
+
+        .info { padding: 20px; text-align: center; }
+        .price { color: var(--accent); font-size: 18px; font-weight: 800; margin: 10px 0; }
+        .btn-enquire { 
+            display: block; background: var(--gold-gradient); color: #000; padding: 12px; 
+            border-radius: 8px; text-decoration: none; font-weight: 800; font-size: 14px;
+        }
+
+        .hidden { display: none !important; }
+    </style>
 </head>
 <body>
 
 <header>
-    <div class="header-content">
-        <div class="ats-logo">ATS</div>
-        <div class="brand-name">Aiwa Trade Services</div>
-        <input type="text" id="searchInput" onkeyup="searchTrigger()" placeholder="What are you sourcing today?">
+    <div class="ats-logo-container">
+        <div class="ats-logo-shape"><div class="ats-logo-text">ATS</div></div>
     </div>
+    <div class="brand-name">Aiwa Trade Services</div>
+    <input type="text" id="searchInput" onkeyup="searchTrigger()" placeholder="Search our global network...">
 </header>
 
 <div id="categoryHub" class="hub-container">
     
-    <div class="hub-tile" onclick="setCategory('Clothing')">
-        <div class="hub-content">
-            <div class="hub-icon">👕</div>
-            <div class="hub-title">Clothing</div>
-            <div class="hub-subtext">Premium textiles, high-fashion, and custom apparel manufacturing.</div>
-        </div>
-    </div>
-
     <div class="hub-tile" onclick="setCategory('Electronics')">
         <div class="hub-content">
             <div class="hub-icon">🔌</div>
             <div class="hub-title">Electronics</div>
-            <div class="hub-subtext">Cutting-edge consumer tech, industrial components, and smart devices.</div>
+            <div class="hub-subtext">Industrial components, semiconductors, and consumer tech.</div>
         </div>
     </div>
 
@@ -136,7 +148,23 @@
         <div class="hub-content">
             <div class="hub-icon">🏠</div>
             <div class="hub-title">Household</div>
-            <div class="hub-subtext">Luxury home decor, designer furniture, and essential lifestyle appliances.</div>
+            <div class="hub-subtext">Smart home appliances and luxury interior solutions.</div>
+        </div>
+    </div>
+
+    <div class="hub-tile" onclick="setCategory('Clothing')">
+        <div class="hub-content">
+            <div class="hub-icon">👕</div>
+            <div class="hub-title">Clothing</div>
+            <div class="hub-subtext">Global textile sourcing and custom apparel manufacturing.</div>
+        </div>
+    </div>
+
+    <div class="hub-tile" onclick="setCategory('Toys')">
+        <div class="hub-content">
+            <div class="hub-icon">🧸</div>
+            <div class="hub-title">Toys</div>
+            <div class="hub-subtext">Educational sets, RC vehicles, and wholesale distributions.</div>
         </div>
     </div>
 
@@ -144,26 +172,74 @@
         <div class="hub-content">
             <div class="hub-icon">📦</div>
             <div class="hub-title">Others</div>
-            <div class="hub-subtext">Global sourcing solutions for any niche product or specialized request.</div>
+            <div class="hub-subtext">Specialized procurement for unique business requirements.</div>
         </div>
     </div>
 
 </div>
 
 <div id="productView" class="container hidden">
-    <button class="back-btn" onclick="showHub()">← Return to Showroom</button>
+    <button class="back-btn" onclick="showHub()">← Back to Categories</button>
     <div id="productGrid"></div>
 </div>
 
-<div class="bottom-nav">
-    <a href="https://wa.me/85259813744" class="nav-item">WhatsApp</a>
-    <a href="mailto:info@aiwatrade.com" class="nav-item">Email Official</a>
-</div>
-
 <script>
-    // Paste your existing products array and functions here (setCategory, renderProducts, etc.)
-    // ... exactly like the previous code ...
-</script>
+const products = [
+    { name: "STM32 Microchip", cat: "Electronics", sub: "Chips", price: "Enquire for MOQ", img: "Chip1.jpg" },
+    { name: "Display Fridge", cat: "Electronics", sub: "Equipment", price: "Enquire", img: "Dp1.jpg" },
+    { name: "Luxury Dressing Table", cat: "Household", sub: "Furniture", price: "¥880.00", img: "CS.jpg" },
+    { name: "Winter Hoodie", cat: "Clothing", sub: "Apparel", price: "Enquire", img: "Hood1.jpg" },
+    { name: "RC Flying Car", cat: "Toys", sub: "Gadgets", price: "¥41.80", img: "FC1.jpg" },
+    { name: "Industrial Sorter", cat: "Others", sub: "Machinery", price: "Quote on Request", img: "https://placehold.co/400?text=Sourcing" }
+];
 
+function showHub() {
+    window.scrollTo({top: 0, behavior: 'smooth'});
+    document.getElementById('categoryHub').classList.remove('hidden');
+    document.getElementById('productView').classList.add('hidden');
+}
+
+function setCategory(cat) {
+    window.scrollTo({top: 0, behavior: 'smooth'});
+    document.getElementById('categoryHub').classList.add('hidden');
+    document.getElementById('productView').classList.remove('hidden');
+    renderProducts(cat);
+}
+
+function renderProducts(filterCat) {
+    const grid = document.getElementById('productGrid');
+    grid.innerHTML = "";
+
+    let filtered = products.filter(p => p.cat === filterCat);
+
+    const groups = filtered.reduce((acc, p) => {
+        if (!acc[p.sub]) acc[p.sub] = [];
+        acc[p.sub].push(p);
+        return acc;
+    }, {});
+
+    for (const sub in groups) {
+        let section = document.createElement('div');
+        section.className = 'sub-section';
+        let html = `<div class="sub-cat-header">${sub}</div><div class="horizontal-scroll">`;
+        groups[sub].forEach(p => {
+            html += `
+                <div class="card">
+                    <div class="image-container">
+                        <img src="${p.img}" onerror="this.src='https://placehold.co/400x400/000c24/b59410?text=Aiwa+Trade'">
+                    </div>
+                    <div class="info">
+                        <div style="font-weight:700; font-size:18px;">${p.name}</div>
+                        <div class="price">${p.price}</div>
+                        <a href="https://wa.me/85259813744?text=Interested in ${p.name}" class="btn-enquire">REQUEST QUOTE</a>
+                    </div>
+                </div>`;
+        });
+        html += `</div>`;
+        section.innerHTML = html;
+        grid.appendChild(section);
+    }
+}
+</script>
 </body>
 </html>
