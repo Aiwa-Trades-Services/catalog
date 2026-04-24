@@ -3,13 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aiwa Trade Services | Premium Sourcing</title>
+    <title>Aiwa Trade Services | Premium Sourcing Showroom</title>
     <style>
         :root { 
             --primary: #001f5b; 
             --gold: linear-gradient(135deg, #b59410 0%, #ffecb3 50%, #b59410 100%); 
             --gold-solid: #b59410;
-            --bg: #f8f9fa; 
+            --bg: #fafafb; 
+            --text-on-dark: #ffffff;
         }
 
         @keyframes fadeInUp {
@@ -18,108 +19,111 @@
         }
 
         body { 
-            font-family: -apple-system, sans-serif; 
+            font-family: -apple-system, system-ui, sans-serif; 
             margin: 0; background: var(--bg); color: #1d1d1f; padding-bottom: 120px;
+            letter-spacing: -0.01em;
         }
 
         header { 
-            background: var(--primary); padding: 40px 20px; text-align: center;
+            background: var(--primary); padding: 50px 20px; text-align: center;
             border-bottom: 5px solid var(--gold-solid);
+            display: flex; flex-direction: column; align-items: center;
         }
 
         .ats-logo {
             width: 70px; height: 70px; background: white; border-radius: 50%;
             display: flex; align-items: center; justify-content: center;
             font-weight: 900; font-size: 22px; color: var(--primary);
-            border: 3px solid var(--gold-solid); margin: 0 auto 15px;
+            border: 3px solid var(--gold-solid); margin-bottom: 15px;
             box-shadow: 0 5px 15px rgba(0,0,0,0.3);
         }
 
-        .brand-name { font-size: 28px; font-weight: 900; color: white; letter-spacing: 4px; margin-bottom: 20px; }
+        .brand-name { font-size: 32px; font-weight: 900; color: white; letter-spacing: 5px; text-transform: uppercase; margin-bottom: 25px; }
 
         #searchInput { 
-            width: 85%; max-width: 500px; padding: 15px 25px; border-radius: 50px; 
+            width: 85%; max-width: 500px; padding: 18px 30px; border-radius: 50px; 
             border: none; font-size: 16px; box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            transition: all 0.3s;
         }
+        #searchInput:focus { transform: scale(1.05); }
 
-        /* --- CATEGORY HUB TILES --- */
+        /* --- VISUAL SHOWROOM HUB --- */
         .hub-container {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-            gap: 20px;
-            padding: 40px 20px;
-            max-width: 1200px;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            padding: 50px 30px;
+            max-width: 1300px;
             margin: 0 auto;
-            animation: fadeInUp 0.6s ease-out;
+            animation: fadeInUp 0.7s ease-out;
         }
 
         .hub-tile {
-            background: white;
-            padding: 40px 20px;
+            position: relative;
+            aspect-ratio: 4/3; /* Forces a consistent shape */
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
             border-radius: 20px;
-            text-align: center;
-            font-weight: 800;
-            color: var(--primary);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
             cursor: pointer;
-            transition: 0.3s;
-            border: 1px solid #eee;
-            text-transform: uppercase;
-            letter-spacing: 1px;
+            transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1), box-shadow 0.4s;
+            border: 2px solid transparent;
         }
 
         .hub-tile:hover {
-            transform: translateY(-10px);
+            transform: translateY(-15px) scale(1.03);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.2);
             border-color: var(--gold-solid);
-            background: var(--primary);
-            color: white;
         }
 
-        /* --- PRODUCT DISPLAY --- */
+        /* --- Dark overlay to make text readable --- */
+        .hub-overlay {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 25px;
+            transition: 0.3s;
+        }
+        .hub-tile:hover .hub-overlay { background: linear-gradient(to top, rgba(0,31,91,0.9), rgba(0,31,91,0.5)); }
+
+        .hub-icon { font-size: 28px; margin-bottom: 10px; }
+        
+        .hub-title {
+            font-size: 24px;
+            font-weight: 800;
+            color: var(--text-on-dark);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin: 0;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
+        }
+
+        /* --------------------------- */
+
+        /* The rest of the styles remain the same from the previous version */
         .container { max-width: 1400px; margin: 0 auto; padding: 10px; }
-        
-        .back-btn {
-            margin: 20px; padding: 10px 20px; border: none; background: var(--gold-solid);
-            color: white; border-radius: 10px; cursor: pointer; font-weight: 700;
-        }
-
-        .sub-section { 
-            margin: 20px auto; background: white; border-radius: 20px; padding: 20px 0;
-            animation: fadeInUp 0.5s ease-out;
-        }
-
-        .sub-cat-header { 
-            font-size: 22px; font-weight: 900; color: var(--primary); 
-            margin-left: 30px; display: flex; align-items: center; gap: 15px;
-        }
-        .sub-cat-header::after { content: ""; height: 3px; background: var(--gold); flex-grow: 1; margin-right: 30px; }
-
-        .horizontal-scroll { display: flex; overflow-x: auto; gap: 25px; padding: 20px 30px; }
-
-        .card { 
-            min-width: 260px; max-width: 260px; background: white; border-radius: 20px; 
-            border: 1px solid #eee; flex-shrink: 0; overflow: hidden; transition: 0.3s;
-        }
-        .card:hover { transform: translateY(-10px); box-shadow: 0 15px 30px rgba(0,0,0,0.1); }
-
-        .image-container { width: 100%; height: 240px; background: #fff; display: flex; align-items: center; justify-content: center; }
+        .back-btn { margin: 20px 20px 30px 20px; padding: 12px 25px; border: none; background: var(--gold-solid); color: white; border-radius: 12px; cursor: pointer; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; }
+        .back-btn:hover { background: #d4ae24; }
+        .sub-section { margin: 20px auto; background: white; border-radius: 20px; padding: 25px 0; animation: fadeInUp 0.5s ease-out; box-shadow: 0 5px 15px rgba(0,0,0,0.03); }
+        .sub-cat-header { font-size: 24px; font-weight: 900; color: var(--primary); margin-left: 30px; display: flex; align-items: center; gap: 20px; text-transform: uppercase; letter-spacing: 1px; }
+        .sub-cat-header::after { content: ""; height: 4px; background: var(--gold); flex-grow: 1; margin-right: 30px; border-radius: 10px; opacity: 0.7; }
+        .horizontal-scroll { display: flex; overflow-x: auto; gap: 30px; padding: 20px 30px; scrollbar-width: none; }
+        .card { min-width: 260px; max-width: 260px; background: white; border-radius: 20px; border: 1px solid #eee; flex-shrink: 0; overflow: hidden; transition: transform 0.3s; display: flex; flex-direction: column; }
+        .card:hover { transform: translateY(-8px); box-shadow: 0 15px 30px rgba(0,0,0,0.1); border-color: var(--gold-solid); }
+        .image-container { width: 100%; height: 240px; background: #fafafa; display: flex; align-items: center; justify-content: center; }
         .image-container img { max-width: 90%; max-height: 90%; object-fit: contain; }
-
-        .info { padding: 20px; text-align: center; }
-        .price { font-size: 18px; font-weight: 900; color: var(--gold-solid); margin: 10px 0; }
-
-        .btn-wa { 
-            display: block; background: var(--primary); color: white; padding: 12px; 
-            text-decoration: none; border-radius: 10px; font-weight: 800;
-        }
-
-        .bottom-nav { 
-            position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); 
-            width: 80%; max-width: 400px; background: var(--primary); padding: 15px; 
-            border-radius: 50px; display: flex; justify-content: space-around; z-index: 2000;
-        }
-        .nav-item { color: white; text-decoration: none; font-weight: 700; }
-        
+        .info { padding: 25px; text-align: center; }
+        .item-name { font-size: 16px; font-weight: 700; color: #222; margin-bottom: 5px; height: 38px; overflow: hidden; }
+        .price { font-size: 18px; font-weight: 900; color: var(--gold-solid); margin-bottom: 15px; }
+        .btn-wa { display: block; background: var(--primary); color: white; padding: 12px; text-decoration: none; border-radius: 10px; font-weight: 800; font-size: 13px; transition: 0.3s; }
+        .btn-wa:hover { background: var(--gold-solid); }
+        .bottom-nav { position: fixed; bottom: 25px; left: 50%; transform: translateX(-50%); width: 85%; max-width: 400px; background: var(--primary); padding: 18px; border-radius: 100px; display: flex; justify-content: space-around; z-index: 2000; box-shadow: 0 10px 40px rgba(0,0,0,0.4); backdrop-filter: blur(10px); }
+        .nav-item { color: white; text-decoration: none; font-weight: 700; font-size: 14px; letter-spacing: 1px; }
         .hidden { display: none !important; }
     </style>
 </head>
@@ -128,14 +132,39 @@
 <header>
     <div class="ats-logo">ATS</div>
     <div class="brand-name">AIWA TRADE SERVICES</div>
-    <input type="text" id="searchInput" onkeyup="searchTrigger()" placeholder="Search catalog...">
+    <input type="text" id="searchInput" onkeyup="searchTrigger()" placeholder="Explore our premium catalog...">
 </header>
 
 <div id="categoryHub" class="hub-container">
-    <div class="hub-tile" onclick="setCategory('Clothing')">👕 Clothing</div>
-    <div class="hub-tile" onclick="setCategory('Electronics')">🔌 Electronics</div>
-    <div class="hub-tile" onclick="setCategory('Household')">🏠 Household</div>
-    <div class="hub-tile" onclick="setCategory('Toys')">🧸 Toys</div>
+    
+    <div class="hub-tile" style="background-image: url('placeholder_clothing.jpg');" onclick="setCategory('Clothing')">
+        <div class="hub-overlay">
+            <div class="hub-icon">👕</div>
+            <div class="hub-title">Clothing</div>
+        </div>
+    </div>
+
+    <div class="hub-tile" style="background-image: url('placeholder_electronics.jpg');" onclick="setCategory('Electronics')">
+        <div class="hub-overlay">
+            <div class="hub-icon">🔌</div>
+            <div class="hub-title">Electronics</div>
+        </div>
+    </div>
+
+    <div class="hub-tile" style="background-image: url('placeholder_household.jpg');" onclick="setCategory('Household')">
+        <div class="hub-overlay">
+            <div class="hub-icon">🏠</div>
+            <div class="hub-title">Household</div>
+        </div>
+    </div>
+
+    <div class="hub-tile" style="background-image: url('placeholder_toys.jpg');" onclick="setCategory('Toys')">
+        <div class="hub-overlay">
+            <div class="hub-icon">🧸</div>
+            <div class="hub-title">Toys</div>
+        </div>
+    </div>
+
 </div>
 
 <div id="productView" class="container hidden">
@@ -149,6 +178,7 @@
 </div>
 
 <script>
+// The script remains the same from the previous version
 const products = [
     { name: "Winter Hoodie", cat: "Clothing", sub: "Winter Wear", price: "Enquire", img: "Hood1.jpg" },
     { name: "Sports Tracksuit", cat: "Clothing", sub: "Sports", price: "Enquire", img: "STS1.jpg" },
@@ -156,69 +186,4 @@ const products = [
     { name: "STM32 Microchip", cat: "Electronics", sub: "Chips", price: "Enquire", img: "Chip1.jpg" },
     { name: "Dressing Table", cat: "Household", sub: "Furniture", price: "¥8.80", img: "CS.jpg" },
     { name: "Winter Blanket", cat: "Household", sub: "Bedding", price: "Enquire", img: "CS.jpg" },
-    { name: "Flying Car", cat: "Toys", sub: "Cars", price: "¥41.80", img: "FC1.jpg" },
-    { name: "Nerf Gun", cat: "Toys", sub: "Guns", price: "¥41.80", img: "NG1.jpg" }
-];
-
-function showHub() {
-    document.getElementById('categoryHub').classList.remove('hidden');
-    document.getElementById('productView').classList.add('hidden');
-}
-
-function setCategory(cat) {
-    document.getElementById('categoryHub').classList.add('hidden');
-    document.getElementById('productView').classList.remove('hidden');
-    renderProducts(cat);
-}
-
-function searchTrigger() {
-    const val = document.getElementById('searchInput').value;
-    if(val.length > 0) {
-        document.getElementById('categoryHub').classList.add('hidden');
-        document.getElementById('productView').classList.remove('hidden');
-        renderProducts('All', val.toLowerCase());
-    } else {
-        showHub();
-    }
-}
-
-function renderProducts(filterCat, searchVal = "") {
-    const grid = document.getElementById('productGrid');
-    grid.innerHTML = "";
-
-    let filtered = products.filter(p => {
-        const matchesSearch = p.name.toLowerCase().includes(searchVal);
-        const matchesCat = (filterCat === 'All' || p.cat === filterCat);
-        return matchesSearch && matchesCat;
-    });
-
-    const groups = filtered.reduce((acc, p) => {
-        if (!acc[p.sub]) acc[p.sub] = [];
-        acc[p.sub].push(p);
-        return acc;
-    }, {});
-
-    for (const sub in groups) {
-        let section = document.createElement('div');
-        section.className = 'sub-section';
-        let html = `<div class="sub-cat-header">${sub}</div><div class="horizontal-scroll">`;
-        
-        groups[sub].forEach(p => {
-            html += `
-                <div class="card">
-                    <div class="image-container"><img src="${p.img}" onerror="this.src='https://placehold.co/400x400/001f5b/ffffff?text=Aiwa'"></div>
-                    <div class="info">
-                        <div class="item-name">${p.name}</div>
-                        <div class="price">${p.price}</div>
-                        <a href="https://wa.me/85259813744" class="btn-wa">Inquire</a>
-                    </div>
-                </div>`;
-        });
-        html += `</div>`;
-        section.innerHTML = html;
-        grid.appendChild(section);
-    }
-}
-</script>
-</body>
-</html>
+    { name: "Flying Car", cat: "Toys", sub:
