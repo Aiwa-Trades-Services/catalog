@@ -3,182 +3,249 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aiwa Trade Services | Premium Sourcing Showroom</title>
+    <title>Aiwa Trade Services | Premium Global Sourcing</title>
     <style>
         :root { 
             --primary: #001f5b; 
             --gold: linear-gradient(135deg, #b59410 0%, #ffecb3 50%, #b59410 100%); 
             --gold-solid: #b59410;
-            --bg: #fafafb; 
-            --text-on-dark: #ffffff;
+            --glass: rgba(255, 255, 255, 0.8);
+            --bg: #f0f2f5; 
         }
 
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
+        /* Base Animations */
+        @keyframes reveal {
+            from { opacity: 0; transform: translateY(30px) scale(0.95); }
+            to { opacity: 1; transform: translateY(0) scale(1); }
+        }
+
+        @keyframes slideIn {
+            from { transform: translateX(100%); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
         }
 
         body { 
-            font-family: -apple-system, system-ui, sans-serif; 
+            font-family: 'Inter', -apple-system, sans-serif; 
             margin: 0; background: var(--bg); color: #1d1d1f; padding-bottom: 120px;
-            letter-spacing: -0.01em;
+            overflow-x: hidden;
         }
 
+        /* --- LUXURY HEADER --- */
         header { 
-            background: var(--primary); padding: 50px 20px; text-align: center;
-            border-bottom: 5px solid var(--gold-solid);
-            display: flex; flex-direction: column; align-items: center;
+            background: var(--primary); padding: 80px 20px; text-align: center;
+            border-bottom: 6px solid var(--gold-solid);
+            position: relative; overflow: hidden;
         }
+
+        /* Subtle moving background circle for the header */
+        header::before {
+            content: ""; position: absolute; top: -50%; right: -10%; width: 300px; height: 300px;
+            background: rgba(181, 148, 16, 0.1); border-radius: 50%; z-index: 0;
+        }
+
+        .header-content { position: relative; z-index: 1; animation: reveal 0.8s ease-out; }
 
         .ats-logo {
-            width: 70px; height: 70px; background: white; border-radius: 50%;
+            width: 90px; height: 90px; background: white; border-radius: 50%;
             display: flex; align-items: center; justify-content: center;
-            font-weight: 900; font-size: 22px; color: var(--primary);
-            border: 3px solid var(--gold-solid); margin-bottom: 15px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            font-weight: 900; font-size: 26px; color: var(--primary);
+            border: 4px solid var(--gold-solid); margin: 0 auto 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+            transition: 0.5s;
         }
+        .ats-logo:hover { transform: rotate(360deg) scale(1.1); }
 
-        .brand-name { font-size: 32px; font-weight: 900; color: white; letter-spacing: 5px; text-transform: uppercase; margin-bottom: 25px; }
+        .brand-name { font-size: 38px; font-weight: 900; color: white; letter-spacing: 8px; text-transform: uppercase; margin-bottom: 30px; }
 
         #searchInput { 
-            width: 85%; max-width: 500px; padding: 18px 30px; border-radius: 50px; 
-            border: none; font-size: 16px; box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-            transition: all 0.3s;
+            width: 90%; max-width: 550px; padding: 20px 35px; border-radius: 100px; 
+            border: none; font-size: 16px; box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+            transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
-        #searchInput:focus { transform: scale(1.05); }
+        #searchInput:focus { max-width: 650px; box-shadow: 0 0 0 5px rgba(181, 148, 16, 0.3); }
 
-        /* --- VISUAL SHOWROOM HUB --- */
+        /* --- VISUAL SHOWROOM TILES --- */
         .hub-container {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 30px;
-            padding: 50px 30px;
-            max-width: 1300px;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 35px;
+            padding: 60px 40px;
+            max-width: 1400px;
             margin: 0 auto;
-            animation: fadeInUp 0.7s ease-out;
         }
 
         .hub-tile {
             position: relative;
-            aspect-ratio: 4/3; /* Forces a consistent shape */
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-            border-radius: 20px;
+            height: 350px;
+            border-radius: 30px;
             overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
             cursor: pointer;
-            transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1), box-shadow 0.4s;
-            border: 2px solid transparent;
+            transition: 0.6s cubic-bezier(0.19, 1, 0.22, 1);
+            animation: reveal 0.8s ease-out backwards;
+            border: 1px solid rgba(255,255,255,0.2);
         }
+
+        /* Staggered animation delay for cards */
+        .hub-tile:nth-child(1) { animation-delay: 0.1s; }
+        .hub-tile:nth-child(2) { animation-delay: 0.2s; }
+        .hub-tile:nth-child(3) { animation-delay: 0.3s; }
+        .hub-tile:nth-child(4) { animation-delay: 0.4s; }
+        .hub-tile:nth-child(5) { animation-delay: 0.5s; }
+        .hub-tile:nth-child(6) { animation-delay: 0.6s; }
 
         .hub-tile:hover {
-            transform: translateY(-15px) scale(1.03);
-            box-shadow: 0 20px 50px rgba(0,0,0,0.2);
-            border-color: var(--gold-solid);
+            transform: translateY(-20px) scale(1.02);
+            box-shadow: 0 30px 60px rgba(0,31,91,0.25);
         }
 
-        /* --- Dark overlay to make text readable --- */
+        .hub-bg {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background-size: cover; background-position: center;
+            transition: 1.2s cubic-bezier(0.19, 1, 0.22, 1);
+        }
+        .hub-tile:hover .hub-bg { transform: scale(1.15); }
+
         .hub-overlay {
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-end;
-            padding: 25px;
+            position: absolute; inset: 0;
+            background: linear-gradient(to top, rgba(0,31,91,0.95) 10%, rgba(0,0,0,0.3) 50%, transparent 100%);
+            display: flex; flex-direction: column; justify-content: flex-end;
+            padding: 40px; transition: 0.5s;
+        }
+
+        .hub-title {
+            font-size: 28px; font-weight: 900; color: white;
+            text-transform: uppercase; letter-spacing: 3px; margin: 0;
+            transition: 0.5s;
+        }
+        .hub-subtitle { color: rgba(255,255,255,0.7); font-size: 14px; margin-top: 10px; opacity: 0; transition: 0.5s; }
+        .hub-tile:hover .hub-subtitle { opacity: 1; }
+
+        /* --- PRODUCT GRID --- */
+        .container { max-width: 1400px; margin: 0 auto; padding: 20px; animation: slideIn 0.5s ease-out; }
+        
+        .back-nav {
+            display: flex; align-items: center; gap: 15px; margin-bottom: 40px;
+        }
+        .back-btn {
+            background: white; border: 2px solid var(--primary); color: var(--primary);
+            padding: 12px 25px; border-radius: 50px; font-weight: 800; cursor: pointer;
             transition: 0.3s;
         }
-        .hub-tile:hover .hub-overlay { background: linear-gradient(to top, rgba(0,31,91,0.9), rgba(0,31,91,0.5)); }
+        .back-btn:hover { background: var(--primary); color: white; }
 
-        .hub-icon { font-size: 28px; margin-bottom: 10px; }
+        .sub-section { margin-bottom: 50px; background: white; border-radius: 30px; padding: 30px 0; box-shadow: 0 10px 30px rgba(0,0,0,0.05); }
+        .sub-cat-header { font-size: 26px; font-weight: 900; color: var(--primary); margin-left: 40px; display: flex; align-items: center; gap: 20px; }
+        .sub-cat-header::after { content: ""; height: 5px; background: var(--gold); flex-grow: 1; margin-right: 40px; border-radius: 10px; }
+
+        .horizontal-scroll { display: flex; overflow-x: auto; gap: 35px; padding: 20px 40px; scrollbar-width: none; }
         
-        .hub-title {
-            font-size: 24px;
-            font-weight: 800;
-            color: var(--text-on-dark);
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            margin: 0;
-            text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
+        .card { 
+            min-width: 280px; background: white; border-radius: 25px; border: 1px solid #f0f0f0; 
+            overflow: hidden; transition: 0.4s; position: relative;
         }
+        .card:hover { transform: translateY(-10px); box-shadow: 0 20px 40px rgba(0,0,0,0.1); border-color: var(--gold-solid); }
 
-        /* --------------------------- */
+        .image-container { height: 260px; background: #fff; display: flex; align-items: center; justify-content: center; padding: 20px; }
+        .image-container img { max-width: 100%; max-height: 100%; object-fit: contain; transition: 0.5s; }
+        .card:hover img { transform: scale(1.08); }
 
-        /* The rest of the styles remain the same from the previous version */
-        .container { max-width: 1400px; margin: 0 auto; padding: 10px; }
-        .back-btn { margin: 20px 20px 30px 20px; padding: 12px 25px; border: none; background: var(--gold-solid); color: white; border-radius: 12px; cursor: pointer; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; }
-        .back-btn:hover { background: #d4ae24; }
-        .sub-section { margin: 20px auto; background: white; border-radius: 20px; padding: 25px 0; animation: fadeInUp 0.5s ease-out; box-shadow: 0 5px 15px rgba(0,0,0,0.03); }
-        .sub-cat-header { font-size: 24px; font-weight: 900; color: var(--primary); margin-left: 30px; display: flex; align-items: center; gap: 20px; text-transform: uppercase; letter-spacing: 1px; }
-        .sub-cat-header::after { content: ""; height: 4px; background: var(--gold); flex-grow: 1; margin-right: 30px; border-radius: 10px; opacity: 0.7; }
-        .horizontal-scroll { display: flex; overflow-x: auto; gap: 30px; padding: 20px 30px; scrollbar-width: none; }
-        .card { min-width: 260px; max-width: 260px; background: white; border-radius: 20px; border: 1px solid #eee; flex-shrink: 0; overflow: hidden; transition: transform 0.3s; display: flex; flex-direction: column; }
-        .card:hover { transform: translateY(-8px); box-shadow: 0 15px 30px rgba(0,0,0,0.1); border-color: var(--gold-solid); }
-        .image-container { width: 100%; height: 240px; background: #fafafa; display: flex; align-items: center; justify-content: center; }
-        .image-container img { max-width: 90%; max-height: 90%; object-fit: contain; }
-        .info { padding: 25px; text-align: center; }
-        .item-name { font-size: 16px; font-weight: 700; color: #222; margin-bottom: 5px; height: 38px; overflow: hidden; }
-        .price { font-size: 18px; font-weight: 900; color: var(--gold-solid); margin-bottom: 15px; }
-        .btn-wa { display: block; background: var(--primary); color: white; padding: 12px; text-decoration: none; border-radius: 10px; font-weight: 800; font-size: 13px; transition: 0.3s; }
-        .btn-wa:hover { background: var(--gold-solid); }
-        .bottom-nav { position: fixed; bottom: 25px; left: 50%; transform: translateX(-50%); width: 85%; max-width: 400px; background: var(--primary); padding: 18px; border-radius: 100px; display: flex; justify-content: space-around; z-index: 2000; box-shadow: 0 10px 40px rgba(0,0,0,0.4); backdrop-filter: blur(10px); }
-        .nav-item { color: white; text-decoration: none; font-weight: 700; font-size: 14px; letter-spacing: 1px; }
+        .info { padding: 30px; text-align: center; background: #fafafa; }
+        .price { font-size: 22px; font-weight: 900; color: var(--gold-solid); margin-bottom: 20px; }
+
+        .btn-wa { 
+            display: block; background: var(--primary); color: white; padding: 15px; 
+            text-decoration: none; border-radius: 15px; font-weight: 800; transition: 0.3s;
+        }
+        .btn-wa:hover { background: var(--gold-solid); transform: scale(1.05); }
+
+        .bottom-nav { 
+            position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%); 
+            width: 90%; max-width: 450px; background: rgba(0, 31, 91, 0.95); padding: 20px; 
+            border-radius: 100px; display: flex; justify-content: space-around; z-index: 2000;
+            backdrop-filter: blur(15px); border: 1px solid rgba(255,255,255,0.1);
+        }
+        .nav-item { color: white; text-decoration: none; font-weight: 700; letter-spacing: 1px; }
+
         .hidden { display: none !important; }
     </style>
 </head>
 <body>
 
 <header>
-    <div class="ats-logo">ATS</div>
-    <div class="brand-name">AIWA TRADE SERVICES</div>
-    <input type="text" id="searchInput" onkeyup="searchTrigger()" placeholder="Explore our premium catalog...">
+    <div class="header-content">
+        <div class="ats-logo">ATS</div>
+        <div class="brand-name">Aiwa Trade Services</div>
+        <input type="text" id="searchInput" onkeyup="searchTrigger()" placeholder="Search global inventory...">
+    </div>
 </header>
 
 <div id="categoryHub" class="hub-container">
     
-    <div class="hub-tile" style="background-image: url('placeholder_clothing.jpg');" onclick="setCategory('Clothing')">
+    <div class="hub-tile" onclick="setCategory('Clothing')">
+        <div class="hub-bg" style="background-image: url('clothing_bg.jpg');"></div>
         <div class="hub-overlay">
-            <div class="hub-icon">👕</div>
             <div class="hub-title">Clothing</div>
+            <div class="hub-subtitle">Premium Apparel & Textiles</div>
         </div>
     </div>
 
-    <div class="hub-tile" style="background-image: url('placeholder_electronics.jpg');" onclick="setCategory('Electronics')">
+    <div class="hub-tile" onclick="setCategory('Electronics')">
+        <div class="hub-bg" style="background-image: url('electronics_bg.jpg');"></div>
         <div class="hub-overlay">
-            <div class="hub-icon">🔌</div>
             <div class="hub-title">Electronics</div>
+            <div class="hub-subtitle">High-Tech Solutions & Chips</div>
         </div>
     </div>
 
-    <div class="hub-tile" style="background-image: url('placeholder_household.jpg');" onclick="setCategory('Household')">
+    <div class="hub-tile" onclick="setCategory('Household')">
+        <div class="hub-bg" style="background-image: url('household_bg.jpg');"></div>
         <div class="hub-overlay">
-            <div class="hub-icon">🏠</div>
             <div class="hub-title">Household</div>
+            <div class="hub-subtitle">Furniture & Domestic Goods</div>
         </div>
     </div>
 
-    <div class="hub-tile" style="background-image: url('placeholder_toys.jpg');" onclick="setCategory('Toys')">
+    <div class="hub-tile" onclick="setCategory('Toys')">
+        <div class="hub-bg" style="background-image: url('toys_bg.jpg');"></div>
         <div class="hub-overlay">
-            <div class="hub-icon">🧸</div>
             <div class="hub-title">Toys</div>
+            <div class="hub-subtitle">Educational & Fun Products</div>
+        </div>
+    </div>
+
+    <div class="hub-tile" onclick="setCategory('Etc')">
+        <div class="hub-bg" style="background-image: url('etc_bg.jpg');"></div>
+        <div class="hub-overlay">
+            <div class="hub-title">Etc...</div>
+            <div class="hub-subtitle">Specific Requests & Custom Sourcing</div>
+        </div>
+    </div>
+
+    <div class="hub-tile" onclick="setCategory('Others')">
+        <div class="hub-bg" style="background-image: url('others_bg.jpg');"></div>
+        <div class="hub-overlay">
+            <div class="hub-title">Others</div>
+            <div class="hub-subtitle">Explore More Categories</div>
         </div>
     </div>
 
 </div>
 
 <div id="productView" class="container hidden">
-    <button class="back-btn" onclick="showHub()">← Back to Categories</button>
+    <div class="back-nav">
+        <button class="back-btn" onclick="showHub()">← Back to Hub</button>
+        <h2 id="currentViewing" style="margin:0; text-transform:uppercase; letter-spacing:2px; color:var(--primary);"></h2>
+    </div>
     <div id="productGrid"></div>
 </div>
 
 <div class="bottom-nav">
-    <a href="https://wa.me/85259813744" class="nav-item">WHATSAPP</a>
-    <a href="mailto:info@aiwatrade.com" class="nav-item">EMAIL</a>
+    <a href="https://wa.me/85259813744" class="nav-item">💬 WHATSAPP</a>
+    <a href="mailto:info@aiwatrade.com" class="nav-item">✉️ EMAIL</a>
 </div>
 
 <script>
-// The script remains the same from the previous version
 const products = [
     { name: "Winter Hoodie", cat: "Clothing", sub: "Winter Wear", price: "Enquire", img: "Hood1.jpg" },
     { name: "Sports Tracksuit", cat: "Clothing", sub: "Sports", price: "Enquire", img: "STS1.jpg" },
@@ -186,4 +253,80 @@ const products = [
     { name: "STM32 Microchip", cat: "Electronics", sub: "Chips", price: "Enquire", img: "Chip1.jpg" },
     { name: "Dressing Table", cat: "Household", sub: "Furniture", price: "¥8.80", img: "CS.jpg" },
     { name: "Winter Blanket", cat: "Household", sub: "Bedding", price: "Enquire", img: "CS.jpg" },
-    { name: "Flying Car", cat: "Toys", sub:
+    { name: "Flying Car", cat: "Toys", sub: "Cars", price: "¥41.80", img: "FC1.jpg" },
+    { name: "Nerf Gun", cat: "Toys", sub: "Guns", price: "¥41.80", img: "NG1.jpg" }
+];
+
+function showHub() {
+    window.scrollTo({top: 0, behavior: 'smooth'});
+    document.getElementById('categoryHub').classList.remove('hidden');
+    document.getElementById('productView').classList.add('hidden');
+}
+
+function setCategory(cat) {
+    window.scrollTo({top: 0, behavior: 'smooth'});
+    document.getElementById('categoryHub').classList.add('hidden');
+    document.getElementById('productView').classList.remove('hidden');
+    document.getElementById('currentViewing').innerText = cat;
+    renderProducts(cat);
+}
+
+function searchTrigger() {
+    const val = document.getElementById('searchInput').value;
+    if(val.length > 0) {
+        document.getElementById('categoryHub').classList.add('hidden');
+        document.getElementById('productView').classList.remove('hidden');
+        document.getElementById('currentViewing').innerText = "Search Results";
+        renderProducts('All', val.toLowerCase());
+    } else {
+        showHub();
+    }
+}
+
+function renderProducts(filterCat, searchVal = "") {
+    const grid = document.getElementById('productGrid');
+    grid.innerHTML = "";
+
+    let filtered = products.filter(p => {
+        const matchesSearch = p.name.toLowerCase().includes(searchVal);
+        const matchesCat = (filterCat === 'All' || p.cat === filterCat);
+        return matchesSearch && matchesCat;
+    });
+
+    if(filtered.length === 0) {
+        grid.innerHTML = "<h3 style='text-align:center; padding:50px;'>No items found. Contact us on WhatsApp for custom sourcing!</h3>";
+        return;
+    }
+
+    const groups = filtered.reduce((acc, p) => {
+        if (!acc[p.sub]) acc[p.sub] = [];
+        acc[p.sub].push(p);
+        return acc;
+    }, {});
+
+    for (const sub in groups) {
+        let section = document.createElement('div');
+        section.className = 'sub-section';
+        let html = `<div class="sub-cat-header">${sub}</div><div class="horizontal-scroll">`;
+        
+        groups[sub].forEach(p => {
+            html += `
+                <div class="card">
+                    <div class="image-container">
+                        <img src="${p.img}" onerror="this.src='https://placehold.co/400x400/001f5b/ffffff?text=Aiwa+Sourcing'">
+                    </div>
+                    <div class="info">
+                        <div class="item-name" style="font-weight:800; font-size:18px;">${p.name}</div>
+                        <div class="price">${p.price}</div>
+                        <a href="https://wa.me/85259813744?text=I+am+interested+in+${p.name}" class="btn-wa">ENQUIRE NOW</a>
+                    </div>
+                </div>`;
+        });
+        html += `</div>`;
+        section.innerHTML = html;
+        grid.appendChild(section);
+    }
+}
+</script>
+</body>
+</html>
