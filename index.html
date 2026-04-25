@@ -3,175 +3,199 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aiwa Trade Services | Premium Global Sourcing</title>
+    <title>Aiwa Trade Services | Global Procurement Excellence</title>
     <style>
         :root {
-            --primary: #001f5b;
+            --primary: #051937;
             --gold: #b59410;
-            --light-bg: #f8f9fa;
+            --light: #f4f7f6;
             --white: #ffffff;
-            --glass: rgba(255, 255, 255, 0.85);
+            --glass: rgba(255, 255, 255, 0.9);
         }
 
         body {
-            font-family: 'Inter', -apple-system, sans-serif;
-            margin: 0;
-            background: url('https://images.unsplash.com/photo-1578575437130-527eed3abbec?auto=format&fit=crop&q=80&w=2000') no-repeat center center fixed;
-            background-size: cover;
-            color: var(--primary);
-            overflow-x: hidden;
+            font-family: 'Inter', sans-serif;
+            margin: 0; background: var(--light); color: var(--primary);
+            overflow-x: hidden; scroll-behavior: smooth;
         }
 
-        @keyframes fadeInPage {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
+        /* Background Design Section */
+        .bg-hero {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(135deg, rgba(255,255,255,0.9), rgba(244,247,246,0.8)),
+                        url('https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&q=80&w=2000');
+            background-size: cover; z-index: -1;
         }
 
-        .main-wrapper {
-            animation: fadeInPage 1s ease-out;
-            min-height: 100vh;
-            background: rgba(248, 249, 250, 0.85);
-            backdrop-filter: blur(10px);
-            padding-bottom: 100px;
-        }
-
+        /* --- HEADER & LOGO --- */
         header {
-            padding: 80px 20px 40px;
-            text-align: center;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
+            padding: 100px 20px 50px; text-align: center;
+            display: flex; flex-direction: column; align-items: center;
         }
 
         .logo-box {
-            width: 85px; height: 85px;
-            border: 3px solid var(--gold);
-            background: var(--white);
-            transform: rotate(45deg);
+            width: 80px; height: 80px; border: 2px solid var(--gold);
+            background: var(--white); transform: rotate(45deg);
             display: flex; align-items: center; justify-content: center;
-            margin-bottom: 60px; 
-            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-            transition: 0.5s ease;
+            margin-bottom: 65px; /* Spacing fix for the letter E */
+            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
         }
-        .logo-box:hover { transform: rotate(225deg); border-color: var(--primary); }
-        .logo-box span { transform: rotate(-45deg); font-weight: 900; color: var(--primary); font-size: 22px; }
+        .logo-box span { transform: rotate(-45deg); font-weight: 900; color: var(--primary); }
 
-        h1 {
-            font-size: clamp(24px, 6vw, 42px);
-            letter-spacing: 12px;
-            text-transform: uppercase;
-            margin: 0 0 30px 0;
-            font-weight: 900;
-        }
+        .brand-name { font-size: 42px; letter-spacing: 12px; text-transform: uppercase; margin: 0; font-weight: 900; }
 
+        /* --- CATEGORY GRID --- */
+        .section-title { text-align: center; letter-spacing: 4px; text-transform: uppercase; margin-top: 60px; font-size: 14px; color: var(--gold); }
+        
         .category-grid {
-            display: grid;
-            grid-template-columns: repeat(5, 1fr);
-            gap: 20px; padding: 40px;
-            max-width: 1300px; margin: 0 auto;
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 25px; padding: 40px; max-width: 1300px; margin: 0 auto;
         }
 
         .cat-card {
-            background: var(--glass);
-            border: 1px solid rgba(0,0,0,0.08);
-            border-radius: 30px; aspect-ratio: 1 / 1.1;
-            display: flex; flex-direction: column; align-items: center; justify-content: center;
-            cursor: pointer; transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.03);
+            background: var(--glass); border: 1px solid rgba(0,0,0,0.05);
+            border-radius: 25px; padding: 40px 20px; text-align: center;
+            cursor: pointer; transition: 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.02);
         }
 
-        .cat-card:hover { transform: translateY(-12px); border-color: var(--gold); background: var(--white); }
+        .cat-card:hover { transform: translateY(-10px); border-color: var(--gold); background: var(--white); box-shadow: 0 20px 40px rgba(0,0,0,0.05); }
 
-        /* THE STROKE AESTHETIC FOR EMOJIS */
+        /* AESTHETIC STROKE DESIGN FOR EMOJIS */
         .cat-icon { 
-            font-size: 50px; 
-            margin-bottom: 10px; 
-            filter: drop-shadow(0 0 1px var(--primary)) drop-shadow(0 0 1px var(--primary));
+            font-size: 45px; display: block; margin-bottom: 15px;
+            filter: grayscale(1) brightness(0.5) opacity(0.8); /* Mimics a stroke/outline look */
         }
 
-        .cat-title { font-weight: 800; font-size: 14px; letter-spacing: 1px; text-transform: uppercase; }
+        .cat-title { font-weight: 800; font-size: 16px; letter-spacing: 1px; display: block; }
+        .cat-subtext { font-size: 12px; color: #777; margin-top: 8px; display: block; line-height: 1.4; }
 
         /* --- PRODUCT VIEW --- */
-        .product-container { max-width: 1200px; margin: 0 auto; padding: 40px; }
-        .back-btn { 
-            background: var(--white); color: var(--primary); border: 2px solid var(--primary);
-            padding: 12px 25px; border-radius: 30px; cursor: pointer; font-weight: 700;
-            margin-bottom: 40px; transition: 0.3s;
-        }
-        .back-btn:hover { background: var(--primary); color: white; }
-
-        .product-grid { 
-            display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); 
-            gap: 30px; 
-        }
-
-        .p-card { 
-            background: var(--white); border-radius: 20px; overflow: hidden; 
-            box-shadow: 0 10px 30px rgba(0,0,0,0.05); border: 1px solid #eee;
-            animation: fadeInPage 0.5s ease-in;
-        }
-        .p-img { height: 220px; background: #fff; display: flex; align-items: center; justify-content: center; padding: 20px; }
-        .p-img img { max-width: 100%; max-height: 100%; object-fit: contain; }
-        .p-info { padding: 20px; text-align: center; }
-        .p-price { color: var(--gold); font-weight: 800; font-size: 18px; margin: 10px 0; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 40px; }
+        .product-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 30px; }
         
-        .wa-link { 
-            display: block; background: var(--primary); color: white; padding: 12px; 
-            border-radius: 12px; text-decoration: none; font-weight: 700; font-size: 14px;
+        .p-card { 
+            background: var(--white); border-radius: 20px; padding: 25px; 
+            border: 1px solid #eee; text-align: center;
         }
+        .p-img-box { 
+            width: 100%; height: 200px; background: #fafafa; border-radius: 15px;
+            margin-bottom: 20px; display: flex; align-items: center; justify-content: center;
+            overflow: hidden;
+        }
+        .p-img-box img { max-width: 80%; max-height: 80%; object-fit: contain; }
+
+        .wa-btn { 
+            display: block; background: var(--primary); color: white; padding: 12px; 
+            border-radius: 10px; text-decoration: none; font-weight: 700; margin-top: 15px;
+        }
+
+        /* --- CORPORATE FOOTER --- */
+        footer {
+            background: var(--primary); color: white; padding: 80px 40px 40px; margin-top: 100px;
+        }
+        .footer-content {
+            max-width: 1200px; margin: 0 auto; display: grid;
+            grid-template-columns: 2fr 1fr 1fr; gap: 50px;
+        }
+        .footer-section h4 { color: var(--gold); text-transform: uppercase; letter-spacing: 2px; margin-bottom: 20px; }
+        .footer-section p, .footer-section a { color: #ccc; text-decoration: none; font-size: 14px; line-height: 1.8; }
+        .footer-bottom { border-top: 1px solid rgba(255,255,255,0.1); margin-top: 60px; padding-top: 20px; text-align: center; font-size: 12px; color: #777; }
 
         .hidden { display: none !important; }
-
-        @media (max-width: 1000px) { .category-grid { grid-template-columns: repeat(3, 1fr); } }
-        @media (max-width: 600px) { .category-grid { grid-template-columns: repeat(2, 1fr); } }
     </style>
 </head>
 <body>
 
+<div class="bg-hero"></div>
+
 <div class="main-wrapper">
-    <header id="mainHeader">
+    <header>
         <div class="logo-box"><span>ATS</span></div>
-        <h1>Aiwa Trade Services</h1>
+        <h1 class="brand-name">Aiwa Trade Services</h1>
     </header>
 
-    <div id="hub" class="category-grid">
-        <div class="cat-card" onclick="openCatalog('Electronics')">
-            <span class="cat-icon">🔌</span>
-            <span class="cat-title">Electronics</span>
-        </div>
-        <div class="cat-card" onclick="openCatalog('Household')">
-            <span class="cat-icon">🏠</span>
-            <span class="cat-title">Household</span>
-        </div>
-        <div class="cat-card" onclick="openCatalog('Clothing')">
-            <span class="cat-icon">👕</span>
-            <span class="cat-title">Clothing</span>
-        </div>
-        <div class="cat-card" onclick="openCatalog('Toys')">
-            <span class="cat-icon">🧸</span>
-            <span class="cat-title">Toys</span>
-        </div>
-        <div class="cat-card" onclick="openCatalog('Others')">
-            <span class="cat-icon">📦</span>
-            <span class="cat-title">Others</span>
+    <div id="hub">
+        <h2 class="section-title">Global Procurement Categories</h2>
+        <div class="category-grid">
+            <div class="cat-card" onclick="openCatalog('Electronics')">
+                <span class="cat-icon">🔌</span>
+                <span class="cat-title">Electronics</span>
+                <span class="cat-subtext">Semiconductors, smart home tech, and industrial components.</span>
+            </div>
+            <div class="cat-card" onclick="openCatalog('Household')">
+                <span class="cat-icon">🏠</span>
+                <span class="cat-title">Household</span>
+                <span class="cat-subtext">Luxury furniture, kitchen appliances, and home decor.</span>
+            </div>
+            <div class="cat-card" onclick="openCatalog('Clothing')">
+                <span class="cat-icon">👕</span>
+                <span class="cat-title">Clothing</span>
+                <span class="cat-subtext">Premium textiles, activewear, and custom manufacturing.</span>
+            </div>
+            <div class="cat-card" onclick="openCatalog('Toys')">
+                <span class="cat-icon">🧸</span>
+                <span class="cat-title">Toys</span>
+                <span class="cat-subtext">Educational sets, hobby drones, and wholesale gadgets.</span>
+            </div>
+            <div class="cat-card" onclick="openCatalog('Others')">
+                <span class="cat-icon">📦</span>
+                <span class="cat-title">Others</span>
+                <span class="cat-subtext">Bespoke sourcing for niche industrial and commercial needs.</span>
+            </div>
         </div>
     </div>
 
-    <div id="productView" class="product-container hidden">
-        <button class="back-btn" onclick="closeCatalog()">← BACK TO CATEGORIES</button>
-        <h2 id="viewTitle" style="text-align:center; margin-bottom:40px; letter-spacing:4px; text-transform:uppercase;"></h2>
+    <div id="productView" class="container hidden">
+        <button onclick="closeCatalog()" style="cursor:pointer; border:none; background:none; color:var(--gold); font-weight:800; margin-bottom:20px;">← BACK TO HUB</button>
+        <h2 id="viewTitle" style="text-transform:uppercase; letter-spacing:4px; margin-bottom:40px;"></h2>
         <div id="productGrid" class="product-grid"></div>
     </div>
+
+    <section class="container">
+        <div style="background:var(--glass); padding:40px; border-radius:30px; margin-top:50px;">
+            <h3 style="color:var(--gold); text-transform:uppercase;">About Our Network</h3>
+            <p>Aiwa Trade Services acts as the bridge between high-tier global manufacturers and professional buyers. With a specialized focus on quality control and logistical efficiency, we ensure your procurement needs are met with precision.</p>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>Aiwa Trade Services</h4>
+                <p>Leading global sourcing agent providing end-to-end supply chain solutions. We bridge the gap between quality manufacturers and international buyers.</p>
+            </div>
+            <div class="footer-section">
+                <h4>Contact Us</h4>
+                <p>📍 Hong Kong SAR<br>
+                   📞 +852 5981 3744<br>
+                   ✉️ sourcing@aiwatrade.com</p>
+            </div>
+            <div class="footer-section">
+                <h4>Quick Links</h4>
+                <a href="#">Privacy Policy</a><br>
+                <a href="#">Terms of Service</a><br>
+                <a href="https://wa.me/85259813744">Live Support</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            &copy; 2026 Aiwa Trade Services. All Rights Reserved.
+        </div>
+    </footer>
 </div>
 
 <script>
     const inventory = [
-        { name: "STM32 Microchip", cat: "Electronics", desc: "High-performance chip sourcing.", price: "Enquire MOQ", img: "stm32_chip.png" },
-        { name: "Display Fridge", cat: "Electronics", desc: "Commercial cooling solutions.", price: "Enquire", img: "Fridge.jpg" },
-        { name: "Luxury Sofa Set", cat: "Household", desc: "Italian leather velvet finish.", price: "¥2400.00", img: "Sofa.jpg" },
-        { name: "Cotton Hoodie", cat: "Clothing", desc: "Organic heavy-weight fabric.", price: "Enquire", img: "Hoodie.jpg" },
-        { name: "RC Drone Pro", cat: "Toys", desc: "4K Camera with GPS tracking.", price: "¥120.00", img: "Drone.jpg" },
-        { name: "Industrial Pump", cat: "Others", desc: "Heavy duty pressure systems.", price: "Request Quote", img: "Pump.jpg" }
+        // ELECTRONICS
+        { name: "STM32 Microchip", cat: "Electronics", desc: "Industrial Grade", price: "Enquire MOQ", img: "stm32.jpg" },
+        { name: "OLED Panel", cat: "Electronics", desc: "4K UHD 60Hz", price: "¥890.00", img: "oled.jpg" },
+        { name: "Smart Logic Controller", cat: "Electronics", desc: "Automation Tool", price: "Enquire", img: "controller.jpg" },
+        // HOUSEHOLD
+        { name: "Velvet Sofa", cat: "Household", desc: "3-Seater Premium", price: "¥1800.00", img: "sofa.jpg" },
+        { name: "Air Purifier X1", cat: "Household", desc: "HEPA 13 Filter", price: "¥450.00", img: "purifier.jpg" },
+        // CLOTHING
+        { name: "Heavy Hoodie", cat: "Clothing", desc: "450GSM Cotton", price: "¥85.00", img: "hoodie.jpg" },
+        { name: "Tech-wear Jacket", cat: "Clothing", desc: "Waterproof Shell", price: "¥320.00", img: "jacket.jpg" }
     ];
 
     function openCatalog(category) {
@@ -180,27 +204,23 @@
         document.getElementById('viewTitle').innerText = category;
         
         const grid = document.getElementById('productGrid');
-        grid.innerHTML = ""; 
-
+        grid.innerHTML = "";
         const filtered = inventory.filter(p => p.cat === category);
 
         if(filtered.length === 0) {
-            grid.innerHTML = "<p style='grid-column:1/-1; text-align:center;'>More products coming soon.</p>";
+            grid.innerHTML = "<p>No active listings. Contact us for custom sourcing.</p>";
         } else {
             filtered.forEach(p => {
                 grid.innerHTML += `
                     <div class="p-card">
-                        <div class="p-img">
-                            <img src="${p.img}" onerror="this.src='https://placehold.co/300x300/f8f9fa/001f5b?text=Aiwa+Sourcing'">
+                        <div class="p-img-box">
+                            <img src="${p.img}" onerror="this.src='https://placehold.co/300x300/f4f7f6/051937?text=Aiwa+Sourcing'">
                         </div>
-                        <div class="p-info">
-                            <h3 style="margin-bottom:5px;">${p.name}</h3>
-                            <p style="font-size:13px; color:#666; margin-top:0;">${p.desc}</p> 
-                            <div class="p-price">${p.price}</div>
-                            <a href="https://wa.me/85259813744?text=Interested in ${p.name}" class="wa-link">CONTACT AGENT</a>
-                        </div>
-                    </div>
-                `;
+                        <h3>${p.name}</h3>
+                        <p style="font-size:13px; color:#666;">${p.desc}</p>
+                        <div style="color:var(--gold); font-weight:800; margin:10px 0;">${p.price}</div>
+                        <a href="https://wa.me/85259813744" class="wa-btn">ORDER VIA WA</a>
+                    </div>`;
             });
         }
         window.scrollTo(0,0);
@@ -209,7 +229,6 @@
     function closeCatalog() {
         document.getElementById('hub').classList.remove('hidden');
         document.getElementById('productView').classList.add('hidden');
-        window.scrollTo(0,0);
     }
 </script>
 
