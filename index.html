@@ -97,42 +97,42 @@
         <h1 class="brand-name">Aiwa Trade Services</h1>
     </header>
 
-    <div id="hub">
-        <div class="category-grid">
-            <div class="cat-card" onclick="openCatalog('Electronics')">
-                <span class="cat-icon">🔌</span>
-                <span class="cat-title">Electronics</span>
-                <span class="cat-subtext">Industrial components, semiconductors, and smart-tech.</span>
-            </div>
-            <div class="cat-card" onclick="openCatalog('Household')">
-                <span class="cat-icon">🏠</span>
-                <span class="cat-title">Household</span>
-                <span class="cat-subtext">Luxury furniture, home decor, and appliances.</span>
-            </div>
-            <div class="cat-card" onclick="openCatalog('Clothing')">
-                <span class="cat-icon">👕</span>
-                <span class="cat-title">Clothing</span>
-                <span class="cat-subtext">Global textile sourcing and custom manufacturing.</span>
-            </div>
-            <div class="cat-card" onclick="openCatalog('Toys')">
-                <span class="cat-icon">🧸</span>
-                <span class="cat-title">Toys</span>
-                <span class="cat-subtext">Educational sets, RC gadgets, and wholesale items.</span>
-            </div>
-            <div class="cat-card" onclick="openCatalog('Others')">
-                <span class="cat-icon">📦</span>
-                <span class="cat-title">Others</span>
-                <span class="cat-subtext">Bespoke procurement for niche industrial needs.</span>
-            </div>
+  <div id="hub">
+    <div class="category-grid">
+        <div class="cat-card" onclick="openCatalog('Electronics')">
+            <span class="cat-icon">🔌</span>
+            <span class="cat-title">Electronics</span>
+            <span class="cat-subtext">Semiconductors, smart tech, and industrial components.</span>
         </div>
-
-        <section class="container">
-            <div style="background:var(--glass); padding:40px; border-radius:30px; margin-top:30px; border: 1px solid rgba(0,0,0,0.05);">
-                <h3 style="color:var(--gold); text-transform:uppercase; letter-spacing:2px;">About Aiwa Trade Services</h3>
-                <p>Headquartered in Hong Kong, Aiwa Trade Services is a premier global sourcing house. We bridge the gap between quality manufacturers and international buyers, ensuring rigorous quality control and seamless logistics.</p>
-            </div>
-        </section>
+        <div class="cat-card" onclick="openCatalog('Household')">
+            <span class="cat-icon">🏠</span>
+            <span class="cat-title">Household</span>
+            <span class="cat-subtext">Designer furniture, home decor, and essential appliances.</span>
+        </div>
+        <div class="cat-card" onclick="openCatalog('Clothing')">
+            <span class="cat-icon">👕</span>
+            <span class="cat-title">Clothing</span>
+            <span class="cat-subtext">Premium textiles and custom apparel manufacturing.</span>
+        </div>
+        <div class="cat-card" onclick="openCatalog('Toys')">
+            <span class="cat-icon">🧸</span>
+            <span class="cat-title">Toys</span>
+            <span class="cat-subtext">Wholesale educational toys and RC hobby equipment.</span>
+        </div>
+        <div class="cat-card" onclick="openCatalog('Others')">
+            <span class="cat-icon">📦</span>
+            <span class="cat-title">Others</span>
+            <span class="cat-subtext">Custom procurement for specialized industrial needs.</span>
+        </div>
     </div>
+
+    <section class="container" style="padding: 40px; max-width: 1200px; margin: 0 auto;">
+        <div style="background:var(--glass); padding:40px; border-radius:30px; border: 1px solid rgba(0,0,0,0.05);">
+            <h3 style="color:var(--gold); text-transform:uppercase; letter-spacing:2px; margin-top: 0;">About Aiwa Trade Services</h3>
+            <p style="line-height: 1.6; color: var(--primary);">Based in Hong Kong, Aiwa Trade Services is a premier global sourcing partner. We specialize in connecting international buyers with vetted manufacturers, ensuring quality control and efficient logistics for every transaction.</p>
+        </div>
+    </section>
+</div>
 
     <div id="productView" class="container hidden">
         <button onclick="closeCatalog()" style="cursor:pointer; border:none; background:none; color:var(--gold); font-weight:800; margin-bottom:20px;">← BACK TO CATEGORIES</button>
@@ -176,32 +176,34 @@
     ];
 
     function openCatalog(category) {
-        document.getElementById('hub').classList.add('hidden');
-        document.getElementById('productView').classList.remove('hidden');
-        document.getElementById('viewTitle').innerText = category;
-        
-        const grid = document.getElementById('productGrid');
-        grid.innerHTML = "";
-        const filtered = inventory.filter(p => p.cat === category);
+    document.getElementById('hub').classList.add('hidden');
+    document.getElementById('productView').classList.remove('hidden');
+    document.getElementById('viewTitle').innerText = category;
+    
+    const grid = document.getElementById('productGrid');
+    grid.innerHTML = "";
+    const filtered = inventory.filter(p => p.cat === category);
 
-        if(filtered.length === 0) {
-            grid.innerHTML = "<p>Coming Soon. Contact us for sourcing.</p>";
-        } else {
-            filtered.forEach(p => {
-                grid.innerHTML += `
-                    <div class="p-card">
-                        <div class="p-img-box">
-                            <img src="${p.img}" onerror="this.src='https://placehold.co/300x300/f4f7f6/051937?text=Aiwa+Sourcing'">
-                        </div>
-                        <h3>${p.name}</h3>
-                        <p style="font-size:13px; color:#666;">${p.desc}</p>
+    if(filtered.length === 0) {
+        grid.innerHTML = "<p style='grid-column: 1/-1; text-align: center;'>New listings coming soon.</p>";
+    } else {
+        filtered.forEach(p => {
+            grid.innerHTML += `
+                <div class="p-card">
+                    <div class="p-img-box">
+                        <img src="${p.img}" onerror="this.src='https://placehold.co/300x300/ffffff/051937?text=Aiwa+Sourcing'">
+                    </div>
+                    <div class="p-info">
+                        <h3 style="margin-bottom:5px;">${p.name}</h3>
+                        <p style="font-size:13px; color:#666; margin-top:0;">${p.desc}</p>
                         <div style="color:var(--gold); font-weight:800; margin:10px 0;">${p.price}</div>
-                        <a href="https://wa.me/85259813744" class="wa-btn">CONTACT AGENT</a>
-                    </div>`;
-            });
-        }
-        window.scrollTo(0,0);
+                        <a href="https://wa.me/85259813744?text=Interested in ${p.name}" class="wa-btn">CONTACT AGENT</a>
+                    </div>
+                </div>`;
+        });
     }
+    window.scrollTo(0,0);
+}
 
     function closeCatalog() {
         document.getElementById('hub').classList.remove('hidden');
