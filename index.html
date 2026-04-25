@@ -64,7 +64,6 @@
             font-weight: 900;
         }
 
-        
         .category-grid {
             display: grid;
             grid-template-columns: repeat(5, 1fr);
@@ -74,7 +73,7 @@
 
         .cat-card {
             background: var(--glass);
-            border: 1px solid rgba(0,0,0,0.08); /* Defined borders */
+            border: 1px solid rgba(0,0,0,0.08);
             border-radius: 30px; aspect-ratio: 1 / 1.1;
             display: flex; flex-direction: column; align-items: center; justify-content: center;
             cursor: pointer; transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
@@ -83,7 +82,13 @@
 
         .cat-card:hover { transform: translateY(-12px); border-color: var(--gold); background: var(--white); }
 
-        .cat-icon { font-size: 50px; margin-bottom: 10px; }
+        /* THE STROKE AESTHETIC FOR EMOJIS */
+        .cat-icon { 
+            font-size: 50px; 
+            margin-bottom: 10px; 
+            filter: drop-shadow(0 0 1px var(--primary)) drop-shadow(0 0 1px var(--primary));
+        }
+
         .cat-title { font-weight: 800; font-size: 14px; letter-spacing: 1px; text-transform: uppercase; }
 
         /* --- PRODUCT VIEW --- */
@@ -103,6 +108,7 @@
         .p-card { 
             background: var(--white); border-radius: 20px; overflow: hidden; 
             box-shadow: 0 10px 30px rgba(0,0,0,0.05); border: 1px solid #eee;
+            animation: fadeInPage 0.5s ease-in;
         }
         .p-img { height: 220px; background: #fff; display: flex; align-items: center; justify-content: center; padding: 20px; }
         .p-img img { max-width: 100%; max-height: 100%; object-fit: contain; }
@@ -159,26 +165,15 @@
 </div>
 
 <script>
-// 1. Add 'desc' to your inventory items so there is subtext to show!
     const inventory = [
-        { name: "STM32 Microchip", cat: "Electronics", desc: "High-performance industrial semiconductor.", price: "Enquire MOQ", img: "Chip1.jpg" },
-        { name: "Luxury Sofa Set", cat: "Household", desc: "Italian leather with velvet finish.", price: "¥2400.00", img: "Sofa.jpg" },
-        { name: "Cotton Hoodie", cat: "Clothing", desc: "100% organic heavy-weight cotton.", price: "Enquire", img: "Hoodie.jpg" },
-        { name: "RC Drone Pro", cat: "Toys", desc: "4K Camera with GPS auto-return.", price: "¥120.00", img: "Drone.jpg" },
-        { name: "Industrial Pump", cat: "Others", desc: "High-pressure fluid sourcing.", price: "Request Quote", img: "Pump.jpg" }
+        { name: "STM32 Microchip", cat: "Electronics", desc: "High-performance chip sourcing.", price: "Enquire MOQ", img: "stm32_chip.png" },
+        { name: "Display Fridge", cat: "Electronics", desc: "Commercial cooling solutions.", price: "Enquire", img: "Fridge.jpg" },
+        { name: "Luxury Sofa Set", cat: "Household", desc: "Italian leather velvet finish.", price: "¥2400.00", img: "Sofa.jpg" },
+        { name: "Cotton Hoodie", cat: "Clothing", desc: "Organic heavy-weight fabric.", price: "Enquire", img: "Hoodie.jpg" },
+        { name: "RC Drone Pro", cat: "Toys", desc: "4K Camera with GPS tracking.", price: "¥120.00", img: "Drone.jpg" },
+        { name: "Industrial Pump", cat: "Others", desc: "Heavy duty pressure systems.", price: "Request Quote", img: "Pump.jpg" }
     ];
-const inventory = [
-    { 
-        name: "STM32 Microchip", 
-        cat: "Electronics", 
-        desc: "High-performance chip.", 
-        price: "Enquire MOQ", 
-        // MAKE SURE THIS MATCHES YOUR FILENAME EXACTLY
-        img: "stm32_chip.png" 
-    },
-    // ... add more
-];
-    // 2. Updated function to show that subtext
+
     function openCatalog(category) {
         document.getElementById('hub').classList.add('hidden');
         document.getElementById('productView').classList.remove('hidden');
@@ -190,40 +185,17 @@ const inventory = [
         const filtered = inventory.filter(p => p.cat === category);
 
         if(filtered.length === 0) {
-            grid.innerHTML = "<p style='grid-column:1/-1; text-align:center;'>New arrivals coming soon.</p>";
+            grid.innerHTML = "<p style='grid-column:1/-1; text-align:center;'>More products coming soon.</p>";
         } else {
             filtered.forEach(p => {
                 grid.innerHTML += `
                     <div class="p-card">
-                        <div class="p-img"><img src="${p.img}" onerror="this.src='https://placehold.co/300x300?text=Aiwa+Sourcing'"></div>
+                        <div class="p-img">
+                            <img src="${p.img}" onerror="this.src='https://placehold.co/300x300/f8f9fa/001f5b?text=Aiwa+Sourcing'">
+                        </div>
                         <div class="p-info">
                             <h3 style="margin-bottom:5px;">${p.name}</h3>
                             <p style="font-size:13px; color:#666; margin-top:0;">${p.desc}</p> 
-                            <div class="p-price">${p.price}</div>
-                            <a href="https://wa.me/85259813744?text=Interested in ${p.name}" class="wa-link">CONTACT AGENT</a>
-                        </div>
-                    </div>
-                `;
-            });
-        }
-        window.scrollTo(0,0);
-    }
-        
-        const grid = document.getElementById('productGrid');
-        grid.innerHTML = ""; // Clear old stuff
-
-        // Filter items
-        const filtered = inventory.filter(p => p.cat === category);
-
-        if(filtered.length === 0) {
-            grid.innerHTML = "<p style='grid-column:1/-1; text-align:center;'>More products coming soon. Please contact us for custom sourcing.</p>";
-        } else {
-            filtered.forEach(p => {
-                grid.innerHTML += `
-                    <div class="p-card">
-                        <div class="p-img"><img src="${p.img}"></div>
-                        <div class="p-info">
-                            <h3>${p.name}</h3>
                             <div class="p-price">${p.price}</div>
                             <a href="https://wa.me/85259813744?text=Interested in ${p.name}" class="wa-link">CONTACT AGENT</a>
                         </div>
