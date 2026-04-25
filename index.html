@@ -200,17 +200,19 @@
 </div>
 
 <script>
-    const inventory = [
-    { name: "STM32 Microchip", cat: "Electronics", desc: "Industrial MCU", price: "Enquire", img: "Chip1.jpg" },
-    { name: "60W LED Driver", cat: "Electronics", desc: "Dimmable Power", price: "Enquire", img: "led.jpg" },
-    { name: "OLED 4K Panel", cat: "Electronics", desc: "Ultra HD Display", price: "Enquire", img: "oled.jpg" },
-    { name: "Ergonomic Chair", cat: "Household", desc: "Executive Mesh", price: "Enquire", img: "chair.jpg" },
-    { name: "Velvet Sofa", cat: "Household", desc: "3-Seater Luxury", price: "Enquire", img: "sofa.jpg" },
-    { name: "TrackSuit", cat: "Clothing", desc: "Sports Wear", price: "Enquire", img: ["STS1.jpg"],["STS2.jpg"] },
-    { name: "Hoodie ", cat: "Clothing", desc: "Winter Hoodie ", price: "Enquire", img: "hood1.jpg" },
-    { name: "RC Drone Pro", cat: "Toys", desc: "Female Barebe Doll", price: "Enquire", img: ["Barbe1.jpg"],["Barbe2.jpg"] },
-    { name: "Bubble ", cat: "Toys", desc: "Coding Education", price: "Enquire", img: "Bub.jpg" }
-];
+   const inventory = [
+        { name: "STM32 Microchip", cat: "Electronics", desc: "Industrial MCU", price: "Enquire", img: "Chip1.jpg" },
+        { name: "60W LED Driver", cat: "Electronics", desc: "Dimmable Power", price: "Enquire", img: "led.jpg" },
+        { name: "OLED 4K Panel", cat: "Electronics", desc: "Ultra HD Display", price: "Enquire", img: "oled.jpg" },
+        { name: "Ergonomic Chair", cat: "Household", desc: "Executive Mesh", price: "Enquire", img: "chair.jpg" },
+        { name: "Velvet Sofa", cat: "Household", desc: "3-Seater Luxury", price: "Enquire", img: "sofa.jpg" },
+        // FIXED: Combined multiple images into a single array
+        { name: "TrackSuit", cat: "Clothing", desc: "Sports Wear", price: "Enquire", img: ["STS1.jpg", "STS2.jpg"] },
+        { name: "Hoodie", cat: "Clothing", desc: "Winter Hoodie", price: "Enquire", img: "hood1.jpg" },
+        // FIXED: Combined multiple images into a single array
+        { name: "Barbie Doll", cat: "Toys", desc: "Female Barbie Doll", price: "Enquire", img: ["Barbe1.jpg", "Barbe2.jpg"] },
+        { name: "Bubble", cat: "Toys", desc: "Water games", price: "Enquire", img: "Bub.jpg" }
+    ];
 
     function openCatalog(category) {
     document.getElementById('hub').classList.add('hidden');
