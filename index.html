@@ -159,35 +159,45 @@
 </div>
 
 <script>
-   const inventory = [
-        // --- ELECTRONICS ---
-        { name: "STM32 Microchip", cat: "Electronics", price: "Enquire MOQ", img: "https://placehold.co/300?text=Chip" },
-        { name: "Display Fridge", cat: "Electronics", price: "Enquire", img: "https://placehold.co/300?text=Fridge" },
-        { name: "Smart Sensor", cat: "Electronics", price: "¥15.00", img: "https://placehold.co/300?text=Sensor" },
-
-        // --- HOUSEHOLD ---
-        { name: "Luxury Sofa Set", cat: "Household", price: "¥2400.00", img: "https://placehold.co/300?text=Sofa" },
-        { name: "Dressing Table", cat: "Household", price: "¥880.00", img: "https://placehold.co/300?text=Table" },
-        { name: "Dining Chair", cat: "Household", price: "¥120.00", img: "https://placehold.co/300?text=Chair" },
-
-        // --- CLOTHING ---
-        { name: "Premium Cotton Hoodie", cat: "Clothing", price: "Enquire", img: "https://placehold.co/300?text=Hoodie" },
-        { name: "Sport Tracksuit", cat: "Clothing", price: "¥65.00", img: "https://placehold.co/300?text=Tracksuit" },
-
-        // --- TOYS ---
-        { name: "RC Drone Pro", cat: "Toys", price: "¥120.00", img: "https://placehold.co/300?text=Drone" },
-        { name: "Flying Car Toy", cat: "Toys", price: "¥41.80", img: "https://placehold.co/300?text=Car" },
-
-        // --- OTHERS ---
-        { name: "Industrial Pump", cat: "Others", price: "Request Quote", img: "https://placehold.co/300?text=Pump" },
-        { name: "Custom Packaging", cat: "Others", price: "Enquire", img: "https://placehold.co/300?text=Box" }
+// 1. Add 'desc' to your inventory items so there is subtext to show!
+    const inventory = [
+        { name: "STM32 Microchip", cat: "Electronics", desc: "High-performance industrial semiconductor.", price: "Enquire MOQ", img: "Chip1.jpg" },
+        { name: "Luxury Sofa Set", cat: "Household", desc: "Italian leather with velvet finish.", price: "¥2400.00", img: "Sofa.jpg" },
+        { name: "Cotton Hoodie", cat: "Clothing", desc: "100% organic heavy-weight cotton.", price: "Enquire", img: "Hoodie.jpg" },
+        { name: "RC Drone Pro", cat: "Toys", desc: "4K Camera with GPS auto-return.", price: "¥120.00", img: "Drone.jpg" },
+        { name: "Industrial Pump", cat: "Others", desc: "High-pressure fluid sourcing.", price: "Request Quote", img: "Pump.jpg" }
     ];
 
+    // 2. Updated function to show that subtext
     function openCatalog(category) {
-        // Hide Hub, Show Products
         document.getElementById('hub').classList.add('hidden');
         document.getElementById('productView').classList.remove('hidden');
         document.getElementById('viewTitle').innerText = category;
+        
+        const grid = document.getElementById('productGrid');
+        grid.innerHTML = ""; 
+
+        const filtered = inventory.filter(p => p.cat === category);
+
+        if(filtered.length === 0) {
+            grid.innerHTML = "<p style='grid-column:1/-1; text-align:center;'>New arrivals coming soon.</p>";
+        } else {
+            filtered.forEach(p => {
+                grid.innerHTML += `
+                    <div class="p-card">
+                        <div class="p-img"><img src="${p.img}" onerror="this.src='https://placehold.co/300x300?text=Aiwa+Sourcing'"></div>
+                        <div class="p-info">
+                            <h3 style="margin-bottom:5px;">${p.name}</h3>
+                            <p style="font-size:13px; color:#666; margin-top:0;">${p.desc}</p> 
+                            <div class="p-price">${p.price}</div>
+                            <a href="https://wa.me/85259813744?text=Interested in ${p.name}" class="wa-link">CONTACT AGENT</a>
+                        </div>
+                    </div>
+                `;
+            });
+        }
+        window.scrollTo(0,0);
+    }
         
         const grid = document.getElementById('productGrid');
         grid.innerHTML = ""; // Clear old stuff
