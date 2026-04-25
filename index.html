@@ -49,7 +49,7 @@
             background: var(--white);
             transform: rotate(45deg);
             display: flex; align-items: center; justify-content: center;
-            margin-bottom: 60px; /* Space fix for logo vs text */
+            margin-bottom: 60px; 
             box-shadow: 0 10px 25px rgba(0,0,0,0.1);
             transition: 0.5s ease;
         }
@@ -64,7 +64,7 @@
             font-weight: 900;
         }
 
-        /* --- GRID & CARDS --- */
+        
         .category-grid {
             display: grid;
             grid-template-columns: repeat(5, 1fr);
@@ -159,12 +159,28 @@
 </div>
 
 <script>
-    const inventory = [
-        { name: "STM32 Microchip", cat: "Electronics", price: "Enquire MOQ", img: "https://placehold.co/300?text=Electronics" },
-        { name: "Luxury Sofa Set", cat: "Household", price: "¥2400.00", img: "https://placehold.co/300?text=Household" },
-        { name: "Premium Cotton Hoodie", cat: "Clothing", price: "Enquire", img: "https://placehold.co/300?text=Clothing" },
-        { name: "RC Drone Pro", cat: "Toys", price: "¥120.00", img: "https://placehold.co/300?text=Toys" },
-        { name: "Industrial Pump", cat: "Others", price: "Request Quote", img: "https://placehold.co/300?text=Others" }
+   const inventory = [
+        // --- ELECTRONICS ---
+        { name: "STM32 Microchip", cat: "Electronics", price: "Enquire MOQ", img: "https://placehold.co/300?text=Chip" },
+        { name: "Display Fridge", cat: "Electronics", price: "Enquire", img: "https://placehold.co/300?text=Fridge" },
+        { name: "Smart Sensor", cat: "Electronics", price: "¥15.00", img: "https://placehold.co/300?text=Sensor" },
+
+        // --- HOUSEHOLD ---
+        { name: "Luxury Sofa Set", cat: "Household", price: "¥2400.00", img: "https://placehold.co/300?text=Sofa" },
+        { name: "Dressing Table", cat: "Household", price: "¥880.00", img: "https://placehold.co/300?text=Table" },
+        { name: "Dining Chair", cat: "Household", price: "¥120.00", img: "https://placehold.co/300?text=Chair" },
+
+        // --- CLOTHING ---
+        { name: "Premium Cotton Hoodie", cat: "Clothing", price: "Enquire", img: "https://placehold.co/300?text=Hoodie" },
+        { name: "Sport Tracksuit", cat: "Clothing", price: "¥65.00", img: "https://placehold.co/300?text=Tracksuit" },
+
+        // --- TOYS ---
+        { name: "RC Drone Pro", cat: "Toys", price: "¥120.00", img: "https://placehold.co/300?text=Drone" },
+        { name: "Flying Car Toy", cat: "Toys", price: "¥41.80", img: "https://placehold.co/300?text=Car" },
+
+        // --- OTHERS ---
+        { name: "Industrial Pump", cat: "Others", price: "Request Quote", img: "https://placehold.co/300?text=Pump" },
+        { name: "Custom Packaging", cat: "Others", price: "Enquire", img: "https://placehold.co/300?text=Box" }
     ];
 
     function openCatalog(category) {
