@@ -219,45 +219,78 @@
 </div>
 
 <script>
-   const inventory = [
-        { name: "STM32 Microchip", cat: "Electronics", desc: "Industrial MCU", price: "Enquire", img: "Chip1.jpg" },
-        { name: "60W LED Driver", cat: "Electronics", desc: "Dimmable Power", price: "Enquire", img: "led.jpg" },
-        { name: "OLED 4K Panel", cat: "Electronics", desc: "Ultra HD Display", price: "Enquire", img: "oled.jpg" },
-        { name: "Ergonomic Chair", cat: "Household", desc: "Executive Mesh", price: "Enquire", img: "chair.jpg" },
-        { name: "Velvet Sofa", cat: "Household", desc: "3-Seater Luxury", price: "Enquire", img: "sofa.jpg" },
-        // FIXED: Combined multiple images into a single array
-       { name: "TrackSuit", cat: "Clothing", desc: "Sports Wear", price: "Enquire", img: ["STS1.jpg", "STS2.jpg"] }, 
-        { name: "Hoodie", cat: "Clothing", desc: "Winter Hoodie", price: "Enquire", img: "hood1.jpg" },
-        // FIXED: Combined multiple images into a single array
-        { name: "Barbie Doll", cat: "Toys", desc: "Female Barbie Doll", price: "Enquire", img: ["Barbe1.jpg", "Barbe2.jpg"] },
-        { name: "Bubble", cat: "Toys", desc: "Water games", price: "Enquire", img: "Bub.jpg" }
+    const inventory = [
+        { name: "STM32 Microchip", cat: "Electronics", desc: "High-performance Industrial MCU. Reliable sourcing for semiconductor components.", price: "Enquire MOQ", img: "Chip1.jpg" },
+        { name: "60W LED Driver", cat: "Electronics", desc: "Constant current dmmable power supply for smart lighting systems.", price: "Enquire", img: "led.jpg" },
+        { name: "TrackSuit", cat: "Clothing", desc: "Premium athletic wear. Breathable, high-durability fabric for global distribution.", price: "Enquire", img: ["STS1.jpg", "STS2.jpg"] },
+        { name: "RC Drone Pro", cat: "Toys", desc: "Barbie Doll wholesale collection. Quality tested for international safety standards.", price: "Enquire", img: ["Barbe1.jpg", "Barbe2.jpg"] },
+        { name: "Bubble", cat: "Toys", desc: "Automated bubble solution machine. High-demand seasonal item.", price: "Enquire", img: "Bub.jpg" }
     ];
 
     function openCatalog(category) {
-    document.getElementById('hub').classList.add('hidden');
-    document.getElementById('productView').classList.remove('hidden');
-    document.getElementById('viewTitle').innerText = category;
-    
-    const grid = document.getElementById('productGrid');
-    grid.innerHTML = "";
-    const filtered = inventory.filter(p => p.cat === category);
+        document.getElementById('hub').classList.add('hidden');
+        document.getElementById('productView').classList.remove('hidden');
+        document.getElementById('viewTitle').innerText = category;
+        
+        const grid = document.getElementById('productGrid');
+        grid.innerHTML = "";
+        const filtered = inventory.filter(p => p.cat === category);
 
-    filtered.forEach(p => {
-        grid.innerHTML += `
-            <div class="p-card">
-                <div class="p-img-box" style="width:100%; height:200px; display:flex; align-items:center; justify-content:center;">
-                    <img src="./${p.img}" 
-                         style="max-width:100%; max-height:100%; object-fit:contain;" 
-                         onerror="this.src='https://placehold.co/300x300/f4f7f6/051937?text=Image+Coming+Soon'">
-                </div>
-                <h3 style="margin: 15px 0 5px 0;">${p.name}</h3>
-                <p style="font-size:13px; color:#666;">${p.desc}</p>
-                <div style="color:var(--gold); font-weight:800; margin:10px 0;">${p.price}</div>
-                <a href="https://wa.me/85259813744" class="wa-btn" style="width:100%;">CONTACT AGENT</a>
-            </div>`;
-    });
-    window.scrollTo(0,0);
-}
+        filtered.forEach((p, index) => {
+            const imageToShow = Array.isArray(p.img) ? p.img[0] : p.img;
+            
+            grid.innerHTML += `
+                <div class="p-card" onclick="openModal('${p.name}')" style="cursor:pointer;">
+                    <div class="p-img-box">
+                        <img src="./${imageToShow}" onerror="this.src='https://placehold.co/300x300/f4f7f6/051937?text=Aiwa+Sourcing'">
+                    </div>
+                    <div style="flex-grow: 1;">
+                        <h3 style="margin: 15px 0 5px 0;">${p.name}</h3>
+                        <p style="font-size:12px; color:#888;">Click for details</p>
+                    </div>
+                    <div style="color:var(--gold); font-weight:800; margin:10px 0;">${p.price}</div>
+                    <div class="wa-btn" style="width:100%; box-sizing:border-box;">QUICK VIEW</div>
+                </div>`;
+        });
+        window.scrollTo(0,0);
+    }
+
+    function openModal(productName) {
+        const p = inventory.find(item => item.name === productName);
+        if(!p) return;
+
+        document.getElementById('modalTitle').innerText = p.name;
+        document.getElementById('modalDesc').innerText = p.desc;
+        document.getElementById('modalPrice').innerText = p.price;
+        
+        // Handle Gallery
+        const mainImg = document.getElementById('modalMainImg');
+        const thumbBox = document.getElementById('modalThumbs');
+        thumbBox.innerHTML = "";
+        
+        const images = Array.isArray(p.img) ? p.img : [p.img];
+        mainImg.src = "./" + images[0];
+
+        images.forEach(imgSrc => {
+            const thumb = document.createElement('img');
+            thumb.src = "./" + imgSrc;
+            thumb.style = "width:50px; height:50px; object-fit:cover; border-radius:5px; cursor:pointer; border:1px solid #ddd;";
+            thumb.onclick = () => mainImg.src = "./" + imgSrc;
+            thumbBox.appendChild(thumb);
+        });
+
+        // Dynamic WhatsApp Message
+        const message = `Hi Aiwa Trade Services, I am interested in a quote for: ${p.name}. (Ref: Sourcing Catalog)`;
+        document.getElementById('modalWaBtn').href = `https://wa.me/85259813744?text=${encodeURIComponent(message)}`;
+
+        document.getElementById('productModal').classList.remove('hidden');
+        document.body.style.overflow = 'hidden'; // Stop background scroll
+    }
+
+    function closeModal() {
+        document.getElementById('productModal').classList.add('hidden');
+        document.body.style.overflow = 'auto';
+    }
 
     function closeCatalog() {
         document.getElementById('hub').classList.remove('hidden');
