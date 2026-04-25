@@ -198,6 +198,25 @@
         </div>
     </footer>
 </div>
+    <div id="productModal" class="hidden" style="position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.8); z-index:1000; display:flex; align-items:center; justify-content:center; padding:20px;">
+    <div style="background:white; width:100%; max-width:800px; border-radius:30px; overflow:hidden; position:relative; display:flex; flex-wrap:wrap; max-height:90vh;">
+        <button onclick="closeModal()" style="position:absolute; top:20px; right:20px; background:var(--primary); color:white; border:none; border-radius:50%; width:40px; height:40px; cursor:pointer; font-weight:bold; z-index:1010;">✕</button>
+        
+        <div style="flex:1; min-width:300px; background:#f9f9f9; display:flex; flex-direction:column; align-items:center; justify-content:center; padding:40px;">
+            <img id="modalMainImg" style="max-width:100%; max-height:350px; object-fit:contain; border-radius:15px;">
+            <div id="modalThumbs" style="display:flex; gap:10px; margin-top:20px;"></div>
+        </div>
+
+        <div style="flex:1; min-width:300px; padding:40px; display:flex; flex-direction:column; justify-content:center;">
+            <h2 id="modalTitle" style="text-transform:uppercase; letter-spacing:2px; margin-bottom:10px;"></h2>
+            <p id="modalDesc" style="color:#666; line-height:1.6; margin-bottom:20px;"></p>
+            <div id="modalPrice" style="font-size:24px; color:var(--gold); font-weight:900; margin-bottom:30px;"></div>
+            
+            <a id="modalWaBtn" href="#" class="wa-btn" style="text-align:center;">INQUIRE NOW</a>
+            <p style="font-size:10px; color:#aaa; margin-top:15px; text-align:center;">Professional sourcing & logistics handled by Aiwa HK</p>
+        </div>
+    </div>
+</div>
 
 <script>
    const inventory = [
