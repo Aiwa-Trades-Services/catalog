@@ -167,7 +167,17 @@
         { name: "RC Drone Pro", cat: "Toys", desc: "4K Camera with GPS auto-return.", price: "¥120.00", img: "Drone.jpg" },
         { name: "Industrial Pump", cat: "Others", desc: "High-pressure fluid sourcing.", price: "Request Quote", img: "Pump.jpg" }
     ];
-
+const inventory = [
+    { 
+        name: "STM32 Microchip", 
+        cat: "Electronics", 
+        desc: "High-performance chip.", 
+        price: "Enquire MOQ", 
+        // MAKE SURE THIS MATCHES YOUR FILENAME EXACTLY
+        img: "stm32_chip.png" 
+    },
+    // ... add more
+];
     // 2. Updated function to show that subtext
     function openCatalog(category) {
         document.getElementById('hub').classList.add('hidden');
