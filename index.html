@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aiwa Trade Services | Global Procurement Excellence</title>
+    <title>Aiwa Trade Services | Premium Global Sourcing</title>
     <style>
         :root {
             --primary: #051937;
@@ -19,7 +19,6 @@
             overflow-x: hidden; scroll-behavior: smooth;
         }
 
-        /* Background Design Section */
         .bg-hero {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background: linear-gradient(135deg, rgba(255,255,255,0.9), rgba(244,247,246,0.8)),
@@ -27,7 +26,6 @@
             background-size: cover; z-index: -1;
         }
 
-        /* --- HEADER & LOGO --- */
         header {
             padding: 100px 20px 50px; text-align: center;
             display: flex; flex-direction: column; align-items: center;
@@ -37,16 +35,14 @@
             width: 80px; height: 80px; border: 2px solid var(--gold);
             background: var(--white); transform: rotate(45deg);
             display: flex; align-items: center; justify-content: center;
-            margin-bottom: 65px; /* Spacing fix for the letter E */
+            margin-bottom: 65px;
             box-shadow: 0 10px 20px rgba(0,0,0,0.05);
         }
         .logo-box span { transform: rotate(-45deg); font-weight: 900; color: var(--primary); }
 
         .brand-name { font-size: 42px; letter-spacing: 12px; text-transform: uppercase; margin: 0; font-weight: 900; }
 
-        /* --- CATEGORY GRID --- */
-        .section-title { text-align: center; letter-spacing: 4px; text-transform: uppercase; margin-top: 60px; font-size: 14px; color: var(--gold); }
-        
+        /* --- CATEGORY CARDS --- */
         .category-grid {
             display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
             gap: 25px; padding: 40px; max-width: 1300px; margin: 0 auto;
@@ -55,16 +51,15 @@
         .cat-card {
             background: var(--glass); border: 1px solid rgba(0,0,0,0.05);
             border-radius: 25px; padding: 40px 20px; text-align: center;
-            cursor: pointer; transition: 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
-            box-shadow: 0 4px 15px rgba(0,0,0,0.02);
+            cursor: pointer; transition: 0.4s ease;
         }
 
-        .cat-card:hover { transform: translateY(-10px); border-color: var(--gold); background: var(--white); box-shadow: 0 20px 40px rgba(0,0,0,0.05); }
+        .cat-card:hover { transform: translateY(-10px); border-color: var(--gold); background: var(--white); }
 
-        /* AESTHETIC STROKE DESIGN FOR EMOJIS */
+        /* AESTHETIC STROKE FILTER */
         .cat-icon { 
             font-size: 45px; display: block; margin-bottom: 15px;
-            filter: grayscale(1) brightness(0.5) opacity(0.8); /* Mimics a stroke/outline look */
+            filter: grayscale(1) contrast(200%) brightness(0.5); 
         }
 
         .cat-title { font-weight: 800; font-size: 16px; letter-spacing: 1px; display: block; }
@@ -74,35 +69,22 @@
         .container { max-width: 1200px; margin: 0 auto; padding: 40px; }
         .product-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 30px; }
         
-        .p-card { 
-            background: var(--white); border-radius: 20px; padding: 25px; 
-            border: 1px solid #eee; text-align: center;
-        }
-        .p-img-box { 
-            width: 100%; height: 200px; background: #fafafa; border-radius: 15px;
-            margin-bottom: 20px; display: flex; align-items: center; justify-content: center;
-            overflow: hidden;
-        }
+        .p-card { background: var(--white); border-radius: 20px; padding: 25px; border: 1px solid #eee; text-align: center; }
+        .p-img-box { width: 100%; height: 200px; background: #fafafa; border-radius: 15px; margin-bottom: 20px; display: flex; align-items: center; justify-content: center; overflow: hidden; }
         .p-img-box img { max-width: 80%; max-height: 80%; object-fit: contain; }
 
-        .wa-btn { 
-            display: block; background: var(--primary); color: white; padding: 12px; 
-            border-radius: 10px; text-decoration: none; font-weight: 700; margin-top: 15px;
-        }
+        .wa-btn { display: block; background: var(--primary); color: white; padding: 12px; border-radius: 10px; text-decoration: none; font-weight: 700; margin-top: 15px; }
 
-        /* --- CORPORATE FOOTER --- */
-        footer {
-            background: var(--primary); color: white; padding: 80px 40px 40px; margin-top: 100px;
-        }
-        .footer-content {
-            max-width: 1200px; margin: 0 auto; display: grid;
-            grid-template-columns: 2fr 1fr 1fr; gap: 50px;
-        }
-        .footer-section h4 { color: var(--gold); text-transform: uppercase; letter-spacing: 2px; margin-bottom: 20px; }
+        /* --- FOOTER --- */
+        footer { background: var(--primary); color: white; padding: 80px 40px 40px; margin-top: 100px; }
+        .footer-content { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 50px; }
+        .footer-section h4 { color: var(--gold); text-transform: uppercase; margin-bottom: 20px; }
         .footer-section p, .footer-section a { color: #ccc; text-decoration: none; font-size: 14px; line-height: 1.8; }
         .footer-bottom { border-top: 1px solid rgba(255,255,255,0.1); margin-top: 60px; padding-top: 20px; text-align: center; font-size: 12px; color: #777; }
 
         .hidden { display: none !important; }
+
+        @media (max-width: 900px) { .footer-content { grid-template-columns: 1fr; } }
     </style>
 </head>
 <body>
@@ -116,66 +98,63 @@
     </header>
 
     <div id="hub">
-        <h2 class="section-title">Global Procurement Categories</h2>
         <div class="category-grid">
             <div class="cat-card" onclick="openCatalog('Electronics')">
                 <span class="cat-icon">🔌</span>
                 <span class="cat-title">Electronics</span>
-                <span class="cat-subtext">Semiconductors, smart home tech, and industrial components.</span>
+                <span class="cat-subtext">Semiconductors, Smart-tech, and PCB components.</span>
             </div>
             <div class="cat-card" onclick="openCatalog('Household')">
                 <span class="cat-icon">🏠</span>
                 <span class="cat-title">Household</span>
-                <span class="cat-subtext">Luxury furniture, kitchen appliances, and home decor.</span>
+                <span class="cat-subtext">Premium furniture and luxury kitchen appliances.</span>
             </div>
             <div class="cat-card" onclick="openCatalog('Clothing')">
                 <span class="cat-icon">👕</span>
                 <span class="cat-title">Clothing</span>
-                <span class="cat-subtext">Premium textiles, activewear, and custom manufacturing.</span>
+                <span class="cat-subtext">Global textile sourcing and custom apparel.</span>
             </div>
             <div class="cat-card" onclick="openCatalog('Toys')">
                 <span class="cat-icon">🧸</span>
                 <span class="cat-title">Toys</span>
-                <span class="cat-subtext">Educational sets, hobby drones, and wholesale gadgets.</span>
+                <span class="cat-subtext">Educational kits and wholesale RC gadgets.</span>
             </div>
             <div class="cat-card" onclick="openCatalog('Others')">
                 <span class="cat-icon">📦</span>
                 <span class="cat-title">Others</span>
-                <span class="cat-subtext">Bespoke sourcing for niche industrial and commercial needs.</span>
+                <span class="cat-subtext">Bespoke industrial and commercial procurement.</span>
             </div>
         </div>
+
+        <section class="container">
+            <div style="background:var(--glass); padding:40px; border-radius:30px; margin-top:30px;">
+                <h3 style="color:var(--gold); text-transform:uppercase; letter-spacing:2px;">About Aiwa Trade Services</h3>
+                <p>Strategically headquartered in Hong Kong, Aiwa Trade Services operates as a premier global sourcing house. We specialize in connecting international buyers with vetted manufacturers, ensuring rigorous quality control, transparent pricing, and seamless logistics across diverse markets.</p>
+            </div>
+        </section>
     </div>
 
     <div id="productView" class="container hidden">
-        <button onclick="closeCatalog()" style="cursor:pointer; border:none; background:none; color:var(--gold); font-weight:800; margin-bottom:20px;">← BACK TO HUB</button>
+        <button onclick="closeCatalog()" style="cursor:pointer; border:none; background:none; color:var(--gold); font-weight:800; margin-bottom:20px;">← BACK TO CATEGORIES</button>
         <h2 id="viewTitle" style="text-transform:uppercase; letter-spacing:4px; margin-bottom:40px;"></h2>
         <div id="productGrid" class="product-grid"></div>
     </div>
-
-    <section class="container">
-        <div style="background:var(--glass); padding:40px; border-radius:30px; margin-top:50px;">
-            <h3 style="color:var(--gold); text-transform:uppercase;">About Our Network</h3>
-            <p>Aiwa Trade Services acts as the bridge between high-tier global manufacturers and professional buyers. With a specialized focus on quality control and logistical efficiency, we ensure your procurement needs are met with precision.</p>
-        </div>
-    </section>
 
     <footer>
         <div class="footer-content">
             <div class="footer-section">
                 <h4>Aiwa Trade Services</h4>
-                <p>Leading global sourcing agent providing end-to-end supply chain solutions. We bridge the gap between quality manufacturers and international buyers.</p>
+                <p>Your partner in global procurement. Specializing in finding the best suppliers for any buyer, anywhere in the world.</p>
             </div>
             <div class="footer-section">
-                <h4>Contact Us</h4>
-                <p>📍 Hong Kong SAR<br>
-                   📞 +852 5981 3744<br>
-                   ✉️ sourcing@aiwatrade.com</p>
+                <h4>Contact Details</h4>
+                <p>📍 Hong Kong SAR<br>📞 +852 5981 3744<br>✉️ sourcing@aiwatrade.com</p>
             </div>
             <div class="footer-section">
-                <h4>Quick Links</h4>
-                <a href="#">Privacy Policy</a><br>
-                <a href="#">Terms of Service</a><br>
-                <a href="https://wa.me/85259813744">Live Support</a>
+                <h4>Customer Support</h4>
+                <a href="https://wa.me/85259813744">WhatsApp Support</a><br>
+                <a href="#">Request a Quote</a><br>
+                <a href="#">Track Shipment</a>
             </div>
         </div>
         <div class="footer-bottom">
@@ -188,14 +167,17 @@
     const inventory = [
         // ELECTRONICS
         { name: "STM32 Microchip", cat: "Electronics", desc: "Industrial Grade", price: "Enquire MOQ", img: "stm32.jpg" },
-        { name: "OLED Panel", cat: "Electronics", desc: "4K UHD 60Hz", price: "¥890.00", img: "oled.jpg" },
-        { name: "Smart Logic Controller", cat: "Electronics", desc: "Automation Tool", price: "Enquire", img: "controller.jpg" },
+        { name: "60W Smart LED Driver", cat: "Electronics", desc: "Dimmable", price: "¥45.00", img: "led.jpg" },
+        { name: "High-Speed PCB Board", cat: "Electronics", desc: "Custom Layering", price: "Enquire", img: "pcb.jpg" },
         // HOUSEHOLD
-        { name: "Velvet Sofa", cat: "Household", desc: "3-Seater Premium", price: "¥1800.00", img: "sofa.jpg" },
-        { name: "Air Purifier X1", cat: "Household", desc: "HEPA 13 Filter", price: "¥450.00", img: "purifier.jpg" },
+        { name: "Ergonomic Office Chair", cat: "Household", desc: "Mesh Back", price: "¥320.00", img: "chair.jpg" },
+        { name: "Smart Air Purifier", cat: "Household", desc: "HEPA Filter", price: "¥580.00", img: "purifier.jpg" },
         // CLOTHING
-        { name: "Heavy Hoodie", cat: "Clothing", desc: "450GSM Cotton", price: "¥85.00", img: "hoodie.jpg" },
-        { name: "Tech-wear Jacket", cat: "Clothing", desc: "Waterproof Shell", price: "¥320.00", img: "jacket.jpg" }
+        { name: "Organic Cotton Tee", cat: "Clothing", desc: "200 GSM", price: "¥18.00", img: "tee.jpg" },
+        { name: "Custom Techwear Shell", cat: "Clothing", desc: "Waterproof", price: "¥210.00", img: "shell.jpg" },
+        // TOYS
+        { name: "Mini RC Drone", cat: "Toys", desc: "720p Camera", price: "¥85.00", img: "drone.jpg" },
+        { name: "STEM Robot Kit", cat: "Toys", desc: "Coding Educational", price: "¥140.00", img: "robot.jpg" }
     ];
 
     function openCatalog(category) {
@@ -219,7 +201,7 @@
                         <h3>${p.name}</h3>
                         <p style="font-size:13px; color:#666;">${p.desc}</p>
                         <div style="color:var(--gold); font-weight:800; margin:10px 0;">${p.price}</div>
-                        <a href="https://wa.me/85259813744" class="wa-btn">ORDER VIA WA</a>
+                        <a href="https://wa.me/85259813744?text=Order Interest: ${p.name}" class="wa-btn">CONTACT AGENT</a>
                     </div>`;
             });
         }
@@ -231,6 +213,5 @@
         document.getElementById('productView').classList.add('hidden');
     }
 </script>
-
 </body>
 </html>
