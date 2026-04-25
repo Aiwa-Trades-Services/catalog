@@ -102,41 +102,41 @@
             <div class="cat-card" onclick="openCatalog('Electronics')">
                 <span class="cat-icon">🔌</span>
                 <span class="cat-title">Electronics</span>
-                <span class="cat-subtext">Semiconductors, Smart-tech, and PCB components.</span>
+                <span class="cat-subtext">Industrial components, semiconductors, and smart-tech.</span>
             </div>
             <div class="cat-card" onclick="openCatalog('Household')">
                 <span class="cat-icon">🏠</span>
                 <span class="cat-title">Household</span>
-                <span class="cat-subtext">Premium furniture and luxury kitchen appliances.</span>
+                <span class="cat-subtext">Luxury furniture, home decor, and appliances.</span>
             </div>
             <div class="cat-card" onclick="openCatalog('Clothing')">
                 <span class="cat-icon">👕</span>
                 <span class="cat-title">Clothing</span>
-                <span class="cat-subtext">Global textile sourcing and custom apparel.</span>
+                <span class="cat-subtext">Global textile sourcing and custom manufacturing.</span>
             </div>
             <div class="cat-card" onclick="openCatalog('Toys')">
                 <span class="cat-icon">🧸</span>
                 <span class="cat-title">Toys</span>
-                <span class="cat-subtext">Educational kits and wholesale RC gadgets.</span>
+                <span class="cat-subtext">Educational sets, RC gadgets, and wholesale items.</span>
             </div>
             <div class="cat-card" onclick="openCatalog('Others')">
                 <span class="cat-icon">📦</span>
                 <span class="cat-title">Others</span>
-                <span class="cat-subtext">Bespoke industrial and commercial procurement.</span>
+                <span class="cat-subtext">Bespoke procurement for niche industrial needs.</span>
             </div>
         </div>
 
         <section class="container">
-            <div style="background:var(--glass); padding:40px; border-radius:30px; margin-top:30px;">
+            <div style="background:var(--glass); padding:40px; border-radius:30px; margin-top:30px; border: 1px solid rgba(0,0,0,0.05);">
                 <h3 style="color:var(--gold); text-transform:uppercase; letter-spacing:2px;">About Aiwa Trade Services</h3>
-                <p>Strategically headquartered in Hong Kong, Aiwa Trade Services operates as a premier global sourcing house. We specialize in connecting international buyers with vetted manufacturers, ensuring rigorous quality control, transparent pricing, and seamless logistics across diverse markets.</p>
+                <p>Headquartered in Hong Kong, Aiwa Trade Services is a premier global sourcing house. We bridge the gap between quality manufacturers and international buyers, ensuring rigorous quality control and seamless logistics.</p>
             </div>
         </section>
     </div>
 
     <div id="productView" class="container hidden">
         <button onclick="closeCatalog()" style="cursor:pointer; border:none; background:none; color:var(--gold); font-weight:800; margin-bottom:20px;">← BACK TO CATEGORIES</button>
-        <h2 id="viewTitle" style="text-transform:uppercase; letter-spacing:4px; margin-bottom:40px;"></h2>
+        <h2 id="viewTitle" style="text-transform:uppercase; letter-spacing:4px; margin-bottom:40px; color:var(--primary);"></h2>
         <div id="productGrid" class="product-grid"></div>
     </div>
 
@@ -144,17 +144,16 @@
         <div class="footer-content">
             <div class="footer-section">
                 <h4>Aiwa Trade Services</h4>
-                <p>Your partner in global procurement. Specializing in finding the best suppliers for any buyer, anywhere in the world.</p>
+                <p>Global sourcing experts finding the best suppliers for any buyer, anywhere in the world.</p>
             </div>
             <div class="footer-section">
-                <h4>Contact Details</h4>
+                <h4>Contact</h4>
                 <p>📍 Hong Kong SAR<br>📞 +852 5981 3744<br>✉️ sourcing@aiwatrade.com</p>
             </div>
             <div class="footer-section">
-                <h4>Customer Support</h4>
-                <a href="https://wa.me/85259813744">WhatsApp Support</a><br>
-                <a href="#">Request a Quote</a><br>
-                <a href="#">Track Shipment</a>
+                <h4>Support</h4>
+                <a href="https://wa.me/85259813744" style="color:#ccc; text-decoration:none;">WhatsApp Support</a><br>
+                <a href="#" style="color:#ccc; text-decoration:none;">Terms of Service</a>
             </div>
         </div>
         <div class="footer-bottom">
@@ -165,18 +164,14 @@
 
 <script>
     const inventory = [
-        // ELECTRONICS
-        { name: "STM32 Microchip", cat: "Electronics", desc: "Industrial Grade", price: "Enquire MOQ", img: "stm32.jpg" },
-        { name: "60W Smart LED Driver", cat: "Electronics", desc: "Dimmable", price: "¥45.00", img: "led.jpg" },
-        { name: "High-Speed PCB Board", cat: "Electronics", desc: "Custom Layering", price: "Enquire", img: "pcb.jpg" },
-        // HOUSEHOLD
-        { name: "Ergonomic Office Chair", cat: "Household", desc: "Mesh Back", price: "¥320.00", img: "chair.jpg" },
-        { name: "Smart Air Purifier", cat: "Household", desc: "HEPA Filter", price: "¥580.00", img: "purifier.jpg" },
-        // CLOTHING
-        { name: "Organic Cotton Tee", cat: "Clothing", desc: "200 GSM", price: "¥18.00", img: "tee.jpg" },
-        { name: "Custom Techwear Shell", cat: "Clothing", desc: "Waterproof", price: "¥210.00", img: "shell.jpg" },
-        // TOYS
-        { name: "Mini RC Drone", cat: "Toys", desc: "720p Camera", price: "¥85.00", img: "drone.jpg" },
+        { name: "STM32 Microchip", cat: "Electronics", desc: "Industrial MCU", price: "Enquire MOQ", img: "stm32.jpg" },
+        { name: "60W LED Driver", cat: "Electronics", desc: "Dimmable Power", price: "¥45.00", img: "led.jpg" },
+        { name: "OLED 4K Panel", cat: "Electronics", desc: "Ultra HD Display", price: "¥890.00", img: "oled.jpg" },
+        { name: "Velvet Sofa", cat: "Household", desc: "3-Seater Luxury", price: "¥2400.00", img: "sofa.jpg" },
+        { name: "Air Purifier", cat: "Household", desc: "HEPA 13 Filter", price: "¥580.00", img: "purifier.jpg" },
+        { name: "Heavy Hoodie", cat: "Clothing", desc: "450GSM Cotton", price: "¥85.00", img: "hoodie.jpg" },
+        { name: "Tech-wear Jacket", cat: "Clothing", desc: "Waterproof Shell", price: "¥210.00", img: "shell.jpg" },
+        { name: "RC Drone Pro", cat: "Toys", desc: "4K GPS Flight", price: "¥120.00", img: "drone.jpg" },
         { name: "STEM Robot Kit", cat: "Toys", desc: "Coding Educational", price: "¥140.00", img: "robot.jpg" }
     ];
 
@@ -190,7 +185,7 @@
         const filtered = inventory.filter(p => p.cat === category);
 
         if(filtered.length === 0) {
-            grid.innerHTML = "<p>No active listings. Contact us for custom sourcing.</p>";
+            grid.innerHTML = "<p>Coming Soon. Contact us for sourcing.</p>";
         } else {
             filtered.forEach(p => {
                 grid.innerHTML += `
@@ -201,7 +196,7 @@
                         <h3>${p.name}</h3>
                         <p style="font-size:13px; color:#666;">${p.desc}</p>
                         <div style="color:var(--gold); font-weight:800; margin:10px 0;">${p.price}</div>
-                        <a href="https://wa.me/85259813744?text=Order Interest: ${p.name}" class="wa-btn">CONTACT AGENT</a>
+                        <a href="https://wa.me/85259813744" class="wa-btn">CONTACT AGENT</a>
                     </div>`;
             });
         }
