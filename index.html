@@ -86,7 +86,7 @@
         font-size: 12px;
         color: #666;
         line-height: 1.4;
-        max-width: 180px; /* Keeps text from getting too wide */
+        max-width: 180px; 
     }
 
    
@@ -147,13 +147,13 @@
         <div class="cat-card" onclick="openCatalog('Clothing')">
             <svg class="cat-icon-stroke" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20.38 3.46L16 2a4 4 0 01-8 0L3.62 3.46a2 2 0 00-1.62 1.96V21a2 2 0 002 2h16a2 2 0 002-2V5.42a2 2 0 00-1.62-1.96z"></path></svg>
             <span class="cat-title">Clothing</span>
-            <span class="cat-subtext">Premium textiles and custom apparel manufacturing.</span>
+            <span class="cat-subtext">Textiles and custom apparel manufacturing.</span>
         </div>
 
         <div class="cat-card" onclick="openCatalog('Toys')">
             <svg class="cat-icon-stroke" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="10" r="3"></circle><path d="M7 22c0-4.66 4.33-8 5-8s5 3.34 5 8"></path><circle cx="6" cy="5" r="2"></circle><circle cx="18" cy="5" r="2"></circle></svg>
             <span class="cat-title">Toys</span>
-            <span class="cat-subtext">Wholesale educational toys and RC hobby equipment.</span>
+            <span class="cat-subtext">Wholesale toys.</span>
         </div>
 
         <div class="cat-card" onclick="openCatalog('Others')">
@@ -185,7 +185,7 @@
             </div>
             <div class="footer-section">
                 <h4>Contact</h4>
-                <p>📍 Hong Kong SAR<br>📞 +852 5981 3744<br>✉️ sourcing@aiwatrade.com</p>
+                <p>📍 Hong Kong SAR<br>📞 +852 5981 3744<br>✉️ mantillaservices@gmail.com</p>
             </div>
             <div class="footer-section">
                 <h4>Support</h4>
@@ -201,15 +201,15 @@
 
 <script>
     const inventory = [
-    { name: "STM32 Microchip", cat: "Electronics", desc: "Industrial MCU", price: "Enquire MOQ", img: "stm32.jpg" },
-    { name: "60W LED Driver", cat: "Electronics", desc: "Dimmable Power", price: "¥45.00", img: "led.jpg" },
-    { name: "OLED 4K Panel", cat: "Electronics", desc: "Ultra HD Display", price: "¥890.00", img: "oled.jpg" },
-    { name: "Ergonomic Chair", cat: "Household", desc: "Executive Mesh", price: "¥320.00", img: "chair.jpg" },
-    { name: "Velvet Sofa", cat: "Household", desc: "3-Seater Luxury", price: "¥2400.00", img: "sofa.jpg" },
-    { name: "Organic Cotton Tee", cat: "Clothing", desc: "200GSM Premium", price: "¥18.00", img: "tee.jpg" },
-    { name: "Techwear Shell", cat: "Clothing", desc: "Waterproof Jacket", price: "¥210.00", img: "jacket.jpg" },
-    { name: "RC Drone Pro", cat: "Toys", desc: "4K GPS Flight", price: "¥120.00", img: "drone.jpg" },
-    { name: "STEM Robot Kit", cat: "Toys", desc: "Coding Education", price: "¥140.00", img: "robot.jpg" }
+    { name: "STM32 Microchip", cat: "Electronics", desc: "Industrial MCU", price: "Enquire", img: "Chip1.jpg" },
+    { name: "60W LED Driver", cat: "Electronics", desc: "Dimmable Power", price: "Enquire", img: "led.jpg" },
+    { name: "OLED 4K Panel", cat: "Electronics", desc: "Ultra HD Display", price: "Enquire", img: "oled.jpg" },
+    { name: "Ergonomic Chair", cat: "Household", desc: "Executive Mesh", price: "Enquire", img: "chair.jpg" },
+    { name: "Velvet Sofa", cat: "Household", desc: "3-Seater Luxury", price: "Enquire", img: "sofa.jpg" },
+    { name: "TrackSuit", cat: "Clothing", desc: "Sports Wear", price: "Enquire", img: ["STS1.jpg"],["STS2.jpg"] },
+    { name: "Hoodie ", cat: "Clothing", desc: "Winter Hoodie ", price: "Enquire", img: "hood1.jpg" },
+    { name: "RC Drone Pro", cat: "Toys", desc: "Female Barebe Doll", price: "Enquire", img: ["Barbe1.jpg"],["Barbe2.jpg"] },
+    { name: "Bubble ", cat: "Toys", desc: "Coding Education", price: "Enquire", img: "Bub.jpg" }
 ];
 
     function openCatalog(category) {
